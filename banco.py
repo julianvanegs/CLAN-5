@@ -4,17 +4,21 @@ from operaciones import consultar_saldo
 from operaciones import depositar
 from operaciones import retirar
 from operaciones import mostrar_historial
+from validacion_numerica import pedirNumero
 print("BIENVENIDO")
 
 
 saldo = 1000 
-operaciones = int(input("¿CUÁNTAS OPERACIONES DESEA REALIZAR?: "))
+print("¿CUÁNTAS OPERACIONES DESEA REALIZAR?: ")
+operaciones = pedirNumero()
+
 
 historial = []
 
 for i in range(operaciones):
     mostrarmenu()
-    operacion = input("DIGITE EL NUMERO DE LA OPERACION: ")
+    print("DIGITE EL NUMERO DE LA OPERACION: ")
+    operacion = pedirNumero()
     if operacion == "1":
         saldo = consultar_saldo(saldo, historial)
 

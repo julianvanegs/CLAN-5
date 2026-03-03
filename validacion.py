@@ -1,3 +1,4 @@
+from validacion_numerica import pedirNumero
 usuario = []
 contraseña = []
 historial_intento =   []
@@ -12,7 +13,8 @@ def inicio():
   
    
 def opcion_inicio():
-    opcion= str(input("DIGITE EL NUMERO DE LA OPCION: "))
+    print(input("DIGITE EL NUMERO DE LA OPCION: "))
+    opcion= pedirNumero()
     if  opcion == "1":
      autenticacion()
     elif opcion == "2":
@@ -43,6 +45,8 @@ def contraseña_autenticacion():
            print("INGRESO EXITOSO ")
      else:
         print("USUARIO BLOQUEADO")
+        exit()
+             
                
                
 def autenticacion():
@@ -59,6 +63,7 @@ def autenticacion():
            contraseña_autenticacion()
     else:
        print("USUARIO BLOQUEADO")
+       exit()
              
            
            
