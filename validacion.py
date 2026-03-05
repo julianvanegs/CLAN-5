@@ -13,15 +13,14 @@ def inicio():
   
    
 def opcion_inicio():
-    print(input("DIGITE EL NUMERO DE LA OPCION: "))
-    opcion= pedirNumero()
-    if  opcion == "1":
-     autenticacion()
+    opcion = input("DIGITE EL NUMERO DE LA OPCION: ")  
+    if opcion == "1":
+        autenticacion()
     elif opcion == "2":
-     usuario_register()
+        usuario_register()
     else:
-     print("OPCION INVALIDA")
-     
+        print("OPCION INVALIDA")
+        opcion_inicio() 
 
 def usuario_register():
    usuario_registro = str(input("ELIGE TU USUARIO: "))
