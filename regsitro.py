@@ -1,3 +1,4 @@
+data_base = []
 def operations():
     print("1 .Add new product")
     print("2. Show total products, balance and quantity ")
@@ -43,13 +44,14 @@ def option_two():
         print(f"   {quantity}               {name_product}               {price_product}             {total}")
         
 def option_three():
+    
     total_general = 0
     for name_product, price_product, quantity, total in data_base:
         print("QUANTITY ------- NAME PRODUCTO ------- PRICE ------- TOTAL PRICE ")
         print(f"   {quantity}               {name_product}               {price_product}             {total}")
         total_general += total
-        print(f"TOTAL PURCHASE: {total_general}")
-        print("Sucessfully purchase")
+    print(f"TOTAL PURCHASE: {total_general}")
+    print("Sucessfully purchase")
         
 def main():
     print("Choose the operation number: ")

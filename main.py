@@ -1,5 +1,5 @@
 from regsitro import *
-data_base = []
+
 
 
 
