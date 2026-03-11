@@ -69,20 +69,7 @@ def main():
         print("Choose the operation number: ")
         operation = pedirNumero()   
 
-data_base = []
 
-
-
-print("Welcome")
-print("What do you want to do?")
-operations()
-main()
-
-
-
-option_three()
-                                           
-        
     
     
   
