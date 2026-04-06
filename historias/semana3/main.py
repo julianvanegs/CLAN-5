@@ -1,2 +1,2 @@
-from tienda import *
-print("WELCOME")
+#from tienda import ##*
+#print("WELCOME")
