@@ -1,0 +1,16 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.video-contain{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 100vh;
+    position: relative;
+}
+.strongname{
+    font-size: 10rem;
+    color: white;
+    position: absolute;
+}
