@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sill | Indoor Houseplants & Outdoor Plants for Sale Online</title>
+
+<!-- Exact fonts from thesill.com (Domaine Display + Gill Sans fallback via Google) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ========================================================
+   THE SILL — EXACT REPLICA
+   Font: Domaine Display (→ Cormorant Garamond), Gill Sans (→ Jost)
+   Colors extracted from :root of live site
+   ======================================================== */
+
+:root {
+  --color-foreground: 42,45,47;
+  --color-background: 255,255,255;
+  --color-primary-button-background: 42,45,47;
+  --color-primary-button-labels: 255,255,255;
+  --color-secondary-button-border: 42,45,47;
+  --color-secondary-button-labels: 42,45,47;
+  --color-border: 224,219,211;
+  --color-shadow: 0,0,0;
+  --font-heading-family: 'Cormorant Garamond', 'Palatino Linotype', Georgia, serif;
+  --font-body-family: 'Jost', 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+  --black: #2A2D2F;
+  --white: #FFFFFF;
+  --offwhite: #F6F3EE;
+  --cream: #EDEBE6;
+  --sage: #4E6449;
+  --sage-mid: #6B8C65;
+  --warm-gray: #8C8880;
+  --border: #E0DBD3;
+  --red: #C8402D;
+  --page-width: 1600px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-body-family);
+  color: var(--black);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+ul, ol { list-style: none; }
+img { display: block; max-width: 100%; height: auto; }
+button { cursor: pointer; font-family: var(--font-body-family); border: none; background: none; }
+
+/* ── ANNOUNCEMENT BAR ── */
+.announcement-bar {
+  background: var(--black);
+  color: #fff;
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 13px;
+  letter-spacing: .04em;
+  font-weight: 400;
+  position: relative;
+  z-index: 10;
+}
+.announcement-bar a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.announcement-bar .ann-scroll {
+  display: flex;
+  gap: 80px;
+  width: max-content;
+  animation: ticker 22s linear infinite;
+}
+.announcement-bar .ann-track {
+  overflow: hidden;
+  position: relative;
+}
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+
+/* Top utility bar */
+.header-utility {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 24px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12.5px;
+  max-width: var(--page-width);
+  margin: 0 auto;
+}
+.header-utility a { color: var(--black); opacity: .7; transition: opacity .15s; }
+.header-utility a:hover { opacity: 1; }
+.header-utility .util-right { display: flex; gap: 20px; }
+
+/* Main header */
+.header-main {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 24px;
+  height: 64px;
+  max-width: var(--page-width);
+  margin: 0 auto;
+}
+
+/* Logo */
+.logo-wrap { display: flex; justify-content: center; }
+.site-logo {
+  font-family: var(--font-heading-family);
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--black);
+  letter-spacing: .01em;
+  line-height: 1;
+}
+.site-logo img { height: 30px; width: auto; }
+
+/* Left nav */
+.header-nav {
+  display: flex;
+  align-items: center;
+}
+.nav-item { position: relative; }
+.nav-item > a {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .03em;
+  color: var(--black);
+  white-space: nowrap;
+  transition: opacity .15s;
+  position: relative;
+}
+.nav-item > a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 14px; right: 14px;
+  height: 2px;
+  background: var(--black);
+  transform: scaleX(0);
+  transition: transform .2s ease;
+}
+.nav-item:hover > a::after { transform: scaleX(1); }
+.nav-item > a.sale { color: var(--red); font-weight: 600; }
+
+/* Mega menu */
+.mega-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-top: none;
+  min-width: 680px;
+  padding: 28px 32px 32px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.09);
+  z-index: 300;
+  animation: menuFade .18s ease;
+}
+@keyframes menuFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.nav-item:hover .mega-menu { display: flex; }
+.mega-menu-col { flex: 1; min-width: 140px; }
+.mega-menu-col + .mega-menu-col { margin-left: 28px; }
+.mega-menu-col h4 {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+.mega-menu-col a {
+  display: block;
+  padding: 6px 0;
+  font-size: 13px;
+  color: var(--black);
+  transition: opacity .15s;
+}
+.mega-menu-col a:hover { opacity: .55; }
+.mega-menu-img {
+  width: 200px;
+  flex-shrink: 0;
+}
+.mega-menu-img a {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  position: relative;
+}
+.mega-menu-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+.mega-menu-img a:hover img { transform: scale(1.04); }
+.mega-menu-img span {
+  display: block;
+  font-size: 12px;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+/* Header right */
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
+.header-icon-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--black);
+  transition: opacity .15s;
+}
+.header-icon-btn:hover { opacity: .6; }
+.header-icon-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.btn-cart-header {
+  background: var(--black);
+  color: #fff !important;
+  padding: 9px 22px !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: .04em;
+}
+.btn-cart-header:hover { opacity: .8 !important; }
+
+/* ── PROMO BANNER ── */
+.promo-banner {
+  background: var(--sage);
+  color: #fff;
+  text-align: center;
+  padding: 11px 16px;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: .02em;
+}
+.promo-banner a { color: #fff; font-weight: 700; border-bottom: 1.5px solid rgba(255,255,255,.5); }
+.promo-banner a:hover { border-bottom-color: #fff; }
+
+/* ── HERO / SLIDESHOW ── */
+.hero-slideshow {
+  position: relative;
+  overflow: hidden;
+  background: var(--cream);
+}
+.hero-slide {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+  transition: opacity .7s ease;
+  pointer-events: none;
+}
+.hero-slide.active {
+  opacity: 1;
+  position: relative;
+  pointer-events: all;
+}
+.hero-slide-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 64px 80px 80px;
+}
+.hero-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 16px;
+}
+.hero-slide-content h1 {
+  font-family: var(--font-heading-family);
+  font-size: clamp(48px, 5vw, 76px);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -.01em;
+  color: var(--black);
+  margin-bottom: 14px;
+}
+.hero-slide-content h1 em { font-style: italic; color: var(--sage); }
+.hero-slide-content p {
+  font-size: 16px;
+  color: var(--warm-gray);
+  line-height: 1.7;
+  max-width: 400px;
+  margin-bottom: 36px;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-dark {
+  background: var(--black);
+  color: #fff;
+  padding: 13px 32px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  border: 2px solid var(--black);
+  transition: all .2s;
+  display: inline-block;
+}
+.btn-dark:hover { background: transparent; color: var(--black); }
+.btn-outline-dark {
+  border: 2px solid var(--black);
+  color: var(--black);
+  padding: 13px 32px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  display: inline-block;
+  transition: all .2s;
+}
+.btn-outline-dark:hover { background: var(--black); color: #fff; }
+
+.hero-slide-img {
+  position: relative;
+  overflow: hidden;
+}
+.hero-slide-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.04);
+  transition: transform 8s ease;
+}
+.hero-slide.active .hero-slide-img img { transform: scale(1); }
+
+/* Hero dots */
+.hero-dots {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+.hero-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.25);
+  border: none;
+  cursor: pointer;
+  transition: background .2s;
+  padding: 0;
+}
+.hero-dot.active { background: var(--black); }
+
+/* ── MARQUEE STRIP ── */
+.marquee-strip {
+  background: var(--offwhite);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.marquee-track span {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  padding: 0 32px;
+  white-space: nowrap;
+}
+.marquee-track span.dot { color: var(--sage); font-size: 18px; padding: 0 12px; }
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── SECTION LAYOUT ── */
+.section { padding: 60px 40px; }
+.section-wide { padding: 60px 0; }
+.section-inner { max-width: 1560px; margin: 0 auto; }
+
+.section-header { margin-bottom: 36px; }
+.section-header.centered { text-align: center; }
+.eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  margin-bottom: 8px;
+}
+.section-header h2 {
+  font-family: var(--font-heading-family);
+  font-size: clamp(28px, 3vw, 46px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -.01em;
+}
+.see-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--black);
+  border-bottom: 1.5px solid var(--black);
+  padding-bottom: 2px;
+  transition: opacity .2s;
+}
+.see-all:hover { opacity: .55; }
+
+/* ── PRODUCTS GRID ── */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 16px;
+}
+@media(max-width:1100px){ .products-grid { grid-template-columns: repeat(3,1fr); } }
+@media(max-width:700px){ .products-grid { grid-template-columns: repeat(2,1fr); gap:12px 8px; } }
+
+.product-card { display: flex; flex-direction: column; cursor: pointer; }
+.product-card:hover .product-img-inner img:first-child { opacity: 0; }
+.product-card:hover .product-img-inner img:last-child { opacity: 1; }
+
+.product-img-wrap {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: var(--offwhite);
+  margin-bottom: 12px;
+}
+.product-img-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.product-img-inner img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity .45s ease, transform .6s ease;
+}
+.product-img-inner img:first-child { opacity: 1; z-index: 1; }
+.product-img-inner img:last-child { opacity: 0; z-index: 2; }
+.product-card:hover .product-img-inner img { transform: scale(1.04); }
+
+.product-badge-wrap {
+  position: absolute;
+  top: 10px; left: 10px;
+  z-index: 5;
+  display: flex; flex-direction: column; gap: 5px;
+}
+.badge {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 40px;
+  line-height: 1.3;
+}
+.badge-new { background: var(--black); color: #fff; }
+.badge-sale { background: var(--red); color: #fff; }
+.badge-pet { background: #4E6449; color: #fff; }
+.badge-sold { background: var(--warm-gray); color: #fff; }
+
+.quick-add-wrap {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  transform: translateY(100%);
+  transition: transform .25s ease;
+  z-index: 5;
+}
+.product-card:hover .quick-add-wrap { transform: translateY(0); }
+.btn-quick-add {
+  width: 100%;
+  background: rgba(255,255,255,.92);
+  border: none;
+  border-top: 1px solid var(--border);
+  padding: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--black);
+  font-family: var(--font-body-family);
+  backdrop-filter: blur(4px);
+  transition: background .15s;
+}
+.btn-quick-add:hover { background: var(--black); color: #fff; }
+
+.product-name {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+  margin-bottom: 3px;
+}
+.product-tagline {
+  font-size: 12.5px;
+  color: var(--warm-gray);
+  margin-bottom: 5px;
+  line-height: 1.4;
+}
+.product-zone {
+  font-size: 11.5px;
+  color: var(--sage);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.product-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 14px;
+}
+.product-price-row .was { text-decoration: line-through; color: var(--warm-gray); font-size: 13px; }
+.sold-out-txt { font-size: 14px; color: var(--warm-gray); font-style: italic; }
+
+/* ── COLLECTION BANNERS (2-up) ── */
+.coll-2up {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media(max-width:700px){ .coll-2up { grid-template-columns: 1fr; } }
+
+.coll-banner {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3/2;
+  display: block;
+  cursor: pointer;
+}
+.coll-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .7s ease;
+}
+.coll-banner:hover img { transform: scale(1.04); }
+.coll-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.48) 0%, transparent 55%);
+}
+.coll-banner-info {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 28px 32px;
+  color: #fff;
+}
+.coll-banner-info h3 {
+  font-family: var(--font-heading-family);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+.coll-banner-link {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #fff;
+  border-bottom: 1.5px solid rgba(255,255,255,.5);
+  padding-bottom: 2px;
+  display: inline-block;
+}
+
+/* ── VALUE PROPS ── */
+.value-props {
+  background: var(--black);
+  color: #fff;
+}
+.vp-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  max-width: var(--page-width);
+  margin: 0 auto;
+}
+@media(max-width:800px){ .vp-grid { grid-template-columns: 1fr; } }
+.vp-cell {
+  padding: 52px 48px;
+  border-right: 1px solid rgba(255,255,255,.1);
+}
+.vp-cell:last-child { border-right: none; }
+.vp-icon { font-size: 30px; margin-bottom: 18px; display: block; }
+.vp-cell h3 {
+  font-family: var(--font-heading-family);
+  font-size: 26px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  letter-spacing: -.01em;
+}
+.vp-cell p { font-size: 14px; line-height: 1.75; color: rgba(255,255,255,.6); }
+
+/* ── SPLIT PROMO ── */
+.split-promo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 540px;
+}
+@media(max-width:800px) { .split-promo { grid-template-columns: 1fr; } }
+.split-promo.flip { direction: rtl; }
+.split-promo.flip > * { direction: ltr; }
+
+.split-img-side {
+  position: relative;
+  overflow: hidden;
+}
+.split-img-side img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .7s ease;
+}
+.split-img-side:hover img { transform: scale(1.03); }
+
+.split-text-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 72px 80px;
+  background: var(--offwhite);
+}
+.split-text-side.dark { background: var(--black); color: #fff; }
+.split-text-side h2 {
+  font-family: var(--font-heading-family);
+  font-size: clamp(32px, 3.2vw, 52px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -.01em;
+  margin-bottom: 16px;
+}
+.split-text-side h2 em { font-style: italic; color: var(--sage); }
+.split-text-side.dark h2 em { color: #a5c49e; }
+.split-text-side p { font-size: 15px; line-height: 1.75; color: var(--warm-gray); max-width: 400px; margin-bottom: 32px; }
+.split-text-side.dark p { color: rgba(255,255,255,.6); }
+
+/* ── HELP / 3 COLS ── */
+.help-3col {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  border: 1px solid var(--border);
+}
+@media(max-width:800px){ .help-3col { grid-template-columns: 1fr; } }
+.help-col {
+  padding: 44px 40px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+.help-col:last-child { border-right: none; }
+.help-col-icon { font-size: 28px; margin-bottom: 18px; }
+.help-col h3 {
+  font-family: var(--font-heading-family);
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.help-col p { font-size: 13.5px; color: var(--warm-gray); line-height: 1.7; margin-bottom: 20px; flex: 1; }
+.help-col-link {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--black);
+  border-bottom: 1.5px solid var(--black);
+  padding-bottom: 2px;
+  display: inline-block;
+  align-self: flex-start;
+  transition: opacity .15s;
+}
+.help-col-link:hover { opacity: .55; }
+
+/* ── BLOG CARDS ── */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+@media(max-width:900px){ .blog-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:600px){ .blog-grid { grid-template-columns: 1fr; } }
+.blog-card { cursor: pointer; }
+.blog-card:hover .blog-img img { transform: scale(1.04); }
+.blog-img {
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--offwhite);
+  margin-bottom: 14px;
+}
+.blog-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s ease; }
+.blog-tag {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  margin-bottom: 8px;
+}
+.blog-card h3 {
+  font-family: var(--font-heading-family);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+.blog-card p { font-size: 13.5px; color: var(--warm-gray); line-height: 1.65; }
+
+/* ── REVIEWS ── */
+.reviews-outer { background: var(--offwhite); }
+.reviews-track-wrap { overflow: hidden; position: relative; }
+.reviews-track {
+  display: flex;
+  transition: transform .45s ease;
+  gap: 20px;
+}
+.review-card {
+  flex: 0 0 calc(33.333% - 14px);
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: 36px 32px;
+}
+@media(max-width:900px){ .review-card { flex: 0 0 calc(50% - 10px); } }
+@media(max-width:600px){ .review-card { flex: 0 0 calc(100%); } }
+.review-stars { color: var(--sage); font-size: 15px; letter-spacing: 3px; margin-bottom: 16px; }
+.review-text {
+  font-family: var(--font-heading-family);
+  font-size: 19px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--black);
+  margin-bottom: 18px;
+}
+.review-author { font-size: 12.5px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--warm-gray); }
+
+/* reviews nav */
+.reviews-nav { display: flex; gap: 10px; margin-top: 28px; }
+.review-nav-btn {
+  width: 40px; height: 40px;
+  border: 1.5px solid var(--black);
+  background: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all .2s;
+  font-size: 18px;
+  line-height: 1;
+}
+.review-nav-btn:hover { background: var(--black); color: #fff; }
+
+/* ── INSTAGRAM GRID ── */
+.ig-grid {
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+}
+@media(max-width:900px){ .ig-grid { grid-template-columns: repeat(3,1fr); } }
+@media(max-width:500px){ .ig-grid { grid-template-columns: repeat(2,1fr); } }
+.ig-tile {
+  aspect-ratio: 1;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+.ig-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .55s ease;
+}
+.ig-tile:hover img { transform: scale(1.08); }
+.ig-tile-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .3s;
+}
+.ig-tile:hover .ig-tile-overlay { background: rgba(0,0,0,.25); }
+.ig-tile-overlay span {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity .3s;
+}
+.ig-tile:hover .ig-tile-overlay span { opacity: 1; }
+
+/* ── NEWSLETTER ── */
+.newsletter {
+  background: var(--sage);
+  color: #fff;
+  padding: 64px 40px;
+  text-align: center;
+}
+.newsletter h2 {
+  font-family: var(--font-heading-family);
+  font-size: clamp(30px,3vw,46px);
+  font-weight: 400;
+  letter-spacing: -.01em;
+  margin-bottom: 10px;
+}
+.newsletter p { font-size: 15px; opacity: .8; margin-bottom: 28px; line-height: 1.65; }
+.newsletter-form {
+  display: flex;
+  max-width: 480px;
+  margin: 0 auto;
+  border: 1.5px solid rgba(255,255,255,.4);
+}
+.newsletter-form input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 14px 20px;
+  font-size: 14px;
+  color: #fff;
+  font-family: var(--font-body-family);
+  outline: none;
+}
+.newsletter-form input::placeholder { color: rgba(255,255,255,.55); }
+.newsletter-form button {
+  background: #fff;
+  color: var(--sage);
+  border: none;
+  padding: 14px 28px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-family: var(--font-body-family);
+  cursor: pointer;
+  transition: opacity .2s;
+}
+.newsletter-form button:hover { opacity: .88; }
+
+/* ── FOOTER ── */
+.site-footer {
+  background: var(--black);
+  color: #fff;
+  padding: 64px 40px 36px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr;
+  gap: 56px;
+  max-width: 1560px;
+  margin: 0 auto 52px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+@media(max-width:900px){ .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; } }
+@media(max-width:500px){ .footer-top { grid-template-columns: 1fr; } }
+
+.footer-logo {
+  font-family: var(--font-heading-family);
+  font-size: 32px;
+  color: #fff;
+  font-weight: 400;
+  display: block;
+  margin-bottom: 16px;
+}
+.footer-brand p { font-size: 13.5px; color: rgba(255,255,255,.5); line-height: 1.75; max-width: 260px; margin-bottom: 24px; }
+.footer-brand .phone { font-size: 14px; font-weight: 600; color: #fff; display: flex; align-items: center; gap: 8px; }
+
+.footer-col h4 {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+  margin-bottom: 18px;
+}
+.footer-col li { margin-bottom: 11px; }
+.footer-col a { font-size: 13.5px; color: rgba(255,255,255,.68); transition: color .15s; }
+.footer-col a:hover { color: #fff; }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1560px;
+  margin: 0 auto;
+  font-size: 12px;
+  color: rgba(255,255,255,.3);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-social { display: flex; gap: 18px; }
+.footer-social a { font-size: 13px; color: rgba(255,255,255,.5); transition: color .15s; }
+.footer-social a:hover { color: #fff; }
+
+/* ── SCROLL REVEAL ── */
+.sr {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.sr.visible { opacity: 1; transform: translateY(0); }
+.sr-delay-1 { transition-delay: .08s; }
+.sr-delay-2 { transition-delay: .16s; }
+.sr-delay-3 { transition-delay: .24s; }
+.sr-delay-4 { transition-delay: .32s; }
+
+/* ── RESPONSIVE ADJUSTMENTS ── */
+@media(max-width:1100px){
+  .hero-slide-content { padding: 56px 40px; }
+  .section { padding: 52px 28px; }
+  .split-text-side { padding: 56px 48px; }
+  .vp-cell { padding: 40px 32px; }
+}
+@media(max-width:800px){
+  .hero-slide { grid-template-columns: 1fr; }
+  .hero-slide-img { display: none; }
+  .header-nav { display: none; }
+  .header-main { grid-template-columns: auto 1fr auto; }
+  .logo-wrap { justify-content: flex-start; }
+  .help-3col { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+  ANNOUNCEMENT BAR (scrolling ticker)
+══════════════════════════════════════════════ -->
+<div class="announcement-bar">
+  <div class="ann-track">
+    <div class="ann-scroll">
+      <span>Free Shipping Over $99 + 30-Day Happiness Guarantee &nbsp;&nbsp;·&nbsp;&nbsp; <a href="https://www.thesill.com/collections/live-plants">Shop Now →</a></span>
+      <span>Free Shipping Over $99 + 30-Day Happiness Guarantee &nbsp;&nbsp;·&nbsp;&nbsp; <a href="https://www.thesill.com/collections/live-plants">Shop Now →</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  HEADER
+══════════════════════════════════════════════ -->
+<header class="site-header">
+
+  <!-- Utility -->
+  <div class="header-utility">
+    <a href="tel:8889742079">Talk to a plant expert! (888) 974-2079</a>
+    <div class="util-right">
+      <a href="https://www.thesill.com/pages/plant-care-articles">Resources</a>
+      <a href="https://www.thesill.com/pages/workshops-events">Workshops</a>
+      <a href="https://www.thesill.com/pages/corporate-gifting-new-version">Corporate Gifts</a>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="header-main">
+
+    <!-- Left nav -->
+    <nav class="header-nav">
+
+      <div class="nav-item">
+        <a href="https://www.thesill.com/collections/new-arrivals">New Arrivals</a>
+        <div class="mega-menu">
+          <div class="mega-menu-col">
+            <h4>New Arrivals</h4>
+            <a href="https://www.thesill.com/collections/new-arrivals-indoor">New Houseplants</a>
+            <a href="https://www.thesill.com/collections/new-arrivals-outdoor">New Outdoor Plants</a>
+            <a href="https://www.thesill.com/collections/new-arrivals">Team Picks</a>
+            <a href="https://www.thesill.com/pages/workshops-events">Upcoming Workshops</a>
+          </div>
+          <div class="mega-menu-col">
+            <h4>Featured</h4>
+            <a href="https://www.thesill.com/collections/spring-blooming-plants">Spring Blooming Plants</a>
+            <a href="https://www.thesill.com/products/7580345237609">Waxed Amaryllis — 40% Off</a>
+          </div>
+          <div class="mega-menu-img" style="margin-left:auto;">
+            <a href="https://www.thesill.com/collections/spring-blooming-plants">
+              <img src="https://www.thesill.com/cdn/shop/collections/B2S_2023_5.jpg?v=1773084171&width=533" alt="Spring Blooming Plants" loading="lazy">
+            </a>
+            <span>Spring Blooming Plants</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <a href="https://www.thesill.com/pages/houseplants">Indoor Plants</a>
+        <div class="mega-menu">
+          <div class="mega-menu-col">
+            <h4>Houseplants</h4>
+            <a href="https://www.thesill.com/collections/live-plants">Shop All</a>
+            <a href="https://www.thesill.com/collections/new-arrivals-indoor">New Arrivals</a>
+            <a href="https://www.thesill.com/products/plant-of-the-month-club">Subscription Box</a>
+            <a href="https://www.thesill.com/collections/large-plants">Large & Giant Plants</a>
+            <a href="https://www.thesill.com/collections/faux-and-preserved">Artificial & Preserved</a>
+          </div>
+          <div class="mega-menu-col">
+            <h4>Popular</h4>
+            <a href="https://www.thesill.com/collections/sale">Best Deals</a>
+            <a href="https://www.thesill.com/collections/pet-friendly-plants">Pet-Friendly</a>
+            <a href="https://www.thesill.com/collections/plants-for-beginners">Easy-Care</a>
+            <a href="https://www.thesill.com/collections/low-light-plants">Low-Light</a>
+          </div>
+          <div class="mega-menu-col">
+            <h4>Shop By Size</h4>
+            <a href="https://www.thesill.com/collections/small-plants">Small</a>
+            <a href="https://www.thesill.com/collections/medium-plants">Medium</a>
+            <a href="https://www.thesill.com/collections/large-plants">Large</a>
+            <a href="https://www.thesill.com/collections/ready-to-ship">Bundles</a>
+          </div>
+          <div class="mega-menu-col">
+            <h4>Sill Selects</h4>
+            <a href="https://www.thesill.com/collections/rare-plants">Rare Plants</a>
+            <a href="https://www.thesill.com/collections/fancy-philodendron">Fancy Philodendrons</a>
+            <a href="https://www.thesill.com/collections/cacti-succulent">Cacti & Succulents</a>
+            <a href="https://www.thesill.com/collections/back-in-stock">Back In Stock</a>
+          </div>
+          <div class="mega-menu-img">
+            <a href="https://www.thesill.com/collections/large-plants">
+              <img src="https://www.thesill.com/cdn/shop/collections/the-sill_Extra-Large-Dracaena-Marginata-Braid_Gallery-2.jpg?v=1772069309&width=533" alt="Large Plants" loading="lazy">
+            </a>
+            <span>Large & Giant Indoor Plants</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <a href="https://www.thesill.com/pages/garden-and-patio">Outdoor & Patio</a>
+        <div class="mega-menu">
+          <div class="mega-menu-col">
+            <h4>Outdoor & Patio</h4>
+            <a href="https://www.thesill.com/collections/outdoor">Shop All</a>
+            <a href="https://www.thesill.com/collections/new-arrivals-outdoor">New Arrivals</a>
+            <a href="https://www.thesill.com/collections/bulbs">Spring Bulbs</a>
+          </div>
+          <div class="mega-menu-col">
+            <h4>Perfect for Patio</h4>
+            <a href="https://www.thesill.com/collections/fruit-trees">Fruit Trees & Bushes</a>
+            <a href="https://www.thesill.com/collections/flowering-vines">Flowering Vines</a>
+            <a href="https://www.thesill.com/collections/evergreen-trees">Evergreen & Privacy</a>
+            <a href="https://www.thesill.com/collections/perennials">Perennials & Flowers</a>
+            <a href="https://www.thesill.com/collections/flowering-shrubs">Flowering Shrubs</a>
+          </div>
+          <div class="mega-menu-col">
+            <h4>By Solution</h4>
+            <a href="https://www.thesill.com/collections/pollinator-friendly-plants">Pollinator-Friendly</a>
+            <a href="https://www.thesill.com/collections/colorful-blooms">Colorful Blooms</a>
+            <a href="https://www.thesill.com/collections/drought-tolerant">Drought Tolerant</a>
+            <a href="https://www.thesill.com/collections/deer-resistant">Deer Resistant</a>
+            <a href="https://www.thesill.com/collections/cold-tolerant-plants">Cold Tolerant</a>
+          </div>
+          <div class="mega-menu-img">
+            <a href="https://www.thesill.com/collections/fruit-trees">
+              <img src="https://www.thesill.com/cdn/shop/collections/Meyer-Lemon-TRee-2.jpg?v=1726072263&width=533" alt="Fruit Trees" loading="lazy">
+            </a>
+            <span>Fruit Trees & Bushes</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <a href="https://www.thesill.com/collections/gifts">Gift Ideas</a>
+        <div class="mega-menu">
+          <div class="mega-menu-col">
+            <h4>Gift Ideas</h4>
+            <a href="https://www.thesill.com/collections/gifts">Shop All</a>
+            <a href="https://www.thesill.com/pages/corporate-gifting">Corporate Gifts</a>
+          </div>
+          <div class="mega-menu-col">
+            <h4>By Occasion</h4>
+            <a href="https://www.thesill.com/collections/birthday-gifts">Happy Birthday</a>
+            <a href="https://www.thesill.com/collections/housewarming-gifts">Housewarming</a>
+            <a href="https://www.thesill.com/collections/congratulations-gifts">Congratulations</a>
+            <a href="https://www.thesill.com/collections/sympathy-gifts">Sympathy</a>
+          </div>
+          <div class="mega-menu-col">
+            <h4>Best Sellers</h4>
+            <a href="https://www.thesill.com/collections/our-subscriptions">Subscriptions</a>
+            <a href="https://www.thesill.com/collections/orchids">Orchids</a>
+            <a href="https://www.thesill.com/products/message-pops">Message Pops</a>
+            <a href="https://www.thesill.com/products/4849540759657">Gift Cards</a>
+          </div>
+          <div class="mega-menu-img">
+            <a href="https://www.thesill.com/products/4849540759657">
+              <img src="https://cdn.shopify.com/s/files/1/0150/6262/files/the-sill_digital-gift-card_variant_50_ed6eed2c-f44f-4bc7-a4e6-7caba6a96307.jpg?v=1766146338" alt="Gift Cards" loading="lazy">
+            </a>
+            <span>Gift Cards</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <a href="https://www.thesill.com/collections/sale" class="sale">Sale</a>
+      </div>
+
+    </nav>
+
+    <!-- Logo -->
+    <div class="logo-wrap">
+      <a href="https://www.thesill.com/" class="site-logo">The Sill</a>
+    </div>
+
+    <!-- Right actions -->
+    <div class="header-right">
+      <button class="header-icon-btn">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <a href="https://www.thesill.com/customer_authentication/redirect" class="header-icon-btn">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Log in
+      </a>
+      <a href="https://www.thesill.com/cart" class="header-icon-btn btn-cart-header">
+        Cart (0)
+      </a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════
+  PROMO BANNER
+══════════════════════════════════════════════ -->
+<div class="promo-banner">
+  🌸 <strong>Spring color starts with what you plant now!</strong> &nbsp;<a href="https://www.thesill.com/collections/spring-blooming-plants">See what's blooming →</a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  HERO SLIDESHOW
+══════════════════════════════════════════════ -->
+<section class="hero-slideshow" id="heroSlideshow">
+
+  <!-- Slide 1 -->
+  <div class="hero-slide active" id="slide-0">
+    <div class="hero-slide-content">
+      <p class="hero-label">New Arrivals — Spring 2025</p>
+      <h1>New<br>Arrivals!<br><em>Meet your next<br>favorite plant.</em></h1>
+      <div class="hero-btns">
+        <a href="https://www.thesill.com/collections/new-arrivals-outdoor" class="btn-dark">Shop Outdoor Plants</a>
+        <a href="https://www.thesill.com/collections/new-arrivals-indoor" class="btn-outline-dark">Shop Indoor Plants</a>
+      </div>
+    </div>
+    <div class="hero-slide-img">
+      <img src="https://www.thesill.com/cdn/shop/files/20181113_thesill_213-v2.jpg" alt="New Arrivals" loading="eager">
+    </div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="hero-slide" id="slide-1">
+    <div class="hero-slide-content">
+      <p class="hero-label">For Every Outdoor Space</p>
+      <h1>Outdoor<br>Plants<br><em>delivered to<br>your door.</em></h1>
+      <div class="hero-btns">
+        <a href="https://www.thesill.com/collections/outdoor" class="btn-dark">Shop Outdoor Plants</a>
+      </div>
+    </div>
+    <div class="hero-slide-img">
+      <img src="https://www.thesill.com/cdn/shop/files/editorial-block_the-sill_laila-salomon-pentagonal-planter_large_white_speckled_outdoor-lifestyle_a23e8dfb-fcb1-4ac2-9279-ce1d8a163e90.jpg" alt="Outdoor Plants" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="hero-slide" id="slide-2">
+    <div class="hero-slide-content">
+      <p class="hero-label">Meaningful Gifts</p>
+      <h1>Gift a<br>plant.<br><em>Gift joy<br>that grows.</em></h1>
+      <div class="hero-btns">
+        <a href="https://www.thesill.com/collections/gifts" class="btn-dark">Shop Gift Ideas</a>
+        <a href="https://www.thesill.com/products/plant-of-the-month-club" class="btn-outline-dark">Subscription Box</a>
+      </div>
+    </div>
+    <div class="hero-slide-img">
+      <img src="https://www.thesill.com/cdn/shop/files/Holiday_Gifting_Hero.png" alt="Gift Plants" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Dots -->
+  <div class="hero-dots">
+    <button class="hero-dot active" data-slide="0"></button>
+    <button class="hero-dot" data-slide="1"></button>
+    <button class="hero-dot" data-slide="2"></button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+  MARQUEE STRIP
+══════════════════════════════════════════════ -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Free Shipping Over $99</span><span class="dot">✦</span>
+    <span>30-Day Happiness Guarantee</span><span class="dot">✦</span>
+    <span>Expert Plant Guidance</span><span class="dot">✦</span>
+    <span>Pet-Friendly Options</span><span class="dot">✦</span>
+    <span>Packed to Order</span><span class="dot">✦</span>
+    <span>New Arrivals Weekly</span><span class="dot">✦</span>
+    <span>Free Shipping Over $99</span><span class="dot">✦</span>
+    <span>30-Day Happiness Guarantee</span><span class="dot">✦</span>
+    <span>Expert Plant Guidance</span><span class="dot">✦</span>
+    <span>Pet-Friendly Options</span><span class="dot">✦</span>
+    <span>Packed to Order</span><span class="dot">✦</span>
+    <span>New Arrivals Weekly</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  NEW ARRIVALS PRODUCTS
+══════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header sr" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <div>
+        <span class="eyebrow">Spring 2025</span>
+        <h2>New Arrivals!</h2>
+      </div>
+      <a href="https://www.thesill.com/collections/new-arrivals" class="see-all">See all new arrivals →</a>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- 1 -->
+      <div class="product-card sr sr-delay-1">
+        <div class="product-img-wrap">
+          <div class="product-img-inner">
+            <img src="https://www.thesill.com/cdn/shop/files/the-sill_Medium_Philodendron-Heartleaf-Totem_Medium_Isabella_Sage_Variant.jpg?v=1772822273&width=533" alt="Heartleaf Philodendron Totem" loading="lazy">
+            <img src="https://www.thesill.com/cdn/shop/files/the-sill_philodendon-green_gallery_small_all_all_03.jpg?v=1772822273&width=533" alt="Heartleaf Philodendron Totem" loading="lazy">
+          </div>
+          <div class="product-badge-wrap"><span class="badge badge-new">New Arrival</span></div>
+          <div class="quick-add-wrap"><button class="btn-quick-add">Quick Add</button></div>
+        </div>
+        <div class="product-name">Heartleaf Philodendron Totem</div>
+        <div class="product-tagline">Go vertical with a timeless classic</div>
+        <div class="product-price-row">From $79</div>
+      </div>
+
+      <!-- 2 -->
+      <div class="product-card sr sr-delay-2">
+        <div class="product-img-wrap">
+          <div class="product-img-inner">
+            <img src="https://www.thesill.com/cdn/shop/files/the-sill_Large_Cuddly-Cactus_Large_Agnes_Black_Dark-Bamboo-Stand_Lifestyle_3_75f02df4-5a84-4c8d-852e-a9e7cf920b94.jpg?v=1773073990&width=533" alt="Cuddly Cactus" loading="lazy">
+            <img src="https://www.thesill.com/cdn/shop/files/the-sill_cuddly-cactus_small_gallery_01.jpg?v=1773073990&width=533" alt="Cuddly Cactus" loading="lazy">
+          </div>
+          <div class="quick-add-wrap"><button class="btn-quick-add">Quick Add</button></div>
+        </div>
+        <div class="product-name">Cuddly Cactus</div>
+        <div class="product-tagline">Soft stems, big smiles</div>
+        <div class="product-price-row">From $99</div>
+      </div>
+
+      <!-- 3 -->
+      <div class="product-card sr sr-delay-3">
+        <div class="product-img-wrap">
+          <div class="product-img-inner">
+            <img src="https://www.thesill.com/cdn/shop/files/the-sill_Large-Ficus-Audrey-Tree_Large_Mexia_Cream_Variant.jpg?v=1762474890&width=533" alt="Ficus Audrey Tree" loading="lazy">
+            <img src="https://www.thesill.com/cdn/shop/files/the-sill_Large-Ficus-Audrey-Standard_Large-Gallery_1.jpg?v=1766778037&width=533" alt="Ficus Audrey Tree" loading="lazy">
+          </div>
+          <div class="product-badge-wrap"><span class="badge badge-new">New Arrival</span></div>
+          <div class="quick-add-wrap"><button class="btn-quick-add">Quick Add</button></div>
+        </div>
+        <div class="product-name">Ficus Audrey Tree</div>
+        <div class="product-tagline">Choose your planter style & color</div>
+        <div class="product-price-row">From $149</div>
+      </div>
+
+      <!-- 4 -->
+      <div class="product-card sr sr-delay-4">
+        <div class="product-img-wrap">
+          <div class="product-img-inner">
+            <img src="https://www.thesill.com/cdn/shop/files/The_Sill_Shoot_5_053_1.jpg?v=1772824166&width=533" alt="Bird of Paradise" loading="lazy">
+            <img src="https://www.thesill.com/cdn/shop/files/the-sill_Large-Bird-of-Paradise_Large_Mexia-Cream_Variant.jpg?v=1772824166&width=533" alt="Bird of Paradise" loading="lazy">
+          </div>
+          <div class="quick-add-wrap"><button class="btn-quick-add">Quick Add</button></div>
+        </div>
+        <div class="product-name">Bird of Paradise</div>
+        <div class="product-tagline">Paradise, delivered</div>
+        <div class="product-price-row">From $69</div>
+      </div>
+
+      <!-- 5 -->
+      <div class="product-card sr sr-delay-1">
+        <div class="product-img-wrap">
+          <div class="product-img-inner">
+            <img src="https://www.thesill.com/cdn/shop/files/iStock-2249731023_2bf558db-e617-465e-b38f-dbce8d2e6731.jpg?v=1769627894&width=533" alt="Mission Olive Tree" loading="lazy">
+            <img src="https://www.thesill.com/cdn/shop/files/iStock-2199294366.jpg?v=1769627976&width=533" alt="Mission Olive Tree" loading="lazy">
+          </div>
+          <div class="product-badge-wrap"><span class="badge badge-sale">On Sale</span></div>
+          <div class="quick-add-wrap"><button class="btn-quick-add">Quick Add</button></div>
+        </div>
+        <div class="product-name">Mission Olive Tree</div>
+        <div class="product-zone">Growing Zone: 8-11 outdoors</div>
+        <div class="product-tagline">The ultimate multipurpose olive</div>
+        <div class="product-price-row"><span class="was">$129</span> From $119</div>
+      </div>
+
+      <!-- 6 -->
+      <div class="product-card sr sr-delay-2">
+        <div class="product-img-wrap">
+          <div class="product-img-inner">
+            <img src="https://www.thesill.com/cdn/shop/files/the-sill_Medium-Calathea-White-Fusion_Medium-Isabella_Lavender_Variant.jpg?v=1773073087&width=533" alt="Calathea White Fusion" loading="lazy">
+            <img src="https://www.thesill.com/cdn/shop/files/the-sill_Calathea-White-Fusion_Gallery-3_1.jpg?v=1773073087&width=533" alt="Calathea White Fusion" loading="lazy">
+          </div>
+          <div class="product-badge-wrap"><span class="badge badge-pet">Pet-Friendly</span></div>
+          <div class="quick-add-wrap"><button class="btn-quick-add">Quick Add</button></div>
+        </div>
+        <div class="product-name">Calathea White Fusion</div>
+        <div class="product-tagline">Collector's edition</div>
+        <div class="product-price-row">From $89</div>
+      </div>
+
+      <!-- 7 -->
+      <div class="product-card sr sr-delay-3">
+        <div class="product-img-wrap">
+          <div class="product-img-inner">
+            <img src="https://www.thesill.com/cdn/shop/files/the-sill_Medium_Cereus-Green-Coral-Cactus_Medium_Hyde_Black_Lifestyle_2.jpg?v=1772732393&width=533" alt="Cereus Green Coral Cactus" loading="lazy">
+            <img src="https://www.thesill.com/cdn/shop/files/the-sill_Medium_Cereus-Green-Coral-Cactus_Gallery_1.jpg?v=1772732393&width=533" alt="Cereus Green Coral Cactus" loading="lazy">
+          </div>
+          <div class="quick-add-wrap"><button class="btn-quick-add">Quick Add</button></div>
+        </div>
+        <div class="product-name">Cereus Green Coral Cactus</div>
+        <div class="product-tagline">One-of-a-kind curves, zero effort!</div>
+        <div class="product-price-row">From $149</div>
+      </div>
+
+      <!-- 8 -->
+      <div class="product-card sr sr-delay-4">
+        <div class="product-img-wrap">
+          <div class="product-img-inner">
+            <img src="https://www.thesill.com/cdn/shop/files/the-sill_Medium-Mermaid-Cactus-Purple_Medium_Isabella_Lavender_Variant.jpg?v=1768592578&width=533" alt="Mermaid Tail Cactus" loading="lazy">
+            <img src="https://www.thesill.com/cdn/shop/files/MermaidCactus_Green_TheSill.jpg?v=1769725839&width=533" alt="Mermaid Tail Cactus" loading="lazy">
+          </div>
+          <div class="product-badge-wrap"><span class="badge badge-new">New Arrival</span></div>
+          <div class="quick-add-wrap"><button class="btn-quick-add">Quick Add</button></div>
+        </div>
+        <div class="product-name">Mermaid Tail Cactus</div>
+        <div class="product-tagline">Wavy, whimsical, and wonderfully weird</div>
+        <div class="product-price-row">From $69</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+  COLLECTION BANNERS
+══════════════════════════════════════════════ -->
+<section class="section" style="background:var(--offwhite); padding-top:0;">
+  <div class="section-inner">
+    <div class="coll-2up">
+      <a href="https://www.thesill.com/collections/large-plants" class="coll-banner sr">
+        <img src="https://www.thesill.com/cdn/shop/files/the-sill_Extra-Large_Majesty-Palm_Extra-Large_Mexia_Cement-Grey_Lifestyle_2.jpg?v=1772473185&width=533" alt="Large Floor Plants" loading="lazy">
+        <div class="coll-banner-overlay"></div>
+        <div class="coll-banner-info">
+          <h3>Large Floor Plants</h3>
+          <span class="coll-banner-link">Shop all large plants →</span>
+        </div>
+      </a>
+      <a href="https://www.thesill.com/collections/new-arrivals" class="coll-banner sr sr-delay-1">
+        <img src="https://www.thesill.com/cdn/shop/files/the-sill_Large-Peggy_Martin_Rose_Large_Mexia_Cream_Variant.jpg?v=1769193054&width=533" alt="New Arrivals" loading="lazy">
+        <div class="coll-banner-overlay"></div>
+        <div class="coll-banner-info">
+          <h3>New Arrivals</h3>
+          <span class="coll-banner-link">Shop all new arrivals →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+  VALUE PROPS
+══════════════════════════════════════════════ -->
+<div class="value-props">
+  <div class="vp-grid">
+    <div class="vp-cell sr">
+      <span class="vp-icon">🌿</span>
+      <h3>Expert Guidance</h3>
+      <p>Success starts with choosing the right plants. We'll make sure you do — with personalized advice from plant specialists available 7 days a week.</p>
+    </div>
+    <div class="vp-cell sr sr-delay-1">
+      <span class="vp-icon">🤝</span>
+      <h3>Connect & Grow</h3>
+      <p>Community is everything. Our workshops and events help you learn and connect with fellow plant lovers, wherever you are.</p>
+    </div>
+    <div class="vp-cell sr sr-delay-2">
+      <span class="vp-icon">💬</span>
+      <h3>Judgement-Free Service</h3>
+      <p>Our dedicated team is always available to assist — no question too small or too silly! We're here for every step of your plant journey.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  HELP / CONTACT
+══════════════════════════════════════════════ -->
+<section class="section" style="background:var(--cream);">
+  <div class="section-inner">
+    <div class="section-header sr">
+      <span class="eyebrow">Need Help?</span>
+      <h2>Speak to a Plant Specialist</h2>
+    </div>
+    <div class="help-3col sr">
+      <div class="help-col">
+        <div class="help-col-icon">💬</div>
+        <h3>Chat</h3>
+        <p>Chat live with a plant specialist. We'll help you find the right plant for your space, light conditions, and lifestyle — in minutes.</p>
+        <a href="#" class="help-col-link">Start a chat →</a>
+      </div>
+      <div class="help-col">
+        <div class="help-col-icon">📞</div>
+        <h3>Call</h3>
+        <p>Speak directly with a specialist. Available Monday through Friday, 9am–6pm ET. No question is too small!</p>
+        <a href="tel:8889742079" class="help-col-link">(888) 974-2079</a>
+      </div>
+      <div class="help-col">
+        <div class="help-col-icon">✉️</div>
+        <h3>Email</h3>
+        <p>Send us your plant questions anytime. We'll reply with expert guidance tailored to your specific situation within 24 hours.</p>
+        <a href="mailto:support@thesill.com" class="help-col-link">Email us →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+  SPLIT — WORKSHOPS
+══════════════════════════════════════════════ -->
+<div class="split-promo">
+  <div class="split-img-side sr">
+    <img src="https://www.thesill.com/cdn/shop/files/editorial-block_holiday_zz_blush_grant.jpg" alt="Plant Care Workshops" loading="lazy">
+  </div>
+  <div class="split-text-side sr sr-delay-1">
+    <span class="eyebrow">Events & Education</span>
+    <h2>Plant Care<br>&amp; <em>Workshops</em></h2>
+    <p>Join us for hands-on workshops, expert talks, and community events designed to help you grow with confidence — from beginner to botanist.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;">
+      <a href="https://www.thesill.com/blogs/plants-101/ask-an-expert-starting-a-garden-from-scratch" class="btn-dark">Ask An Expert</a>
+      <a href="https://www.thesill.com/pages/workshops-events" class="btn-outline-dark">See All Events</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  SPLIT — PHILODENDRON (flip)
+══════════════════════════════════════════════ -->
+<div class="split-promo flip">
+  <div class="split-img-side sr">
+    <img src="https://www.thesill.com/cdn/shop/files/PhilodendronGrant_EditorialBlock.jpg" alt="Fancy Philodendrons" loading="lazy">
+  </div>
+  <div class="split-text-side dark sr sr-delay-1">
+    <span class="eyebrow" style="color:rgba(255,255,255,.4)">Sill Selects</span>
+    <h2>Fancy<br><em>Philodendrons</em></h2>
+    <p>Rare, statement-making, and surprisingly easy to care for. These are the plants plant people talk about.</p>
+    <a href="https://www.thesill.com/collections/fancy-philodendron" class="btn-dark" style="background:var(--sage);border-color:var(--sage);">Shop Philodendrons</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  REVIEWS
+══════════════════════════════════════════════ -->
+<section class="reviews-outer section">
+  <div class="section-inner">
+    <div class="section-header centered sr">
+      <span class="eyebrow">#PlantsMakePeopleHappy</span>
+      <h2>What our customers are saying</h2>
+    </div>
+    <div class="reviews-track-wrap sr">
+      <div class="reviews-track" id="reviewsTrack">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I love The Sill! It's a nice way to send plants to people you love who live far away. Thanks for helping me stay connected!"</p>
+          <div class="review-author">Hillary — TX</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"My Monstera arrived gorgeous and healthy!!! Best looking plant I've ever pulled out of a box!!"</p>
+          <div class="review-author">Melanie — IL</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I have ordered several times and each time I get the healthiest, prettiest plants very quickly. I have been extremely satisfied with The Sill."</p>
+          <div class="review-author">Verified Customer</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Absolutely beautiful plants! The packaging was incredible — every plant arrived in perfect condition. Will definitely be ordering again."</p>
+          <div class="review-author">Sarah — NY</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I was nervous about ordering plants online, but The Sill made it so easy. The customer service is exceptional and my ZZ plant is thriving!"</p>
+          <div class="review-author">Marcus — CA</div>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-nav">
+      <button class="review-nav-btn" id="reviewPrev" aria-label="Previous">&#8592;</button>
+      <button class="review-nav-btn" id="reviewNext" aria-label="Next">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+  INSTAGRAM GRID
+══════════════════════════════════════════════ -->
+<div>
+  <div class="section-header centered sr" style="padding:48px 40px 28px;">
+    <span class="eyebrow">Instagram</span>
+    <h2>#PlantsMakePeopleHappy</h2>
+  </div>
+  <div class="ig-grid">
+    <div class="ig-tile">
+      <img src="https://www.thesill.com/cdn/shop/files/the-sill_Medium-Calathea-White-Fusion_Medium-Isabella_Lavender_Variant.jpg?v=1773073087&width=400" alt="" loading="lazy">
+      <div class="ig-tile-overlay"><span>@thesill</span></div>
+    </div>
+    <div class="ig-tile">
+      <img src="https://www.thesill.com/cdn/shop/files/the-sill_Large_Cuddly-Cactus_Large_Agnes_Black_Dark-Bamboo-Stand_Lifestyle_3_75f02df4-5a84-4c8d-852e-a9e7cf920b94.jpg?v=1773073990&width=400" alt="" loading="lazy">
+      <div class="ig-tile-overlay"><span>@thesill</span></div>
+    </div>
+    <div class="ig-tile">
+      <img src="https://www.thesill.com/cdn/shop/files/the-sill_Medium_Cereus-Green-Coral-Cactus_Medium_Hyde_Black_Lifestyle_2.jpg?v=1772732393&width=400" alt="" loading="lazy">
+      <div class="ig-tile-overlay"><span>@thesill</span></div>
+    </div>
+    <div class="ig-tile">
+      <img src="https://www.thesill.com/cdn/shop/files/the-sill_Large-Ficus-Audrey-Tree_Large_Mexia_Cream_Variant.jpg?v=1762474890&width=400" alt="" loading="lazy">
+      <div class="ig-tile-overlay"><span>@thesill</span></div>
+    </div>
+    <div class="ig-tile">
+      <img src="https://www.thesill.com/cdn/shop/files/The_Sill_Shoot_5_053_1.jpg?v=1772824166&width=400" alt="" loading="lazy">
+      <div class="ig-tile-overlay"><span>@thesill</span></div>
+    </div>
+    <div class="ig-tile">
+      <img src="https://www.thesill.com/cdn/shop/files/the-sill_Medium_Philodendron-Heartleaf-Totem_Medium_Isabella_Sage_Variant.jpg?v=1772822273&width=400" alt="" loading="lazy">
+      <div class="ig-tile-overlay"><span>@thesill</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  NEWSLETTER
+══════════════════════════════════════════════ -->
+<div class="newsletter">
+  <div class="sr">
+    <h2>Get the Dirt.</h2>
+    <p>Sign up for plant tips, new arrivals, exclusive offers, and everything<br>you need to keep your plants thriving.</p>
+    <form class="newsletter-form" onsubmit="return false;">
+      <input type="email" placeholder="Enter your email address" aria-label="Email address">
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  FOOTER
+══════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-top">
+
+    <div class="footer-brand">
+      <a href="https://www.thesill.com/" class="footer-logo">The Sill</a>
+      <p>We believe plants make people happy — and we're on a mission to help everyone find their perfect plant. Packed to order, guaranteed to arrive thriving.</p>
+      <a href="tel:8889742079" class="phone">📞 (888) 974-2079</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Customer Service</h4>
+      <ul>
+        <li><a href="https://www.thesill.com/pages/faq">Help Center / FAQ</a></li>
+        <li><a href="https://www.thesill.com/pages/track-order">Track My Order</a></li>
+        <li><a href="https://www.thesill.com/policies/refund-policy">Returns & Exchanges</a></li>
+        <li><a href="https://www.thesill.com/pages/shipping">Shipping Info</a></li>
+        <li><a href="https://www.thesill.com/pages/plant-guarantee">Plant Guarantee</a></li>
+        <li><a href="https://www.thesill.com/pages/contact">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="https://www.thesill.com/pages/care-library">Plant Care Library</a></li>
+        <li><a href="https://www.thesill.com/pages/workshops-events">Free Workshops</a></li>
+        <li><a href="https://www.thesill.com/products/virtual-plant-appointment">Virtual Plant Appointment</a></li>
+        <li><a href="https://www.thesill.com/pages/plant-care-articles">Blog</a></li>
+        <li><a href="https://www.thesill.com/pages/plant-quiz">Plant Quiz</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>My Sill</h4>
+      <ul>
+        <li><a href="https://www.thesill.com/customer_authentication/redirect">Log In</a></li>
+        <li><a href="https://www.thesill.com/collections/our-subscriptions">Subscription Box</a></li>
+        <li><a href="https://www.thesill.com/pages/corporate-gifting-new-version">Corporate Gifts</a></li>
+        <li><a href="https://www.thesill.com/pages/about">About The Sill</a></li>
+        <li><a href="https://www.thesill.com/pages/careers">Careers</a></li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 The Sill. All rights reserved.</span>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/thesill/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/TheSill/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.pinterest.com/thesill/" target="_blank" rel="noopener">Pinterest</a>
+      <a href="https://www.tiktok.com/@thesill" target="_blank" rel="noopener">TikTok</a>
+    </div>
+    <span>
+      <a href="https://www.thesill.com/policies/privacy-policy" style="color:inherit;">Privacy Policy</a> ·
+      <a href="https://www.thesill.com/policies/terms-of-service" style="color:inherit;">Terms of Service</a>
+    </span>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+  JAVASCRIPT
+══════════════════════════════════════════════ -->
+<script>
+// ── HERO SLIDESHOW ──
+(function() {
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots   = document.querySelectorAll('.hero-dot');
+  let current  = 0;
+  let timer;
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function next() { goTo(current + 1); }
+
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(next, 5000);
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      goTo(+dot.dataset.slide);
+      startTimer();
+    });
+  });
+
+  startTimer();
+})();
+
+// ── REVIEWS CAROUSEL ──
+(function() {
+  const track    = document.getElementById('reviewsTrack');
+  const prevBtn  = document.getElementById('reviewPrev');
+  const nextBtn  = document.getElementById('reviewNext');
+  if (!track) return;
+
+  const cards    = track.querySelectorAll('.review-card');
+  const perView  = window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 2 : 3;
+  let index      = 0;
+  const max      = cards.length - perView;
+
+  function update() {
+    const cardW = cards[0].offsetWidth + 20;
+    track.style.transform = `translateX(-${index * cardW}px)`;
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index >= max;
+    prevBtn.style.opacity = index === 0 ? '.35' : '1';
+    nextBtn.style.opacity = index >= max ? '.35' : '1';
+  }
+
+  prevBtn.addEventListener('click', () => { if (index > 0) { index--; update(); } });
+  nextBtn.addEventListener('click', () => { if (index < max) { index++; update(); } });
+  update();
+})();
+
+// ── SCROLL REVEAL ──
+(function() {
+  const els = document.querySelectorAll('.sr');
+  const io  = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+  els.forEach(el => io.observe(el));
+})();
+</script>
+
+</body>
+</html>

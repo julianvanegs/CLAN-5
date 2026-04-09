@@ -1,0 +1,2005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Coffee.co</title>
+<meta content="Coffee.co" property="og:title">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,100;0,400;0,700;1,100;1,400&family=DM+Sans:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+html{height:100%;font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;min-height:100%;background-color:#1f120a;font-family:Arial,sans-serif;font-size:14px;line-height:20px;color:#333;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+img{max-width:100%;vertical-align:middle;display:inline-block}
+h1,h2,h3,h4,h5,h6{font-weight:bold;margin-bottom:10px}
+h1{font-size:38px;line-height:44px;margin-top:20px}
+p{margin-top:0;margin-bottom:10px}
+a{background-color:transparent;text-decoration:none}
+a:active,a:hover{outline:0}
+
+/* ===== FONT FACE REPLACEMENTS ===== */
+/* Using Playfair Display as Canelaweb, DM Sans as Messinasans */
+
+/* ===== WEBFLOW LAYOUT UTILITIES ===== */
+.w-layout-grid{display:grid}
+.w-nav{position:relative}
+.w-nav-brand{display:flex;align-items:center}
+.w-nav-menu{display:flex}
+.w-nav-button{display:none;cursor:pointer}
+.w-container{margin-left:auto;margin-right:auto;max-width:940px}
+.w-container:before,.w-container:after{content:" ";display:table;grid-column-start:1;grid-row-start:1;grid-column-end:2;grid-row-end:2}
+.w-container:after{clear:both}
+.w-inline-block{max-width:100%;display:inline-block}
+.w-background-video{position:relative;overflow:hidden;height:100%;color:white}
+.w-background-video>video{background-size:cover;background-position:50% 50%;position:absolute;margin:auto;width:100%;height:100%;right:-100%;bottom:-100%;top:-100%;left:-100%;object-fit:cover;z-index:-100}
+.w-form{margin:0 0 15px}
+.w-form-done{display:none;padding:20px;text-align:center;background-color:#dddddd}
+.w-form-fail{display:none;margin-top:10px;padding:10px;background-color:#ffdede}
+label{display:block;margin-bottom:5px;font-weight:bold}
+.w-input,.w-select{display:block;width:100%;height:38px;padding:8px 12px;margin-bottom:10px;font-size:14px;line-height:1.42857143;color:#333333;vertical-align:middle;background-color:#ffffff;border:1px solid #cccccc}
+.w-button{display:inline-block;padding:9px 15px;background-color:#3898EC;color:white;border:0;line-height:inherit;text-decoration:none;cursor:pointer;border-radius:0}
+input.w-button{-webkit-appearance:button}
+
+/* ===== CUSTOM COFFEE.CO CSS ===== */
+.navbar {
+  width: 100%;
+  max-width: none;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: transparent;
+}
+
+.nav-menu {
+  z-index: 90;
+  display: flex;
+  height: 100%;
+  min-height: auto;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: transparent;
+}
+
+.form {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.form-field {
+  flex: 1;
+}
+
+.input-field {
+  height: 55px;
+  margin-bottom: 0px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #bb956d;
+  border-radius: 0px;
+  background-color: transparent;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #bb956d;
+  padding: 8px 12px;
+  width: 100%;
+}
+
+.input-field::placeholder { color: #bb956d; }
+
+.submit-button {
+  height: 75px;
+  min-width: auto;
+  margin-top: 4vh;
+  margin-right: auto;
+  margin-left: auto;
+  order: 1;
+  flex: 0 0 auto;
+  background-color: #204e83;
+  transition: all 200ms ease;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: white;
+  cursor: pointer;
+  border: none;
+  padding: 9px 15px;
+}
+
+.submit-button:hover { background-color: #000; }
+
+.submit-button.signup {
+  height: 55px;
+  padding-right: 22px;
+  padding-left: 22px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #bb956d;
+  background-color: transparent;
+  color: #bb956d;
+  font-weight: 700;
+  letter-spacing: 0px;
+}
+
+.menu-button { background-color: transparent; }
+.menu-button.w--open { background-color: transparent; }
+
+.full-page {
+  position: relative;
+  background-color: #1f120a;
+}
+
+.navbar-wrapper {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  right: auto;
+  bottom: auto;
+  z-index: 90;
+  display: flex;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  min-height: auto;
+  margin-right: auto;
+  margin-left: auto;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-grid {
+  width: 100%;
+  max-width: none;
+  margin-right: auto;
+  margin-left: auto;
+  align-items: start;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.section {
+  position: relative;
+  overflow: hidden;
+  padding: 0vh 5vw 3vh;
+  background-color: #ecd8c2;
+}
+
+.section.footer {
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  background-color: #312416;
+}
+
+.section.scrolling {
+  overflow: visible;
+  padding-right: 0vw;
+  padding-bottom: 0vh;
+  padding-left: 0vw;
+  background-color: #1f120a;
+}
+
+.section.hero {
+  display: flex;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  padding-right: 0vw;
+  padding-bottom: 0vh;
+  padding-left: 0vw;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #1f120a;
+}
+
+.section.quote {
+  padding-right: 0vw;
+  padding-left: 0vw;
+  background-color: #312416;
+}
+
+.section.brown {
+  overflow: visible;
+  padding-right: 5vw;
+  padding-bottom: 0vh;
+  padding-left: 5vw;
+  background-color: #1f120a;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  max-width: 1800px;
+  margin-right: auto;
+  margin-left: auto;
+  flex-direction: column;
+  flex: 0 auto;
+}
+
+.container.full-width {
+  max-width: none;
+}
+
+.small-scrolling-text {
+  font-family: 'DM Sans', sans-serif;
+  color: #bb956d;
+  font-size: 4em;
+  line-height: 1.35;
+  font-weight: 100;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.small-scrolling-text.blue {
+  font-family: 'DM Sans', sans-serif;
+  color: #afb679;
+  font-size: 9em;
+}
+
+.flex-scrolling {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.scrolling-text {
+  font-family: 'Playfair Display', serif;
+  color: #63342e;
+  white-space: nowrap;
+}
+
+.main-image {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  min-height: auto;
+  object-fit: cover;
+}
+
+.main-image.about-us {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  right: auto;
+  bottom: auto;
+  height: 100vh;
+  max-height: 100%;
+  opacity: 1;
+  object-fit: cover;
+}
+
+.section-scroller-small-text {
+  display: flex;
+  overflow: hidden;
+  height: auto;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: transparent;
+}
+
+.inner-footer-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.divider {
+  width: 2vh;
+  height: 2vh;
+  margin-right: 3vw;
+  margin-left: 3vw;
+  flex: 0 0 auto;
+  border-radius: 20px;
+  background-color: #bb956d;
+}
+
+.divider.big {
+  width: 5px;
+  height: 5px;
+  margin-right: 1vw;
+  margin-left: 1vw;
+  flex: 0 0 auto;
+  background-color: #af3838;
+  border-radius: 20px;
+}
+
+.big-scrolling-text {
+  font-family: 'DM Sans', sans-serif;
+  color: #bb956d;
+  font-size: 5em;
+  line-height: 1.35;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.02vw;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.wrapper-nav {
+  display: block;
+  width: 100%;
+  padding: 2vh 5vw;
+}
+
+.stripes {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 80vh;
+  flex-direction: column;
+  background-color: transparent;
+}
+
+.wrapper-flex {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 105vw;
+  height: 18vh;
+  align-items: center;
+  background-color: #56a097;
+  transform: rotate(9deg);
+  transform-origin: 0% 0%;
+}
+
+.wrapper-flex.reverse {
+  position: absolute;
+  left: 0%;
+  top: auto;
+  right: 0%;
+  bottom: 0%;
+  z-index: 1;
+  background-color: #c23030;
+  transform: rotate(-5deg);
+  transform-origin: 0% 100%;
+}
+
+.wrapper-flex.reverse.green {
+  left: -5vw;
+  top: 13%;
+  right: 0%;
+  bottom: 0%;
+  width: 110vw;
+  height: 45vh;
+  background-color: #5c6b61;
+  transform: rotate(4deg);
+}
+
+.wrapper-flex.down {
+  position: absolute;
+  left: 0%;
+  top: 15vh;
+  right: 0%;
+  width: 110vw;
+  background-color: #663932;
+  transform: translate(-2vw, 0px) rotate(-4deg);
+}
+
+.nav-grid {
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+.xl-heading {
+  width: auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  transform-origin: 0% 100%;
+  font-family: 'Playfair Display', serif;
+  color: #bb956d;
+  font-size: 20vh;
+  line-height: 0.85;
+  font-weight: 100;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.xl-heading.sans {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 20vh;
+  font-weight: 400;
+}
+
+.xl-heading.sans.gray {
+  color: #3f3f3f;
+  font-size: 19vh;
+}
+
+.xl-heading.sans.salmon { color: #ffcca3; }
+.xl-heading.sans.dark-khaki { color: #afb679; }
+
+.xl-heading.dark {
+  transform-origin: 0% 100%;
+  color: #3f3f3f;
+  font-size: 27vh;
+}
+
+.xl-heading.serif {
+  font-size: 20vh;
+  font-weight: 100;
+  text-align: center;
+}
+
+.xl-heading.serif.salmon { color: #ffcca3; }
+.xl-heading.serif.dark-khaki { color: #afb679; }
+.xl-heading.first { font-size: 20vh; text-transform: uppercase; }
+.xl-heading.second { font-size: 20vh; }
+.xl-heading.third { font-size: 20vh; }
+
+.xl-heading.lovers {
+  font-size: 40vh;
+  line-height: 1;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+.xl-heading.med-size {
+  font-size: 12vh;
+  text-align: center;
+  white-space: normal;
+}
+
+.xl-heading.gray { color: #3f3f3f; }
+
+.med-heading {
+  max-width: none;
+  font-family: 'DM Sans', sans-serif;
+  color: #a38667;
+  font-size: 62px;
+  line-height: 1.2;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+}
+
+.med-heading.quote {
+  margin-bottom: 20px;
+  font-family: 'Playfair Display', serif;
+  color: #ac4343;
+  font-size: 38px;
+  line-height: 1.1;
+  font-weight: 100;
+}
+
+.inner-container {
+  position: sticky;
+  padding-bottom: 0;
+}
+
+.overlayer-nav {
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  right: auto;
+  bottom: auto;
+  z-index: 89;
+  display: none;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+}
+
+.med-text-footer {
+  font-family: 'DM Sans', sans-serif;
+  color: #bb956d;
+  font-size: 45px;
+  line-height: 1;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+
+.inner-nav {
+  display: flex;
+  height: auto;
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+}
+
+.inner-overlayer {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
+.divider-smile {
+  width: 10vh;
+  height: 10vh;
+  margin-right: 3vw;
+  margin-left: 3vw;
+  flex: 0 0 auto;
+  border-radius: 200px;
+  background-color: transparent;
+}
+
+.text-nav-link {
+  position: relative;
+  z-index: 3;
+  color: #bb956d;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.hero-grid {
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  grid-template-rows: 15vh auto auto;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+}
+
+.hero-col-heading {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  padding-top: 0vh;
+  padding-bottom: 10vh;
+  padding-left: 5vw;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero-col-image {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  max-width: 750px;
+  min-height: 0;
+  border-radius: 10px;
+  transform: rotateZ(11.9deg) scale(1.25);
+  transform-origin: center center;
+}
+
+.hero-col-image-inner {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  will-change: clip-path;
+}
+
+.testimonials-grid {
+  width: 100%;
+  min-height: 60vh;
+  grid-column-gap: 48px;
+  grid-row-gap: 48px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto auto auto auto;
+}
+
+.block-content-wrapper {
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  perspective-origin: 0% 0%;
+  transform-origin: 0% 0%;
+}
+
+.block-content-wrapper.product {
+  padding-top: 5vh;
+  text-align: left;
+}
+
+.block-content-wrapper.hero {
+  width: 50%;
+  padding-top: 0vh;
+  padding-bottom: 0vh;
+  text-align: left;
+}
+
+.block-content-wrapper.quote {
+  padding: 8vh 3vw;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: #2b1f13;
+}
+
+.block-content-wrapper.flex {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.wrap-big-heading {
+  display: flex;
+  padding-bottom: 5vh;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.background-video {
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+}
+
+.main-paragraph {
+  font-family: 'DM Sans', sans-serif;
+  color: #bb956d;
+  font-size: 20px;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.main-paragraph.third-product { color: #3f3c1b; }
+.main-paragraph.second-product { color: #9e5034; }
+.main-paragraph.center { text-align: center; }
+
+.overlap-color {
+  position: absolute;
+  left: 0%;
+  top: auto;
+  right: 0%;
+  bottom: 0%;
+  height: 30vh;
+  max-height: none;
+  min-height: auto;
+  background-color: #ecd8c2;
+}
+
+.flex-scrolling-reverse {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  color: #bb956d;
+  font-size: 22px;
+  line-height: 44px;
+  font-weight: 100;
+}
+
+.copyright-icon {
+  margin-top: 0px;
+  margin-left: 9px;
+  font-family: 'DM Sans', sans-serif;
+  color: #bb956d;
+  font-size: 10vh;
+  line-height: 8vh;
+  font-weight: 400;
+}
+
+.product-grid {
+  overflow: hidden;
+  height: 100vh;
+  max-height: 100vh;
+  align-content: center;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  grid-template-columns: 1fr 1fr 1fr 2fr 2fr 1fr 1fr 1fr;
+  grid-template-rows: 10vh auto auto auto auto auto 10vh;
+}
+
+.wrapper-product {
+  position: sticky;
+  top: 0px;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper-product.second { background-color: #ffa889; }
+.wrapper-product.third { background-color: #8d8a6c; }
+.wrapper-product.first { background-color: #ecd8c2; }
+
+.detail-divider {
+  display: flex;
+  width: 80px;
+  height: 80px;
+  margin-right: 1vw;
+  margin-left: 1vw;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.wrap-image-product {
+  position: relative;
+  z-index: 10;
+}
+
+.image-pack { max-height: 65vh; max-width: 100%; }
+
+.flex-big-heading-scrolling {
+  display: flex;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  align-items: center;
+}
+
+.icon-askterisk { height: 25px; }
+
+.hero-heading {
+  padding-bottom: 12vh;
+  align-self: flex-start;
+}
+
+.wrap-scrolling-big-heading {
+  display: flex;
+}
+
+.wrap-scrolling-big-heading.vertical {
+  padding-bottom: 15vh;
+  flex-direction: column;
+}
+
+.author-quote {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  font-family: 'DM Sans', sans-serif;
+  color: #a38667;
+}
+
+.mask-heading {
+  display: flex;
+  overflow: visible;
+  width: 100%;
+  padding-top: 8px;
+  justify-content: center;
+  border: 1px none #000;
+  perspective-origin: 0% 100%;
+  transform-origin: 0% 100%;
+  text-align: center;
+}
+
+.mask-heading.right { justify-content: flex-end; }
+.mask-heading.overflow { overflow: hidden; }
+.mask-heading.scroll { overflow: hidden; }
+.mask-heading.scroll.left { justify-content: flex-start; text-align: left; }
+
+.flex-mask { display: flex; }
+.flex-mask.lovers { justify-content: space-between; align-items: center; }
+.flex-mask.center { justify-content: center; text-align: center; }
+
+.image-mask {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  z-index: 6;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: #312416;
+}
+
+.wrap-sticky-section {
+  position: relative;
+  display: flex;
+  height: 400vh;
+  flex-direction: column;
+}
+
+.grid-sticky-section {
+  position: relative;
+  top: 0px;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  grid-template-columns: 10vw 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 10vw;
+  grid-template-rows: 15vh auto auto auto auto auto auto auto auto 15vh;
+}
+
+.img-grid-02 {
+  overflow: hidden;
+  max-width: 550px;
+  border-radius: 5px;
+  background-color: #323ec5;
+  background-position: 0px 0px;
+  background-size: cover;
+}
+
+.img-grid-03 {
+  overflow: hidden;
+  border-radius: 5px;
+  background-color: #ff1c7b;
+  background-position: 100% 0%;
+  background-size: cover;
+}
+
+.img-grid-01 {
+  overflow: hidden;
+  width: 100%;
+  max-width: 550px;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 5px;
+  background-color: #323ec5;
+  background-position: 50% 100%;
+  background-size: cover;
+}
+
+.img-grid-04 {
+  overflow: hidden;
+  max-height: 45vh;
+  max-width: 550px;
+  border-radius: 5px;
+  background-color: #ff1c7b;
+  background-position: 0% 100%;
+  background-size: cover;
+}
+
+.sticky-section {
+  position: sticky;
+  top: 0px;
+}
+
+.text-hero-detail {
+  font-family: 'DM Sans', sans-serif;
+  color: #bb956d;
+  font-size: 44px;
+  line-height: 1.35;
+}
+
+.inner-big-headling {
+  overflow: hidden;
+  padding-top: 15vh;
+  padding-bottom: 0vh;
+}
+
+.sub-description {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 26px;
+  line-height: 1.65;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.sub-description.tan-color { color: #bb956d; font-size: 26px; }
+.sub-description.highlight { color: #bb956d; font-size: 40px; line-height: 1.5; text-align: center; }
+
+.grid-content {
+  width: 100%;
+  padding-top: 8vh;
+  padding-bottom: 8vh;
+  grid-template-rows: auto;
+}
+
+.coffee-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.small-heading {
+  font-family: 'DM Sans', sans-serif;
+  color: #bb956d;
+  font-size: 32px;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+}
+
+.small-legal-text {
+  font-family: 'DM Sans', sans-serif;
+  color: #bb956d;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.section-2 {
+  position: relative;
+  overflow: hidden;
+  background-color: #ecd8c2;
+}
+
+.wrap-main-image {
+  position: sticky;
+  top: 0px;
+  display: flex;
+  overflow: hidden;
+  height: 100vh;
+  min-height: auto;
+  align-items: flex-start;
+  background-color: #ecd8c2;
+}
+
+.inner-section {
+  position: relative;
+  z-index: 3;
+  overflow: hidden;
+  width: 100%;
+  padding-right: 5vw;
+  padding-left: 5vw;
+  background-color: #ecd8c2;
+}
+
+.nav-link {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  margin-left: 20px;
+  padding: 10px 0;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.nav-link.footer {
+  margin-right: 0;
+  margin-left: 0;
+  padding: 5px 0;
+}
+
+.underline-link {
+  height: 1px;
+  background-color: #bb956d;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms ease;
+}
+
+.nav-link:hover .underline-link {
+  transform: scaleX(1);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  color: #bb956d;
+  font-size: 22px;
+  text-decoration: none;
+}
+
+.wrap-middle-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.menu-mobile {
+  position: relative;
+  display: flex;
+  width: 20px;
+  height: 14px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex: 0 0 auto;
+}
+
+.stick-up, .stick-down {
+  width: 100%;
+  height: 2px;
+  background-color: #bb956d;
+  display: block;
+}
+
+/* ===== GRID NODE POSITIONS ===== */
+#w-node-_7598b5ed-4672-a340-b10f-54fe77f31333-2090efa8 {
+  grid-column-end: 3; grid-column-start: 1;
+  grid-row-end: 4; grid-row-start: 2;
+  justify-self: start;
+}
+#w-node-_7598b5ed-4672-a340-b10f-54fe77f31346-2090efa8 {
+  grid-column-end: 3; grid-column-start: 2;
+  grid-row-end: 4; grid-row-start: 2;
+  justify-self: center;
+}
+#w-node-e7d50c7c-35e4-ea81-8c03-940beba8f144-2090efa8 {
+  grid-column-end: 3; grid-column-start: 2;
+  grid-row-end: 2; grid-row-start: 1;
+}
+#w-node-_37d9b457-c801-82d4-8f09-421f2c613617-2090efa8 {
+  grid-row-start: 7; grid-row-end: 11;
+  grid-column-start: 7; grid-column-end: 10;
+}
+#w-node-_37d9b457-c801-82d4-8f09-421f2c613618-2090efa8 {
+  grid-row-start: 7; grid-row-end: 11;
+  grid-column-start: 1; grid-column-end: 3;
+}
+#w-node-_37d9b457-c801-82d4-8f09-421f2c613619-2090efa8 {
+  grid-row-start: 2; grid-row-end: 7;
+  grid-column-start: 8; grid-column-end: 11;
+}
+#w-node-_37d9b457-c801-82d4-8f09-421f2c61361a-2090efa8 {
+  grid-row-start: 1; grid-row-end: 6;
+  grid-column-start: 1; grid-column-end: 5;
+}
+#w-node-_37d9b457-c801-82d4-8f09-421f2c61361b-2090efa8 {
+  grid-column-end: 8; grid-column-start: 4;
+  grid-row-end: 10; grid-row-start: 2;
+  align-self: center; justify-self: center;
+}
+#w-node-_4c223972-c561-879d-6c98-f85ad6b1f288-2090efa8 {
+  grid-column-end: 3; grid-column-start: 2;
+  grid-row-end: 2; grid-row-start: 1;
+}
+#w-node-_163afdff-41ac-22de-d95d-12b1f8bf2ce8-2090efa8 {
+  grid-column-end: 3; grid-column-start: 2;
+  grid-row-end: 2; grid-row-start: 1;
+}
+#w-node-_9beaf3ce-02c3-f722-ce4e-7e254e1e37fd-2090efa8 {
+  grid-column-end: 9; grid-column-start: 1;
+  grid-row-end: 5; grid-row-start: 4;
+  align-self: center;
+}
+#w-node-_9beaf3ce-02c3-f722-ce4e-7e254e1e3803-2090efa8 {
+  grid-column-end: 6; grid-column-start: 4;
+  grid-row-end: 7; grid-row-start: 2;
+  align-self: center; justify-self: center;
+}
+#w-node-_54b49bd6-1921-432b-ad88-00ca49a5a138-2090efa8 {
+  grid-column-end: 8; grid-column-start: 6;
+  grid-row-end: 6; grid-row-start: 5;
+}
+#w-node-e334000e-d6d7-852d-76c1-5bbaa9ada558-2090efa8 {
+  grid-column-end: 9; grid-column-start: 1;
+  grid-row-end: 5; grid-row-start: 4;
+  align-self: center;
+}
+#w-node-e334000e-d6d7-852d-76c1-5bbaa9ada56f-2090efa8 {
+  grid-column-end: 6; grid-column-start: 4;
+  grid-row-end: 7; grid-row-start: 2;
+  align-self: center; justify-self: center;
+}
+#w-node-e334000e-d6d7-852d-76c1-5bbaa9ada571-2090efa8 {
+  grid-column-end: 8; grid-column-start: 6;
+  grid-row-end: 6; grid-row-start: 5;
+}
+#w-node-_6d1c1bf5-0238-c58a-67d3-00251a526a55-2090efa8 {
+  grid-column-end: 9; grid-column-start: 1;
+  grid-row-end: 5; grid-row-start: 4;
+  align-self: center;
+}
+#w-node-_6d1c1bf5-0238-c58a-67d3-00251a526a6c-2090efa8 {
+  grid-column-end: 6; grid-column-start: 4;
+  grid-row-end: 7; grid-row-start: 2;
+  align-self: center; justify-self: center;
+}
+#w-node-_6d1c1bf5-0238-c58a-67d3-00251a526a6e-2090efa8 {
+  grid-column-end: 8; grid-column-start: 6;
+  grid-row-end: 6; grid-row-start: 5;
+}
+#w-node-_9c196b95-021c-602b-afa1-de1cf686dd95-2090efa8 {
+  grid-row-start: 2; grid-row-end: 6;
+  grid-column-start: 1; grid-column-end: 3;
+  align-self: center;
+}
+#w-node-cc4b13ec-2009-b102-93c7-83d2caba0ada-2090efa8 {
+  grid-row-start: 2; grid-row-end: 6;
+  grid-column-start: 5; grid-column-end: 7;
+  align-self: center;
+}
+#w-node-ac365d18-8437-bf39-6454-d30f9c738bfc-2090efa8 {
+  grid-row-start: 1; grid-row-end: 4;
+  grid-column-start: 3; grid-column-end: 5;
+}
+#w-node-e867823d-5a00-dd2a-9903-ab724f9528a5-2090efa8 {
+  grid-row-start: 4; grid-row-end: 7;
+  grid-column-start: 3; grid-column-end: 5;
+}
+#w-node-b249ff38-c4ad-bf5e-abc1-a89ddf060537-df060534 {
+  grid-column-end: 3; grid-column-start: 1;
+  grid-row-end: 3; grid-row-start: 2;
+}
+#w-node-b249ff38-c4ad-bf5e-abc1-a89ddf060539-df060534 {
+  grid-column-end: 2; grid-column-start: 1;
+  grid-row-end: 2; grid-row-start: 1;
+  align-self: start;
+}
+#w-node-c054d470-0727-d1c0-5d28-a98f605f6a8f-df060534 {
+  grid-column-end: 9; grid-column-start: 8;
+  grid-row-end: 3; grid-row-start: 2;
+  align-self: end;
+}
+#w-node-b249ff38-c4ad-bf5e-abc1-a89ddf060555-df060534 {
+  grid-column-end: 9; grid-column-start: 8;
+  grid-row-end: 2; grid-row-start: 1;
+}
+#w-node-_9df85679-1fb1-1d92-c5e9-5c36cf4d0545-8d2dc34c {
+  justify-self: center;
+  grid-column-end: 3; grid-column-start: 2;
+  grid-row-end: 2; grid-row-start: 1;
+}
+#w-node-_01d54d38-d22d-549e-0326-053b641c71d0-8d2dc34c {
+  grid-column-end: 4; grid-column-start: 1;
+  grid-row-end: 2; grid-row-start: 1;
+  align-self: center;
+}
+#w-node-_782afb64-442c-40d9-4976-09dc8d2dc368-8d2dc34c {
+  grid-column-end: 2; grid-column-start: 1;
+  grid-row-end: 2; grid-row-start: 1;
+  align-self: start;
+}
+
+/* ===== ANIMATIONS - handled by GSAP ScrollTrigger ===== */
+/* Ticker animations remain CSS-only */
+@keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes scrollRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.scroll-left-anim-slow {
+  display: flex;
+  animation: scrollLeft 35s linear infinite;
+  width: max-content;
+  will-change: transform;
+}
+
+/* Hover underline on nav links */
+.nav-link:hover .text-nav-link {
+  color: #ecd8c2;
+}
+
+/* ===== RESPONSIVE ===== */
+@media screen and (max-width: 991px) {
+  .nav-link { margin-right: 0px; margin-left: 0px; padding-top: 25px; padding-bottom: 25px; font-size: 32px; }
+  .nav-link.footer { padding-top: 10px; padding-bottom: 10px; padding-left: 0px; font-size: 18px; }
+  .block-content-wrapper { padding: 45px 30px 90px; }
+  .brand { width: 130px; height: 60px; padding-top: 0px; }
+  .navbar { width: 100%; }
+  .nav-menu { left: 0%; top: 80px; right: auto; bottom: auto; width: 100%; height: auto; min-height: 100vh; padding-right: 40px; padding-left: 40px; flex-direction: column; align-items: flex-start; background-color: transparent; position: absolute; display: none; }
+  .nav-menu.open { display: flex; background-color: #1f120a; }
+  .footer-grid { grid-row-gap: 40px; grid-template-columns: 1fr 1fr 1fr 1fr; grid-template-rows: auto auto; }
+  .section { padding-bottom: 0vh; }
+  .small-scrolling-text { font-size: 50px; }
+  .small-scrolling-text.blue { font-size: 80px; }
+  .main-image { height: 55vh; max-height: none; min-height: 55vh; }
+  .wrapper-nav { padding: 0vh 0vw; }
+  .wrapper-flex.reverse.green { top: 40%; height: 22vh; }
+  .nav-grid { padding-right: 17px; padding-left: 17px; align-items: center; }
+  .xl-heading { font-size: 120px; }
+  .xl-heading.sans.gray { font-size: 90px; }
+  .xl-heading.dark { font-size: 90px; }
+  .xl-heading.serif { font-size: 120px; }
+  .xl-heading.first { font-size: 120px; }
+  .xl-heading.second { font-size: 120px; }
+  .xl-heading.third { font-size: 120px; }
+  .xl-heading.lovers { font-size: 120px; }
+  .xl-heading.med-size { font-size: 90px; }
+  .xl-heading.gray { font-size: 90px; }
+  .med-heading { font-size: 38px; }
+  .inner-container { padding-top: 10vh; padding-bottom: 10vh; }
+  .med-text-footer { font-size: 40px; }
+  .inner-nav { flex-direction: column; }
+  .hero-col-heading { padding-right: 5vw; padding-bottom: 15vh; }
+  .hero-col-image { width: 100%; min-height: 80vh; }
+  .testimonials-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
+  .block-content-wrapper { padding: 5vh 30px; }
+  .block-content-wrapper.product { text-align: center; }
+  .block-content-wrapper.quote { padding: 4vh 6vw; }
+  .block-content-wrapper.flex { padding-right: 0px; padding-left: 0px; }
+  .wrap-big-heading { padding-bottom: 10vh; }
+  .main-paragraph.center { font-size: 20px; }
+  .copyright-icon { font-size: 60px; line-height: 29px; }
+  .product-grid { min-height: auto; align-items: start; grid-row-gap: 35px; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: auto auto auto auto; }
+  .wrapper-product { position: relative; min-height: auto; padding-top: 10vh; padding-bottom: 10vh; }
+  .image-pack { width: 100%; max-height: none; max-width: 65vw; min-height: 60vh; }
+  .hero-heading { margin-top: 5vh; margin-bottom: 5vh; }
+  .mask-heading { width: 100%; }
+  .w-nav-button { display: flex; width: 60px; height: 60px; max-width: 80px; padding-top: 22px; padding-bottom: 22px; flex-direction: column; justify-content: center; align-items: center; }
+  .grid-sticky-section { grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; grid-template-rows: auto auto auto auto auto auto; }
+  .inner-big-headling { padding-top: 20vh; }
+  .sub-description.highlight { font-size: 32px; }
+  .grid-content { padding-top: 10vh; padding-bottom: 10vh; }
+}
+
+@media screen and (max-width: 767px) {
+  .xl-heading { font-size: 90px; }
+  .xl-heading.sans { font-size: 80px; }
+  .xl-heading.serif { font-size: 80px; }
+  .med-heading { font-size: 28px; }
+  .med-heading.quote { font-size: 28px; }
+  .sub-description { font-size: 18px; }
+  .sub-description.tan-color { font-size: 18px; }
+  .small-heading { font-size: 20px; }
+  .big-scrolling-text { font-size: 15px; letter-spacing: 1px; }
+  .stripes { height: 60vh; }
+}
+
+@media screen and (max-width: 479px) {
+  .footer-grid { grid-row-gap: 32px; grid-template-columns: 1fr; }
+  .small-scrolling-text { font-size: 28px; }
+  .small-scrolling-text.blue { font-size: 42px; }
+  .xl-heading { font-size: 70px; }
+  .xl-heading.first { font-size: 80px; }
+  .xl-heading.second { font-size: 80px; }
+  .xl-heading.third { font-size: 80px; }
+  .xl-heading.dark { font-size: 45px; }
+  .xl-heading.med-size { font-size: 45px; }
+  .xl-heading.gray { font-size: 45px; }
+  .xl-heading.lovers { font-size: 60px; }
+  .copyright-icon { font-size: 22px; line-height: 100%; }
+  .text-hero-detail { font-size: 22px; }
+  .inner-big-headling { padding-top: 10vh; }
+  .grid-content { padding-top: 5vh; padding-bottom: 5vh; }
+  .wrap-sticky-section { height: auto; }
+  .big-scrolling-text { font-weight: 400; }
+  .wrapper-flex { width: 110vw; height: 15vh; }
+  .wrapper-flex.reverse.green { left: -6vw; transform: rotate(3deg); }
+  .wrapper-flex.down { transform: translate(-2vw, 0px) rotate(-3deg); }
+  .hero-heading { padding-bottom: 5vh; }
+  .sub-description.highlight { font-size: 16px; line-height: 2; }
+  .med-text-footer { font-size: 32px; text-align: center; }
+  .inner-footer-links { align-items: center; text-align: center; }
+  .small-legal-text { font-size: 11px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="full-page">
+  <!-- NAVBAR -->
+  <div class="navbar-wrapper">
+    <div class="wrapper-nav">
+      <div role="banner" class="navbar w-nav" id="main-navbar">
+        <div class="w-layout-grid nav-grid">
+          <div id="w-node-_9df85679-1fb1-1d92-c5e9-5c36cf4d0545-8d2dc34c" class="wrapper-logo">
+            <a href="#" class="brand w-nav-brand">
+              <div>Coffee.co</div>
+            </a>
+          </div>
+          <nav role="navigation" id="nav-menu" class="nav-menu w-nav-menu">
+            <div class="inner-nav">
+              <a href="#" class="nav-link w-inline-block"><div class="text-nav-link">about</div><div class="underline-link"></div></a>
+              <a href="#" class="nav-link w-inline-block"><div class="text-nav-link">shop</div><div class="underline-link"></div></a>
+              <a href="#contact" class="nav-link w-inline-block"><div class="text-nav-link">contact</div><div class="underline-link"></div></a>
+            </div>
+            <div class="inner-nav">
+              <a href="#" class="nav-link w-inline-block"><div class="text-nav-link">Breakfast</div><div class="underline-link"></div></a>
+              <a href="#" class="nav-link w-inline-block"><div class="text-nav-link">Vanilla</div><div class="underline-link"></div></a>
+              <a href="#" class="nav-link w-inline-block"><div class="text-nav-link">classic</div><div class="underline-link"></div></a>
+            </div>
+          </nav>
+          <div id="menu-btn" class="menu-button w-nav-button" aria-label="menu" role="button" tabindex="0">
+            <div class="menu-mobile">
+              <span class="stick-up"></span>
+              <span class="stick-down"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="overlayer-nav">
+      <div class="inner-overlayer"></div>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <div class="section hero">
+    <div class="w-layout-grid hero-grid">
+      <div id="w-node-_7598b5ed-4672-a340-b10f-54fe77f31333-2090efa8" class="hero-col-heading">
+        <div class="mask-heading overflow">
+          <div class="text-hero-detail">(2021)</div>
+        </div>
+        <div class="hero-heading">
+          <div class="mask-heading overflow">
+            <h1 class="xl-heading first" style="will-change:transform;">Delight</h1>
+          </div>
+          <div class="mask-heading right overflow">
+            <h1 class="xl-heading second" style="will-change:transform;">your</h1>
+          </div>
+          <div class="mask-heading overflow">
+            <div class="flex-mask">
+              <h1 class="xl-heading third" style="will-change:transform;">day</h1>
+              <div class="copyright-icon" style="will-change:transform;">©</div>
+            </div>
+          </div>
+        </div>
+        <div class="block-content-wrapper hero">
+          <p class="main-paragraph">Quality freshly coffee roasted made just for you (2021)</p>
+        </div>
+      </div>
+      <div id="w-node-_7598b5ed-4672-a340-b10f-54fe77f31346-2090efa8" class="hero-col-image">
+        <div class="hero-col-image-inner">
+        <div class="image-mask"></div>
+        <div class="background-video w-background-video">
+          <video autoplay loop muted playsinline style="position:absolute;top:-100%;left:-100%;right:-100%;bottom:-100%;width:100%;height:100%;object-fit:cover;z-index:-100;">
+            <source src="https://assets.website-files.com/6094cb5047c8ba1e6490efa5/6094cb5047c8ba23d090eff7_pexels-roman-odintsov-7592041-transcode.mp4" type="video/mp4">
+            <source src="https://assets.website-files.com/6094cb5047c8ba1e6490efa5/6094cb5047c8ba23d090eff7_pexels-roman-odintsov-7592041-transcode.webm" type="video/webm">
+          </video>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOVERS SCROLLING SECTION -->
+<div class="section scrolling">
+  <div class="inner-big-headling">
+    <div class="flex-mask center">
+      <h3 class="small-heading">made by coffee</h3>
+    </div>
+    <div class="flex-mask lovers" style="overflow:hidden;">
+      <div class="lovers-track" style="display:flex; gap:10vw; padding:0 5vw; will-change:transform;">
+        <h1 class="xl-heading lovers">Lovers</h1>
+        <div class="divider"></div>
+        <h1 class="xl-heading lovers">Lovers</h1>
+        <div class="divider"></div>
+        <h1 class="xl-heading lovers">Lovers</h1>
+        <div class="divider"></div>
+        <h1 class="xl-heading lovers">Lovers</h1>
+        <div class="divider"></div>
+        <h1 class="xl-heading lovers">Lovers</h1>
+        <div class="divider"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BROWN / PHILOSOPHY SECTION -->
+<div class="section brown">
+  <div class="container w-container">
+    <div class="w-layout-grid grid-content">
+      <p id="w-node-e7d50c7c-35e4-ea81-8c03-940beba8f144-2090efa8" class="sub-description tan-color">Coffee is about pleasure. It's that moment when your hand is warmed by the mug, you raise it to your nose, inhale deeply and then take a sip. That sip is the culmination of years of work, three-thousand mile journeys, and passion. Here is how we make that sip perfect.</p>
+    </div>
+  </div>
+</div>
+
+<!-- STICKY ABOUT SECTION (coffee images) -->
+<div class="section scrolling">
+  <div class="container full-width w-container">
+    <div id="About" class="inner-container">
+      <div class="wrap-sticky-section">
+        <div class="sticky-section">
+          <div class="w-layout-grid grid-sticky-section">
+            <div id="w-node-_37d9b457-c801-82d4-8f09-421f2c613617-2090efa8" class="img-grid-04" style="will-change:transform;">
+              <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=550&q=80" loading="lazy" alt="" class="coffee-image">
+            </div>
+            <div id="w-node-_37d9b457-c801-82d4-8f09-421f2c613618-2090efa8" class="img-grid-03" style="will-change:transform;">
+              <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=550&q=80" loading="lazy" alt="" class="coffee-image">
+            </div>
+            <div id="w-node-_37d9b457-c801-82d4-8f09-421f2c613619-2090efa8" class="img-grid-02" style="will-change:transform;">
+              <img src="https://images.unsplash.com/photo-1497515114629-f71d768fd07c?w=550&q=80" loading="lazy" alt="" class="coffee-image">
+            </div>
+            <div id="w-node-_37d9b457-c801-82d4-8f09-421f2c61361a-2090efa8" class="img-grid-01" style="will-change:transform;">
+              <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=550&q=80" loading="lazy" alt="" class="coffee-image">
+            </div>
+            <div id="w-node-_37d9b457-c801-82d4-8f09-421f2c61361b-2090efa8" class="wrap-middle-heading">
+              <h1 class="xl-heading med-size">Cultivated in Brazil</h1>
+              <p class="sub-description highlight">roasted for the world</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STRIPES -->
+  <div class="stripes">
+    <div class="wrapper-flex down">
+      <div class="stripe-down-track" style="display:flex; align-items:center; gap:3vw; will-change:transform; transform:translateX(-28%);">
+        <div class="scrolling-text"><div class="small-scrolling-text">Enjoy the moment</div></div>
+        <div class="divider-smile"></div>
+        <div class="scrolling-text"><div class="small-scrolling-text">get 50% off</div></div>
+        <div class="divider-smile"></div>
+        <div class="scrolling-text"><div class="small-scrolling-text">Enjoy the moment</div></div>
+        <div class="divider-smile"></div>
+        <div class="scrolling-text"><div class="small-scrolling-text">get 50% off</div></div>
+        <div class="divider-smile"></div>
+        <div class="scrolling-text"><div class="small-scrolling-text">Enjoy the moment</div></div>
+        <div class="divider-smile"></div>
+        <div class="scrolling-text"><div class="small-scrolling-text">get 50% off</div></div>
+        <div class="divider-smile"></div>
+        <div class="scrolling-text"><div class="small-scrolling-text">Enjoy the moment</div></div>
+        <div class="divider-smile"></div>
+        <div class="scrolling-text"><div class="small-scrolling-text">get 50% off</div></div>
+        <div class="divider-smile"></div>
+      </div>
+    </div>
+    <div class="wrapper-flex reverse">
+      <div style="display:flex; align-items:center; gap:3vw; padding:0 3vw; white-space:nowrap;">
+        <div class="scrolling-text"><div class="small-scrolling-text" style="color:#ecd8c2;">Recharge Yourself</div></div>
+        <div class="detail-divider" style="font-size:60px; color:#ecd8c2;">✦</div>
+        <div class="scrolling-text"><div class="small-scrolling-text" style="color:#ecd8c2;">Recharge Yourself</div></div>
+        <div class="detail-divider" style="font-size:60px; color:#ecd8c2;">✦</div>
+        <div class="scrolling-text"><div class="small-scrolling-text" style="color:#ecd8c2;">Recharge Yourself</div></div>
+        <div class="detail-divider" style="font-size:60px; color:#ecd8c2;">✦</div>
+        <div class="scrolling-text"><div class="small-scrolling-text" style="color:#ecd8c2;">Recharge Yourself</div></div>
+        <div class="detail-divider" style="font-size:60px; color:#ecd8c2;">✦</div>
+        <div class="scrolling-text"><div class="small-scrolling-text" style="color:#ecd8c2;">Recharge Yourself</div></div>
+        <div class="detail-divider" style="font-size:60px; color:#ecd8c2;">✦</div>
+      </div>
+    </div>
+    <div class="wrapper-flex reverse green">
+      <div class="stripe-up-track" style="display:flex; align-items:center; gap:3vw; will-change:transform; transform:translateX(-72%);">
+        <div class="scrolling-text"><div class="small-scrolling-text blue">Recharge Yourself</div></div>
+        <div class="detail-divider" style="font-size:60px; color:#afb679;">✦</div>
+        <div class="scrolling-text"><div class="small-scrolling-text blue">Recharge Yourself</div></div>
+        <div class="detail-divider" style="font-size:60px; color:#afb679;">✦</div>
+        <div class="scrolling-text"><div class="small-scrolling-text blue">Recharge Yourself</div></div>
+        <div class="detail-divider" style="font-size:60px; color:#afb679;">✦</div>
+        <div class="scrolling-text"><div class="small-scrolling-text blue">Recharge Yourself</div></div>
+        <div class="detail-divider" style="font-size:60px; color:#afb679;">✦</div>
+        <div class="scrolling-text"><div class="small-scrolling-text blue">Recharge Yourself</div></div>
+        <div class="detail-divider" style="font-size:60px; color:#afb679;">✦</div>
+      </div>
+    </div>
+    <div class="overlap-color"></div>
+  </div>
+</div>
+
+<!-- NATURAL FLAVOR SECTION -->
+<div class="section">
+  <div class="container w-container">
+    <div class="block-content-wrapper flex">
+      <div class="mask-heading scroll">
+        <h1 class="xl-heading dark natural-heading" style="will-change:transform;">natural</h1>
+      </div>
+      <div class="mask-heading scroll left">
+        <h1 class="xl-heading dark natural-heading" style="will-change:transform;">flavor</h1>
+      </div>
+      <div class="w-layout-grid grid-content">
+        <p id="w-node-_4c223972-c561-879d-6c98-f85ad6b1f288-2090efa8" class="sub-description">You are smelling the most complex thing humans consume. When people talk about the flavors of coffee — notes of orange, or hints of clove — it's because those organic molecules are contained in the coffee bean. <br><br>If a coffee reminds you of apple pie, it's because coffee shares some of the same components as food, like lactic and malic acid.</p>
+      </div>
+    </div>
+  </div>
+  <div class="wrap-big-heading">
+    <div class="mask-heading scroll">
+      <h1 class="xl-heading dark enjoy-heading" style="will-change:transform;">ENJOY</h1>
+    </div>
+    <div class="mask-heading scroll">
+      <h1 class="xl-heading sans gray enjoy-heading" style="will-change:transform;">THE MOMENT</h1>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: FAMILY IMAGE + PRODUCTS -->
+<div class="section-2">
+  <div class="wrap-main-image" style="transform: scale(0.75); will-change:transform;">
+    <img src="https://images.unsplash.com/photo-1543807535-eceef0bc6599?w=1800&q=80" loading="lazy" sizes="100vw" alt="Happy family hugging a kid" class="main-image about-us" style="transform: scale(1.4); will-change:transform;">
+  </div>
+  <div class="inner-section">
+    <div class="container w-container">
+      <div class="w-layout-grid grid-content">
+        <p id="w-node-_163afdff-41ac-22de-d95d-12b1f8bf2ce8-2090efa8" class="sub-description">Coffee.co collection has a variety of Fresh roasted products in a Medium bodied with a pleasant aroma and a light smooth taste, from the Cerrado region in Brazil.</p>
+      </div>
+    </div>
+    <div class="wrap-scrolling-big-heading vertical">
+      <div class="flex-big-heading-scrolling vertical">
+        <h1 class="xl-heading gray featured-track" style="will-change:transform;">featured<br></h1>
+      </div>
+      <div class="flex-big-heading-scrolling">
+        <h1 class="xl-heading sans gray products-track" style="will-change:transform;">products<br></h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT 1: BREAKFAST BLEND -->
+  <div class="wrapper-product first">
+    <div class="w-layout-grid product-grid">
+      <div id="w-node-_9beaf3ce-02c3-f722-ce4e-7e254e1e37fd-2090efa8" class="wrap-scrolling-big-heading">
+        <div class="flex-big-heading-scrolling">
+          <div class="product-scroll-left" style="display:flex; gap:2vw; align-items:center; will-change:transform;">
+            <h1 class="xl-heading serif">Breakfast Blend</h1>
+            <div class="detail-divider" style="font-size:60px; color:#bb956d;">✦</div>
+            <h1 class="xl-heading sans">Breakfast Blend</h1>
+            <div class="detail-divider" style="font-size:60px; color:#bb956d;">✦</div>
+            <h1 class="xl-heading serif">Breakfast Blend</h1>
+            <div class="detail-divider" style="font-size:60px; color:#bb956d;">✦</div>
+            <h1 class="xl-heading sans">Breakfast Blend</h1>
+            <div class="detail-divider" style="font-size:60px; color:#bb956d;">✦</div>
+          </div>
+        </div>
+      </div>
+      <div id="w-node-_9beaf3ce-02c3-f722-ce4e-7e254e1e3803-2090efa8" class="wrap-image-product">
+        <img src="https://images.unsplash.com/photo-1610889556528-9a770e32642f?w=600&q=80" loading="lazy" sizes="(max-width: 991px) 65vw, 600px" alt="Breakfast blend coffee" class="image-pack">
+      </div>
+      <div id="w-node-_54b49bd6-1921-432b-ad88-00ca49a5a138-2090efa8" class="block-content-wrapper product">
+        <p class="main-paragraph">Sweet caramel, citrus notes and a brown sugar finish create a well-rounded body and delicious flavor</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT 2: VANILLA HAZELNUT -->
+  <div class="wrapper-product second">
+    <div class="w-layout-grid product-grid">
+      <div id="w-node-e334000e-d6d7-852d-76c1-5bbaa9ada558-2090efa8" class="wrap-scrolling-big-heading">
+        <div class="flex-big-heading-scrolling">
+          <div class="product-scroll-right" style="display:flex; gap:2vw; align-items:center; will-change:transform;">
+            <h1 class="xl-heading sans salmon">Vanilla Hazelnut</h1>
+            <div class="detail-divider" style="font-size:60px; color:#ffcca3;">✦</div>
+            <h1 class="xl-heading serif salmon">Vanilla Hazelnut</h1>
+            <div class="detail-divider" style="font-size:60px; color:#ffcca3;">✦</div>
+            <h1 class="xl-heading sans salmon">Vanilla Hazelnut</h1>
+            <div class="detail-divider" style="font-size:60px; color:#ffcca3;">✦</div>
+            <h1 class="xl-heading serif salmon">Vanilla Hazelnut</h1>
+            <div class="detail-divider" style="font-size:60px; color:#ffcca3;">✦</div>
+          </div>
+        </div>
+      </div>
+      <div id="w-node-e334000e-d6d7-852d-76c1-5bbaa9ada56f-2090efa8" class="wrap-image-product">
+        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&q=80" loading="lazy" alt="Vanilla hazelnut coffee" class="image-pack">
+      </div>
+      <div id="w-node-e334000e-d6d7-852d-76c1-5bbaa9ada571-2090efa8" class="block-content-wrapper product">
+        <p class="main-paragraph second-product">Strong dark roast with smoky, toasted grain notes creates a well-balanced, delicious flavor</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT 3: CLASSIC -->
+  <div class="wrapper-product third">
+    <div class="w-layout-grid product-grid">
+      <div id="w-node-_6d1c1bf5-0238-c58a-67d3-00251a526a55-2090efa8" class="wrap-scrolling-big-heading">
+        <div class="flex-big-heading-scrolling">
+          <div class="product-scroll-left" style="display:flex; gap:2vw; align-items:center; will-change:transform;">
+            <h1 class="xl-heading serif dark-khaki">classic</h1>
+            <div class="detail-divider" style="font-size:60px; color:#afb679;">✦</div>
+            <h1 class="xl-heading sans dark-khaki">classic</h1>
+            <div class="detail-divider" style="font-size:60px; color:#afb679;">✦</div>
+            <h1 class="xl-heading serif dark-khaki">classic</h1>
+            <div class="detail-divider" style="font-size:60px; color:#afb679;">✦</div>
+            <h1 class="xl-heading sans dark-khaki">classic</h1>
+            <div class="detail-divider" style="font-size:60px; color:#afb679;">✦</div>
+          </div>
+        </div>
+      </div>
+      <div id="w-node-_6d1c1bf5-0238-c58a-67d3-00251a526a6c-2090efa8" class="wrap-image-product">
+        <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&q=80" loading="lazy" sizes="(max-width: 991px) 65vw, 600px" alt="Classic coffee" class="image-pack">
+      </div>
+      <div id="w-node-_6d1c1bf5-0238-c58a-67d3-00251a526a6e-2090efa8" class="block-content-wrapper product">
+        <p class="main-paragraph third-product">Sweet, buttery caramel with creamy whipped notes and hints of vanilla create a well-balanced, delicious flavor</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTE SECTION -->
+<div class="section quote">
+  <!-- Scrolling ticker top -->
+  <div class="section-scroller-small-text">
+    <div class="scroll-left-anim-slow" style="gap: 1vw;">
+      <div class="big-scrolling-text">Spring is coming</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">50% OFF</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Follow us @coffee.co</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Spring is coming</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">50% OFF</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Follow us @coffee.co</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Spring is coming</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">50% OFF</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Follow us @coffee.co</div>
+      <div class="divider big"></div>
+      <!-- duplicate for seamless loop -->
+      <div class="big-scrolling-text">Spring is coming</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">50% OFF</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Follow us @coffee.co</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Spring is coming</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">50% OFF</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Follow us @coffee.co</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Spring is coming</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">50% OFF</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Follow us @coffee.co</div>
+      <div class="divider big"></div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="container w-container">
+    <div class="w-layout-grid testimonials-grid">
+      <div id="w-node-_9c196b95-021c-602b-afa1-de1cf686dd95-2090efa8" class="block-content-wrapper quote">
+        <h3 class="med-heading quote">Awesome.</h3>
+        <p class="main-paragraph center">Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam</p>
+        <div class="author-quote">
+          <div>Steve Jones</div>&nbsp;<div>— Duck Bill</div>
+        </div>
+      </div>
+      <div id="w-node-cc4b13ec-2009-b102-93c7-83d2caba0ada-2090efa8" class="block-content-wrapper quote">
+        <h3 class="med-heading quote">Fantastic!</h3>
+        <p class="main-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique</p>
+        <div class="author-quote">
+          <div>Tawnee Stone</div>&nbsp;<div>— Archers Farmers</div>
+        </div>
+      </div>
+      <div id="w-node-ac365d18-8437-bf39-6454-d30f9c738bfc-2090efa8" class="block-content-wrapper quote">
+        <h3 class="med-heading quote">Awesome.</h3>
+        <p class="main-paragraph center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+        <div class="author-quote">
+          <div>Peter Mcneeley</div>&nbsp;<div>— Whatever</div>
+        </div>
+      </div>
+      <div id="w-node-e867823d-5a00-dd2a-9903-ab724f9528a5-2090efa8" class="block-content-wrapper quote">
+        <h3 class="med-heading quote">Incredible tasty.</h3>
+        <p class="main-paragraph center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam</p>
+        <div class="author-quote">
+          <div>Amanda Hamilton</div>&nbsp;<div>— Be Bold</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scrolling ticker bottom -->
+  <div class="section-scroller-small-text">
+    <div class="scroll-left-anim-slow" style="gap: 1vw;">
+      <div class="big-scrolling-text">Spring is coming</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">50% OFF</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Follow us @coffee.co</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Spring is coming</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">50% OFF</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Follow us @coffee.co</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Spring is coming</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">50% OFF</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Follow us @coffee.co</div>
+      <div class="divider big"></div>
+      <!-- duplicate for seamless loop -->
+      <div class="big-scrolling-text">Spring is coming</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">50% OFF</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Follow us @coffee.co</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Spring is coming</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">50% OFF</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Follow us @coffee.co</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Spring is coming</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">50% OFF</div>
+      <div class="divider big"></div>
+      <div class="big-scrolling-text">Follow us @coffee.co</div>
+      <div class="divider big"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div id="contact" class="section footer">
+  <div class="container w-container">
+    <div class="w-layout-grid footer-grid">
+      <div id="w-node-b249ff38-c4ad-bf5e-abc1-a89ddf060537-df060534">
+        <div class="med-text-footer">Stay <br>Caffeinated</div>
+        <div class="w-form">
+          <form id="email-form-2" name="email-form-2" class="form" onsubmit="handleSubmit(event)">
+            <div class="form-field">
+              <input type="email" class="input-field w-input" maxlength="256" name="Email" placeholder="Your Email" id="Email" required>
+            </div>
+            <div>
+              <input type="submit" value="join now" class="submit-button signup w-button">
+            </div>
+          </form>
+          <div class="w-form-done" id="form-done"><div>Thank you! Your submission has been received!</div></div>
+          <div class="w-form-fail" id="form-fail"><div>Oops! Something went wrong while submitting the form.</div></div>
+        </div>
+      </div>
+      <div id="w-node-b249ff38-c4ad-bf5e-abc1-a89ddf060539-df060534">
+        <div class="footer-logo">Coffee.co</div>
+      </div>
+      <div id="w-node-c054d470-0727-d1c0-5d28-a98f605f6a8f-df060534">
+        <div class="small-legal-text">©2021 <br>Coffee.Co<br>All Rights Reserved<br></div>
+      </div>
+      <div id="w-node-b249ff38-c4ad-bf5e-abc1-a89ddf060555-df060534" class="inner-footer-links">
+        <a href="#" class="nav-link footer w-inline-block"><div class="text-nav-link">twitter</div><div class="underline-link"></div></a>
+        <a href="#" class="nav-link footer w-inline-block"><div class="text-nav-link">facebook</div><div class="underline-link"></div></a>
+        <a href="#" class="nav-link footer w-inline-block"><div class="text-nav-link">instagram</div><div class="underline-link"></div></a>
+        <a href="#" class="nav-link footer w-inline-block"><div class="text-nav-link">youtube</div><div class="underline-link"></div></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// ── MOBILE MENU ──────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  const menuBtn = document.getElementById('menu-btn');
+  const navMenu = document.getElementById('nav-menu');
+  if (menuBtn && navMenu) {
+    menuBtn.addEventListener('click', function() {
+      navMenu.classList.toggle('open');
+    });
+  }
+});
+
+// ── FORM ─────────────────────────────────────────────────────
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = document.getElementById('email-form-2');
+  const done = document.getElementById('form-done');
+  if (form) form.style.display = 'none';
+  if (done) done.style.display = 'block';
+}
+
+// ════════════════════════════════════════════════════════════
+//  HERO — page-load entrance
+// ════════════════════════════════════════════════════════════
+
+// Text reveals: each line slides up from behind its mask
+gsap.set('.text-hero-detail', { yPercent: 110 });
+gsap.set('.xl-heading.first, .xl-heading.second, .xl-heading.third, .copyright-icon', { yPercent: 110 });
+gsap.set('.block-content-wrapper.hero', { opacity: 0, y: '4vh' });
+
+// Hero IMAGE col: starts clipped/scaled and opens like a curtain
+gsap.set('.hero-col-image-inner', {
+  clipPath: 'inset(100% 0% 0% 0% round 10px)',
+  scale: 1.05
+});
+
+const heroTL = gsap.timeline({ delay: 0.05 });
+heroTL
+  // image wipes down first, like a curtain opening downward
+  .to('.hero-col-image-inner', {
+    clipPath: 'inset(0% 0% 0% 0% round 10px)',
+    scale: 1,
+    duration: 1.1,
+    ease: 'power3.inOut'
+  })
+  .to('.text-hero-detail', { yPercent: 0, duration: 0.85, ease: 'power3.out' }, '-=0.5')
+  .to('.xl-heading.first',  { yPercent: 0, duration: 0.85, ease: 'power3.out' }, '-=0.7')
+  .to('.xl-heading.second', { yPercent: 0, duration: 0.85, ease: 'power3.out' }, '-=0.72')
+  .to(['.xl-heading.third', '.copyright-icon'], { yPercent: 0, duration: 0.85, ease: 'power3.out', stagger: 0.05 }, '-=0.72')
+  .to('.block-content-wrapper.hero', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.4');
+
+// ── HERO VIDEO column: parallax upward on scroll ──────────────
+gsap.to('.hero-col-image', {
+  y: '-10vh',
+  ease: 'none',
+  scrollTrigger: {
+    trigger: '.section.hero',
+    start: 'top top',
+    end: 'bottom top',
+    scrub: true,
+  }
+});
+
+// ════════════════════════════════════════════════════════════
+//  LOVERS — scroll-driven horizontal slide
+// ════════════════════════════════════════════════════════════
+gsap.to('.lovers-track', {
+  xPercent: -35,
+  ease: 'none',
+  scrollTrigger: {
+    trigger: '.section.scrolling',
+    start: 'top bottom',
+    end: 'bottom top',
+    scrub: 1.5,
+  }
+});
+
+// ════════════════════════════════════════════════════════════
+//  STICKY ABOUT — photos parallax at different Y speeds
+//  Each image starts in its grid position and drifts at its own rate
+//  creating depth/parallax as you scroll through the 400vh section
+// ════════════════════════════════════════════════════════════
+const stickyTrigger = {
+  trigger: '.wrap-sticky-section',
+  start: 'top top',
+  end: 'bottom bottom',
+};
+
+// img-grid-04  (top-right small): moves UP fast
+gsap.fromTo('#w-node-_37d9b457-c801-82d4-8f09-421f2c613617-2090efa8',
+  { y: '0vh', rotate: -5 },
+  { y: '-90vh', rotate: -5,
+    ease: 'none',
+    scrollTrigger: { ...stickyTrigger, scrub: 1 }
+  }
+);
+
+// img-grid-03  (left-mid): moves DOWN slow
+gsap.fromTo('#w-node-_37d9b457-c801-82d4-8f09-421f2c613618-2090efa8',
+  { y: '5vh', rotate: 5 },
+  { y: '-12vh', rotate: 5,
+    ease: 'none',
+    scrollTrigger: { ...stickyTrigger, scrub: 1.5 }
+  }
+);
+
+// img-grid-02  (right-top tall): moves UP medium + slight rotation drift
+gsap.fromTo('#w-node-_37d9b457-c801-82d4-8f09-421f2c613619-2090efa8',
+  { y: '-12vh', rotate: 16 },
+  { y: '8vh', rotate: 12,
+    ease: 'none',
+    scrollTrigger: { ...stickyTrigger, scrub: 0.9 }
+  }
+);
+
+// img-grid-01  (large left): moves DOWN medium
+gsap.fromTo('#w-node-_37d9b457-c801-82d4-8f09-421f2c61361a-2090efa8',
+  { y: '8vh', rotate: -15 },
+  { y: '-14vh', rotate: -12,
+    ease: 'none',
+    scrollTrigger: { ...stickyTrigger, scrub: 1.2 }
+  }
+);
+
+// ════════════════════════════════════════════════════════════
+//  STRIPES — scroll-driven horizontal bands
+// ════════════════════════════════════════════════════════════
+gsap.to('.stripe-down-track', {
+  xPercent: -28,
+  ease: 'none',
+  scrollTrigger: { trigger: '.stripes', start: 'top bottom', end: 'bottom top', scrub: 1 }
+});
+gsap.to('.stripe-up-track', {
+  xPercent: 28,
+  ease: 'none',
+  scrollTrigger: { trigger: '.stripes', start: 'top bottom', end: 'bottom top', scrub: 1 }
+});
+
+// ════════════════════════════════════════════════════════════
+//  NATURAL FLAVOR — lines slide up from overflow:hidden mask
+// ════════════════════════════════════════════════════════════
+gsap.set('.natural-heading', { yPercent: 110 });
+ScrollTrigger.batch('.natural-heading', {
+  onEnter: els => gsap.to(els, { yPercent: 0, duration: 0.9, ease: 'power3.out', stagger: 0.15 }),
+  start: 'top 85%'
+});
+
+// ════════════════════════════════════════════════════════════
+//  ENJOY / THE MOMENT headings
+// ════════════════════════════════════════════════════════════
+gsap.set('.enjoy-heading', { yPercent: 110 });
+ScrollTrigger.batch('.enjoy-heading', {
+  onEnter: els => gsap.to(els, { yPercent: 0, duration: 0.9, ease: 'power3.out', stagger: 0.2 }),
+  start: 'top 90%'
+});
+
+// ════════════════════════════════════════════════════════════
+//  SECTION-2 FAMILY IMAGE — scale reveal
+// ════════════════════════════════════════════════════════════
+gsap.fromTo('.wrap-main-image',
+  { scale: 0.75 },
+  { scale: 1, ease: 'none',
+    scrollTrigger: { trigger: '.section-2', start: 'top bottom', end: 'top top', scrub: 1 }
+  }
+);
+gsap.fromTo('.main-image.about-us',
+  { scale: 1.4 },
+  { scale: 1, ease: 'none',
+    scrollTrigger: { trigger: '.section-2', start: 'top bottom', end: 'top top', scrub: 1 }
+  }
+);
+
+// ════════════════════════════════════════════════════════════
+//  FEATURED / PRODUCTS horizontal counter-scroll headings
+// ════════════════════════════════════════════════════════════
+gsap.fromTo('.featured-track',
+  { x: '-8vw' },
+  { x: '8vw', ease: 'none',
+    scrollTrigger: { trigger: '.inner-section', start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+  }
+);
+gsap.fromTo('.products-track',
+  { x: '8vw' },
+  { x: '-8vw', ease: 'none',
+    scrollTrigger: { trigger: '.inner-section', start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+  }
+);
+
+// ════════════════════════════════════════════════════════════
+//  PRODUCT NAME BANDS
+// ════════════════════════════════════════════════════════════
+document.querySelectorAll('.product-scroll-left').forEach(el => {
+  gsap.fromTo(el,
+    { x: '12vw' },
+    { x: '-12vw', ease: 'none',
+      scrollTrigger: { trigger: el.closest('.wrapper-product'), start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+    }
+  );
+});
+document.querySelectorAll('.product-scroll-right').forEach(el => {
+  gsap.fromTo(el,
+    { x: '-12vw' },
+    { x: '12vw', ease: 'none',
+      scrollTrigger: { trigger: el.closest('.wrapper-product'), start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+    }
+  );
+});
+
+// ════════════════════════════════════════════════════════════
+//  PRODUCT TEXT BLOCKS — fade + rise
+// ════════════════════════════════════════════════════════════
+gsap.utils.toArray('.block-content-wrapper.product').forEach(el => {
+  gsap.fromTo(el,
+    { opacity: 0, y: '4vh' },
+    { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 80%', toggleActions: 'play none none none' }
+    }
+  );
+});
+
+// ════════════════════════════════════════════════════════════
+//  TESTIMONIALS — staggered cards
+// ════════════════════════════════════════════════════════════
+gsap.fromTo('.block-content-wrapper.quote',
+  { opacity: 0, y: '4vh' },
+  { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.15,
+    scrollTrigger: { trigger: '.testimonials-grid', start: 'top 80%', toggleActions: 'play none none none' }
+  }
+);
+
+// ════════════════════════════════════════════════════════════
+//  FOOTER "STAY CAFFEINATED"
+// ════════════════════════════════════════════════════════════
+gsap.fromTo('.med-text-footer',
+  { opacity: 0, y: 30 },
+  { opacity: 1, y: 0, duration: 0.9, ease: 'power2.out',
+    scrollTrigger: { trigger: '.section.footer', start: 'top 85%', toggleActions: 'play none none none' }
+  }
+);
+
+// ════════════════════════════════════════════════════════════
+//  NAVBAR — frosted glass on scroll
+// ════════════════════════════════════════════════════════════
+(function() {
+  const navEl = document.getElementById('main-navbar');
+  if (!navEl) return;
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 60) {
+      navEl.style.backgroundColor = 'rgba(31,18,10,0.88)';
+      navEl.style.backdropFilter = 'blur(10px)';
+      navEl.style.webkitBackdropFilter = 'blur(10px)';
+      navEl.style.transition = 'background-color 0.5s ease';
+    } else {
+      navEl.style.backgroundColor = 'transparent';
+      navEl.style.backdropFilter = 'none';
+      navEl.style.webkitBackdropFilter = 'none';
+    }
+  }, { passive: true });
+})();
+
+</script>
+</body>
+</html>
