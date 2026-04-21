@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GSAP Smoother</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@90.1,539&family=Instrument+Serif:ital@0;1&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quintessential&display=swap" rel="stylesheet">
+
+<style>
+    @font-face {
+        font-family: 'pp';
+        src: url(./FUENTES/ppneuemontreal-book.otf);
+    }
+ 
+        @font-face {
+        font-family: 'ppbold';
+        src: url(./FUENTES/ppneuemontreal-bold.otf);
+    }
+ 
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    
+
+
+    background-color: rgb(230, 245, 255);
+}
+
+/* 🔥 IMPORTANTE: NO usar absolute aquí */
+.hero{
+    position: relative;
+    margin:auto;
+    transform: translateY(50px);
+    width: 99%;
+    height: 93vh;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center ;
+    border-radius: 22px;
+    overflow: hidden;
+}
+
+.img-container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 22px;
+}
+
+.difuminado{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.3;
+    z-index: 4;
+}
+
+.img-1{ z-index: 1; }
+.img-2{ z-index: 2; opacity: 0; }
+.img-3{ z-index: 3; opacity: 0; }
+
+/* espacio extra para probar scroll */
+.spacer{
+    height: 200vh;
+}
+.text-hero{
+
+    display: flex;
+    width: 100%;
+  flex-direction: column;
+    justify-content: center;
+    padding-left: 10%;
+    align-items: top;
+    height: 100%;
+    z-index: 5;
+}
+.text-hero h1 {
+  width: 40%; /* Aumenté el ancho para que no se rompa la línea antes de tiempo */
+  font-family: "pp", sans-serif;
+  font-weight: 100;
+  letter-spacing: -2px; /* Ajustado de -4 para que sea legible */
+  font-size: clamp(3rem, 5vw, 5rem); 
+  line-height: 1.1;
+  color: white;
+  z-index: 6;
+  
+
+  display: block; 
+  text-align: left; 
+}
+
+
+.text-hero h1 strong {
+  font-weight: 600; 
+  display: inline;  
+}
+.span{
+    font-style: italic;
+}
+.hero-details{
+    
+    padding-top: 20px;
+    width: clamp(20rem, 44vw,140rem);
+    display: flex;
+    flex-direction: column;
+    z-index: 3;
+}
+.hero-details p{
+     font-family: "pp", sans-serif;
+    font-size: clamp(1rem, 1.1vw, 2rem);
+    color: white;
+}
+.buttons{
+     font-family: "pp", sans-serif;
+    margin-top: 20px;
+    gap: 20px;
+    display: flex;
+}
+.buttons a:nth-child(1){
+
+     width: 10rem;
+    height: 3rem;
+    
+    color: white;
+    background-color:  rgb(0, 94, 195);
+}
+.buttons a:nth-child(2){
+     width: 10rem;
+    height: 3rem;
+    color: rgb(0, 94, 195);
+
+    background-color: rgb(230, 245, 255);
+}
+.buttons a{
+    border-radius: 4px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 10rem;
+    height: 3rem;
+    font-size: clamp(.8rem, 1.2vw, 1.0rem);
+}
+.navbar{
+    position: absolute;
+    gap: 30px;
+    top: 4%;
+    justify-content: space-between;
+      font-family: "pp", sans-serif;
+    width: 70%
+    ;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 1rem;
+    z-index: 5;
+    border-radius: 20px;
+    background-color:  rgb(230, 245, 255);
+    display: flex;
+    padding: 40px;
+}
+.navbar nav{
+display: flex;
+align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+.navbar a {
+ 
+    display: flex;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+
+}
+.logo{
+    overflow: visible;
+    display: flex;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.logo img{
+    overflow: visible;
+       display: flex;
+    object-fit: cover;
+    width: 80%;
+    height: 80%;
+    width: clamp(11rem, 15vw, 40rem);
+}
+.contacto{
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contacto  a:nth-child(1){
+      border-radius: 4px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 10rem;
+    height: 3rem;
+    color: rgb(0, 94, 195);
+    border:1px solid rgb(0, 94, 195);;
+    background-color:rgba(0, 94, 195, 0);
+    font-size: clamp(.8rem, 1.2vw, 1.0rem);
+
+}
+.contacto  a:nth-child(2){
+      border-radius: 4px;
+    text-decoration: none;
+    display: flex;
+       border:1px solid rgb(0, 94, 195);;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 10rem;
+    height: 3rem;
+    color: rgb(255, 255, 255);
+
+    background-color:rgb(0, 94, 195);
+    font-size: clamp(.8rem, 1.2vw, 1.0rem);
+
+}
+</style>
+</head>
+
+<body>
+
+<div id="smooth-wrapper">
+  <div id="smooth-content">
+   <div class="navbar">
+            <div class="logo">
+                <img src="./imgi_23_Logo-fonoaudio-15anos-400x115.png" alt="">
+            </div>
+             <nav>
+            <a href="">Nosotros</a>
+            <a href="">Servicios</a>
+            <a href="">Convenios</a>
+           
+        </nav>
+     <div class="contacto">
+            <a href="">Contactanos</a>
+             <a href="">Tienda</a>
+        </div></div>
+       
+    <div class="hero">
+     
+       
+        <div class="img-container">
+            <div class="difuminado"></div>
+            <img class="hero-img img-1" src="./697748722f5193b59b97c285_22c514d33f7093633525307337b72924_1-p-1080.webp">
+            <img class="hero-img img-2" src="./697748722f5193b59b97c293_dfe52e86e53c7485add90cfb3ac36d33_3-p-2000.webp">
+            <img class="hero-img img-3" src="./697748722f5193b59b97c29a_fd98d3239db6b066d65587ba90bfb935_4-p-2600.webp">
+        </div>
+        <div class="text-hero">
+            <h1>Cuidado profesional para tus sentidos <strong class="span">auditivos</strong></h1>
+             <div class="hero-details">
+            <p>Soluciones personalizadas para oír y vivir mejor.</p>
+           <div class="buttons">
+            <a href="">Explorar Soluciones</a>
+            <a href="">Contactar</a>
+           </div>
+        </div>
+            
+        </div>
+       
+    </div>
+
+
+
+  </div>
+</div>
+
+<!-- GSAP -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollSmoother.min.js"></script>
+
+<script>
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+/* 🔥 Inicializar smoother */
+ScrollSmoother.create({
+  wrapper: "#smooth-wrapper",
+  content: "#smooth-content",
+  smooth: 2.2,
+  effects: true
+});
+
+/* 🔥 Animación */
+const tl = gsap.timeline({ repeat: -1 });
+
+const duracionFade = 1.5;
+const tiempoEspera = 3;
+
+tl
+.to(".img-2", { opacity: 1, duration: duracionFade }, "+=" + tiempoEspera)
+.to(".img-3", { opacity: 1, duration: duracionFade }, "+=" + tiempoEspera)
+.to(".img-2, .img-3", { opacity: 0, duration: duracionFade }, "+=" + tiempoEspera);
+
+</script>
+
+</body>
+</html>
