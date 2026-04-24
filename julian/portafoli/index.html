@@ -1,0 +1,281 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create-Design-Develop | CSS Only</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="loader">
+    <strong class="strong-animate">PORTAFOLIO</strong>
+    <h1 class="h1-animate">JULIAN VANEGAS</h1>
+  </div>
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+      <img class="hombre-animation" src="./hombre-moreno-positiva-brazos-cruzados.png" alt="">
+
+      <nav class="navbar">
+        <a href="#sobre-mi">SOBRE MI</a>
+        <a href="#contactanos">CONTACTO</a>
+        <a href="#proyectos">PROYECTOS</a>
+      </nav>
+
+      <video class="video" autoplay loop muted playsinline src="./1046-142621379.mp4"></video>
+
+      <svg class="filters">
+        <defs>
+          <filter id="threshold">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0
+                        0 1 0 0 0
+                        0 0 1 0 0
+                        0 0 0 25 -9" result="goo" />
+            <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+          </filter>
+        </defs>
+      </svg>
+
+      <section class="hero">
+        <div class="morph-container">
+          <div class="word-rotator">
+            <div class="word">JULIAN</div>
+            <div class="word">VANEGAS</div>
+            <div class="word">PORTAFOLIO</div>
+          </div>
+        </div>
+        <p class="subtext">Scroll para ver mas</p>
+        <div class="scroll-indicator">
+          <div class="mouse">
+            <div class="wheel"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sobre-mi" class="sobre-mi">
+        <strong>Sobre mi</strong>
+        <h2>Soy Coder de RIwi en busquedad de oportunidades para poder progresar en conocimientos y ambito laboral</h2>
+      </section>
+
+      <section id="contactanos" class="contactanos">
+        <strong>Contacto</strong>
+        <h2>Me pueden contactar a travez de canales como Whatsaap o Gmail</h2>
+      </section>
+
+      <div id="proyectos" class="external">
+        <div class="contenedor-mascotas">
+          <strong class="mascotas">MASCOTAS</strong>
+          <a href="mascotas.html">VER MAS</a>
+        </div>
+        <div class="black-rectangle">
+          <strong>mascotas</strong>
+        </div>
+        <strong>Proyectos</strong>
+        <div class="horizontal-scroll-wrapper">
+          <div class="img-wrapper slower">
+            <a href="https://altphotos.com/photo/stylish-parisian-cafe-terrace-279/" target="_blank" rel="noopener"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/paris-cafe-terrace.jpg" alt=""></a>
+          </div>
+          <div class="img-wrapper faster">
+            <a href="https://altphotos.com/photo/retro-boy-doll-wearing-elegant-clothes-330/" target="_blank" rel="noopener"><img src="https://images.pexels.com/photos/6476595/pexels-photo-6476595.jpeg" alt=""></a>
+          </div>
+          <div class="img-wrapper slower vertical">
+            <a href="https://altphotos.com/photo/clocks-shop-exposition-window-reflecting-the-streets-277/" target="_blank" rel="noopener"><img src="https://images.pexels.com/photos/29459444/pexels-photo-29459444.jpeg" alt=""></a>
+          </div>
+          <div class="img-wrapper slower slower-down">
+            <a href="https://altphotos.com/photo/swans-and-ducks-swimming-in-a-river-264/" target="_blank" rel="noopener"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/swanduckriver.jpg" alt=""></a>
+          </div>
+          <div class="img-wrapper">
+            <a href="https://altphotos.com/photo/sidewalk-terrace-of-a-blue-facade-cafe-312/" target="_blank" rel="noopener"><img src="https://images.pexels.com/photos/7310202/pexels-photo-7310202.jpeg" alt=""></a>
+          </div>
+          <div class="img-wrapper slower">
+            <a href="https://altphotos.com/photo/paris-waterfront-at-sunset-1555/" target="_blank" rel="noopener"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/paris-seine-boat.jpg" alt=""></a>
+          </div>
+          <div class="img-wrapper faster1">
+            <a href="https://altphotos.com/photo/old-man-leaning-over-the-barrier-looking-at-the-river-265/" target="_blank" rel="noopener"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/old-man-river.jpg" alt=""></a>
+          </div>
+          <div class="img-wrapper slower slower2">
+            <a href="https://altphotos.com/photo/cafe-terrace-with-a-row-of-retro-tables-261/" target="_blank" rel="noopener"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/cafe-table-street.jpg" alt=""></a>
+          </div>
+          <div class="img-wrapper">
+            <a href="https://altphotos.com/photo/street-scene-with-pedestrians-and-dogs-318/" target="_blank" rel="noopener"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/street-scene-people.jpg" alt=""></a>
+          </div>
+          <div class="img-wrapper slower">
+            <a href="https://altphotos.com/photo/tourist-barge-on-the-river-seine-near-notre-dame-266/" target="_blank" rel="noopener"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/notre-dame-river-boat.jpg" alt=""></a>
+          </div>
+          <div class="img-wrapper slower last">
+            <a href="https://altphotos.com/photo/skulls-decoration-in-a-shop-window-331/" target="_blank" rel="noopener"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/shop-window-reflection.jpg" alt=""></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollSmoother.min.js"></script>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+    const isMobile = window.innerWidth <= 768;
+
+    let smoother = ScrollSmoother.create({
+      wrapper: "#smooth-wrapper",
+      content: "#smooth-content",
+      smooth: isMobile ? 1.5 : 3.5,
+      effects: true,
+      paused: true
+    });
+
+    window.addEventListener("load", () => {
+      gsap.to(".loader", {
+        yPercent: -100,
+        duration: 2.6,
+        ease: "power4.inOut",
+        delay: 1.4,
+        onComplete: () => {
+          document.querySelector('.loader').style.display = "none";
+          smoother.paused(false);
+        }
+      });
+
+      gsap.to(".strong-animate", {
+        scale: 0.6,
+        duration: 2.0,
+        ease: "back.inOut(1.7)",
+        delay: 0.1
+      });
+
+      gsap.to(".strong-animate", {
+        duration: 2.9,
+        opacity: 0,
+        ease: "power4.inOut",
+        delay: 0.1,
+        onComplete: () => {
+          document.querySelector('.strong-animate').style.display = "none";
+        }
+      });
+
+      gsap.to(".h1-animate", {
+        scale: isMobile ? 1.3 : 1.9,
+        duration: 2.0,
+        ease: "back.inOut(1.7)",
+        delay: 0.1
+      });
+
+      gsap.to(".h1-animate", {
+        duration: 2.9,
+        opacity: 0,
+        ease: "power4.inOut",
+        delay: 0.1,
+        onComplete: () => {
+          document.querySelector('.h1-animate').style.display = "none";
+        }
+      });
+    });
+
+    window.addEventListener("load", () => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      if (!isMobile) {
+        gsap.to(".hombre-animation", {
+          yPercent: 150,
+          xPercent: 350,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: ".sobre-mi",
+            start: "top 70%",
+            end: "top 40%",
+            scrub: true,
+            immediateRender: false
+          }
+        });
+
+        gsap.to(".hombre-animation", {
+          yPercent: 300,
+          xPercent: 50,
+          rotation: 30,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: ".contactanos",
+            start: "top 70%",
+            end: "top 40%",
+            scrub: true,
+            immediateRender: false
+          }
+        });
+      } else {
+        gsap.to(".hombre-animation", {
+          yPercent: 120,
+          xPercent: 0,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: ".sobre-mi",
+            start: "top 80%",
+            end: "top 50%",
+            scrub: true,
+            immediateRender: false
+          }
+        });
+
+        gsap.to(".hombre-animation", {
+          yPercent: 250,
+          xPercent: 0,
+          rotation: 20,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: ".contactanos",
+            start: "top 80%",
+            end: "top 50%",
+            scrub: true,
+            immediateRender: false
+          }
+        });
+      }
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".external",
+          start: "top top",
+          end: "+=1200",
+          pin: true,
+          scrub: 1,
+          ease: "power4.inOut"
+        }
+      });
+
+      tl.to(".black-rectangle", {
+          opacity: 1,
+          rotation: 180,
+          duration: 80
+        })
+        .to(".black-rectangle", {
+          rotation: 360,
+          width: "100vw",
+          height: "100svh",
+          left: "50%",
+          top: "50%",
+          xPercent: -50,
+          yPercent: -50,
+          borderRadius: 0,
+          ease: "power2.inOut",
+          duration: 200
+        })
+        .to(".contenedor-mascotas", {
+          display: "flex",
+          opacity: 1,
+          duration: 100
+        }, "-=50");
+    });
+
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        let target = e.target.getAttribute('href');
+        smoother.scrollTo(target, true, "top top");
+      });
+    });
+  </script>
+</body>
