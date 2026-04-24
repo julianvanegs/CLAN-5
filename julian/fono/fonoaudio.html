@@ -1,1157 +1,858 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSAP Smoother</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@90.1,539&family=Instrument+Serif:ital@0;1&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quintessential&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fonoaudio Clínica SAS IPS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@90.1,539&family=Instrument+Serif:ital@0;1&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quintessential&display=swap" rel="stylesheet">
 
-    <style>
-        @font-face {
-            font-family: 'pp';
-            src: url(/FUENTES/ppneuemontreal-book.otf);
-        }
-    
-            @font-face {
-            font-family: 'ppbold';
-            src: url(/FUENTES/ppneuemontreal-bold.otf);
-        }
-            @font-face {
-            font-family: 'ppmedium';
-            src: url(/FUENTES/ppneuemontreal-medium.otf);
-        }
-                @font-face {
-            font-family: 'ppthin';
-            src: url(/FUENTES/ppneuemontreal-thin.otf);
-        }
-    
-    *{
-        margin: 0;
-        padding: 0;
-    }
-    #smooth-wrapper {
-  overflow: hidden;
-}
+<style>
+@font-face { font-family: 'pp';       src: url(./FUENTES/ppneuemontreal-book.otf); }
+@font-face { font-family: 'ppbold';   src: url(./FUENTES/ppneuemontreal-bold.otf); }
+@font-face { font-family: 'ppmedium'; src: url(./FUENTES/ppneuemontreal-medium.otf); }
+@font-face { font-family: 'ppthin';   src: url(./FUENTES/ppneuemontreal-thin.otf); }
 
-#smooth-content {
-  will-change: transform;
-}
-    body{
-        
+/* ─── RESET ────────────────────────────────────────────── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-
-        background-color: rgb(230, 245, 255);
-    }
-
-    /* 🔥 IMPORTANTE: NO usar absolute aquí */
-    .hero{
-            transform: scale(1.08);
-    transform-origin: center;
-    will-change: transform;
-        overflow: hidden;
-        position: relative;
-        margin:auto;
-        transform: translateY(30px);
-        width: 97%;
-        height: 93vh;
-        background-color: black;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center ;
-        border-radius: 22px;
-        overflow: hidden;
-    }
-
-    .img-container{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-    }
-
-    .hero-img{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 22px;
-    }
-
-    .difuminado{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: black;
-        opacity: 0.3;
-        z-index: 4;
-    }
-
-    .img-1{ z-index: 1; }
-    .img-2{ z-index: 2; opacity: 0; }
-    .img-3{ z-index: 3; opacity: 0; }
-
-    /* espacio extra para probar scroll */
-    .spacer{
-        height: 200vh;
-    }
-    .text-hero{
-
-        display: flex;
-        width: 100%;
-    flex-direction: column;
-        justify-content: center;
-        padding-left: 10%;
-        align-items: top;
-        height: 100%;
-        z-index: 5;
-    }
-    .text-hero h1 {
-    width: 40%; /* Aumenté el ancho para que no se rompa la línea antes de tiempo */
+html { font-family: "pp", sans-serif; }
+body, button, input, select, textarea {
     font-family: "pp", sans-serif;
-    font-weight: 100;
-    letter-spacing: -2px; /* Ajustado de -4 para que sea legible */
-    font-size: clamp(3rem, 5vw, 5rem); 
-    line-height: 1.1;
-    color: white;
-    z-index: 6;
-    
+}
+* {
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+    -ms-hyphens: none !important;
+}
+h1, h2, h3, h4, p, a, li, span, button, label {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+h1, h2, h3, .text-stadistic {
+    text-wrap: balance;
+}
 
-    display: block; 
-    text-align: left; 
-    }
-
-
-    .text-hero h1 strong {
-    font-weight: 600; 
-    display: inline;  
-    }
-    .span{
-        font-style: italic;
-    }
-    .hero-details{
-        
-        padding-top: 20px;
-        width: clamp(20rem, 44vw,140rem);
-        display: flex;
-        flex-direction: column;
-        z-index: 3;
-    }
-    .hero-details p{
-        font-family: "pp", sans-serif;
-        font-size: clamp(1rem, 1.1vw, 2rem);
-        color: white;
-    }
-    .buttons{
-        font-family: "pp", sans-serif;
-        margin-top: 20px;
-        gap: 20px;
-        display: flex;
-    }
-    .buttons a:nth-child(1){
-
-        width: 10rem;
-        height: 3rem;
-        
-        color: white;
-        background-color:  rgb(0, 94, 195);
-    }
-    .buttons a:nth-child(2){
-        width: 10rem;
-        height: 3rem;
-        color: rgb(0, 94, 195);
-
-        background-color: rgb(230, 245, 255);
-    }
-    .buttons a{
-        border-radius: 4px;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        width: 10rem;
-        height: 3rem;
-        font-size: clamp(.8rem, 1.2vw, 1.0rem);
-    }
-    /* --- ESTILOS EXCLUSIVOS DEL NAVBAR --- */
-
-    .navbar {
-        position: fixed; /* Mantiene el nav siempre arriba al bajar */
-        top: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 70%; /* Tu ancho original */
-        z-index: 1000;
-        border-bottom-left-radius:20px ;
-        border-bottom-right-radius:20px ;
-        background-color: rgb(230, 245, 255);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 40px;
-        font-family: "pp", sans-serif;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
-    }
-
-    .logo img {
-        width: clamp(10rem, 13vw, 13rem);
-        display: block;
-    }
-
-    .nav-container {
-        display: flex;
-        gap: 30px;
-        align-items: center;
-    
-    }
-
-    .navbar nav {
-        display: flex;
-        align-items: center;
-        gap: 40px;
-    }
-
-    .navbar a {
-        text-decoration: none;
-        color: black;
-        font-size: 1rem;
-        transition: 0.3s;
-    }
-
-    .navbar a:hover {
-        color: rgb(0, 94, 195);
-    }
-
-    /* --- BOTONES ORIGINALES RESTAURADOS --- */
-    .contacto {
-        gap: 20px;
-        display: flex;
-        align-items: center;
-    }
-
-    .contacto a:nth-child(1) {
-        border-radius: 4px; /* Tu borde original */
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: clamp(5rem, 10vw, 10rem);
-        height: 3rem;
-        color: rgb(0, 94, 195);
-        border: 1px solid rgb(0, 94, 195);
-        background-color: transparent;
-        font-size: clamp(.8rem, 1.2vw, 1.0rem);
-    }
-
-    .contacto a:nth-child(2) {
-        border-radius: 4px; /* Tu borde original */
-        text-decoration: none;
-        display: flex;
-        border: 1px solid rgb(0, 94, 195);
-        align-items: center;
-        justify-content: center;
-        width: 10rem;
-        height: 3rem;
-        color: white;
-        background-color: rgb(0, 94, 195);
-        font-size: clamp(.8rem, 1.2vw, 1.0rem);
-    }
-
-    /* --- MENÚ HAMBURGUESA / X --- */
-    .menu-toggle {
-        display: none;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 28px;
-        height: 19px;
-        cursor: pointer;
-        z-index: 1100;
-    }
-
-    .menu-toggle span {
-        width: 100%;
-        height: 2px;
-        background-color: rgb(0, 94, 195);
-        transition: all 0.4s ease;
-    }
-
-    /* Animación de la X */
-    .menu-toggle.open span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
-    .menu-toggle.open span:nth-child(2) { opacity: 0; }
-    .menu-toggle.open span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
-
-    /* --- RESPONSIVE MÓVIL --- */
-    @media (max-width: 1024px) {
-        .navbar { 
-                font-family: "pp", sans-serif;
-            width: 90%; 
-            padding: 15px 30px;
-        }
-        
-        .menu-toggle { display: flex; }
-
-        .nav-container {
-            position: fixed;
-            top: 0;
-            right: -100%; /* Oculto */
-            width: 100%;
-            height: 100vh;
-            background-color: rgb(230, 245, 255);
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 50px;
-            transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-
-        .nav-container.active { right: 0; }
-
-        .navbar nav {
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .navbar nav a {
-            font-size: 1.8rem;
-    
-        }
-
-        .contacto {
-            flex-direction: column;
-            width: 100%;
-            padding: 0 40px;
-        }
-
-        .contacto a {
-            width: 100% !important; /* Ancho completo en móviles */
-            max-width: 280px;
-        }
-    }
-
-    .stadistic{
-        
-        width: 100%;
-        flex-direction: column;
-        height: clamp(30rem ,40vw,50rem);
-        display: flex;
-        padding-top: clamp(9rem, 1vw, 1rem);
-        justify-content: center;
-        align-items: center;
-    }
-    .text-stadistic{
-    /* Ejemplo: 5rem en móvil (máximo) y 2rem en PC (mínimo) */
-    width: clamp(25rem, 39vw, 119rem);
-
+body {
+    background-color: rgb(230, 245, 255);
     font-family: "pp", sans-serif;
-    font-weight: 100;
-    letter-spacing: -2px; /* Ajustado de -4 para que sea legible */
-    font-size: clamp(2.5rem, 3.5vw, 5rem);
-    text-align: center; 
-    line-height: 1.1;
-    }
-.text-stadistic .inline-block-wrapper {
-    display: inline;
 }
 
-.text-stadistic .letter {
-    display: inline-block;
-    opacity: 0;
-    filter: blur(10px);
-    transform: translateY(20px);
-    will-change: transform, opacity, filter;
-}
-    .stadistic p{
-        padding-top: 20px;
-        text-align: center;
-        width: clamp(20rem, 44vw,140rem);
-        width: 70%;
-        font-family: "pp", sans-serif;
-        font-size: clamp(1rem, 1.1vw, 2rem);
-    }
-    .button-stadistic{
+#smooth-wrapper { overflow: hidden; }
+#smooth-content { will-change: transform; }
+
+/* ─── NAVBAR DESKTOP ──────────────────────────────────────── */
+.navbar {
+    position: sticky;
+    top: 0; left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgb(230, 245, 255);
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    gap: 40px;
-    padding-top: 20px;
-        
-    }
-    .button-stadistic a:nth-child(1){
-        border-radius: 4px;
-        text-decoration: none;
-        display: flex;
-        border:1px solid rgb(0, 94, 195);;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    
-        color: rgb(255, 255, 255);
-        width: clamp(7rem,10vw,10rem);
-        height: 3rem;
-        background-color:rgb(0, 94, 195);
-        font-size: clamp(.8rem, 1.2vw, 1.0rem);
-    }
-    .button-stadistic a:nth-child(2){
-            border-radius: 4px;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        width: clamp(5rem,10vw,10rem);
-        height: 3rem;
-        color: rgb(0, 94, 195);
-        border:1px solid rgb(0, 94, 195);;
-        background-color:rgba(0, 94, 195, 0);
-        font-size: clamp(.8rem, 1.2vw, 1.0rem);
-    }
-    .text-stadistic strong{
-        font-style: italic;
-        font-weight: bold;
-    }
-    .blue-card{
-        color: white;
-        padding: 3px;
-        background-color: rgb(0, 94, 195);
-    }
-    
-    /* Contenedor General */
-    .services-container {
-        width: 95%;
-        margin: 50px auto;
-        position: relative;
-    }
-
-    .services {
-        display: flex;
-        gap: 15px;
-        height: 70vh;
-        transition: all 0.5s ease;
-    }
-.services {
-    -ms-overflow-style: none;  /* IE/Edge */
-    scrollbar-width: none;     /* Firefox */
-}
-
-.services::-webkit-scrollbar {
-    display: none;             /* Chrome / Safari */
-}
-    /* Cada tarjeta */
-    .service {
-
-
-    will-change: transform, opacity;
-    transform: translateZ(0); /* 🔥 evita jitter en algunos browsers */
-
-
-        position: relative;
-        flex: 1; /* Todas miden lo mismo al inicio */
-        overflow: hidden;
-        border-radius: 20px;
-        transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-        cursor: pointer;
-    }
-
-    .service img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.6s ease;
-    }
-
-    .service-overlay {
-        position: absolute;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: linear-gradient(to bottom, transparent 40%, rgba(0, 101, 233, 0.911));
-        z-index: 1;
-    }
-
-    /* Información del texto */
-    .service-info {
-        position: absolute;
-        bottom: 30px;
-        left: 20px;
-        right: 20px;
-        z-index: 2;
-        color: white;
-        font-family: "pp", sans-serif;
-    }
-
-    .service-info h2 {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-        transition: transform 0.5s ease;
-    }
-
-    .service-details {
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        transition: all 0.5s ease;
-    }
-
-    .btn-service {
-        display: inline-block;
-        margin-top: 15px;
-        padding: 10px 20px;
-        background-color: white;
-        color: rgb(0, 94, 195);
-        text-decoration: none;
-        border-radius: 5px;
-        font-size: 0.9rem;
-    }
-
-    /* EFECTO HOVER EN PC */
-    @media (min-width: 909px) {
-        .service:hover {
-            flex: 3; /* Se expande */
-        }
-        
-        .service:hover img {
-            transform: scale(1.1);
-        }
-
-        .service:hover .service-info h2 {
-            transform: translateY(-10px); /* El título sube un poco */
-        }
-
-        .service:hover .service-details {
-            max-height: 200px;
-            opacity: 1;
-        }
-        
-        .slider-nav { display: none; } /* Ocultar flechas en PC */
-    }
-
-    /* MÓVIL: SLIDER */
-    @media (max-width: 908px) {
-        .services {
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            height: 60vh;
-        }
-        
-        .service {
-            min-width: 85%; /* Se ven casi completas */
-            flex: 0 0 85%;
-            scroll-snap-align: center;
-        }
-
-        .service-details {
-            opacity: 1;
-            max-height: 200px;
-        }
-
-        .slider-nav {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .slider-nav button {
-            background: rgb(0, 94, 195);
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-        }
-    }
-    .gallery{
-    
-     
-        margin:auto;
-        
-        width: 97%;
-        height: 140vh;
-        background-color: rgb(0, 94, 195);
-        display: flex;
-    flex-direction: column;
-        justify-content: center;
-        align-items: center ;
-        border-radius: 22px;
-        overflow: hidden;
-
-    }
-    .gallery img {
-        border-radius: 20px;
-    }
-
-    .onerow{
-        
-        
-    width: 90%;
-    height: 35%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .img-contain {
-        position: relative;
-        z-index: 1;
-    }
-
-
-
-    .onerow h1{
-        color: white;
-        width: 50%;
-        padding-top: 20px;
-        padding: 20px;
-        font-family: "pp", sans-serif;
-    text-align: left;
-    font-size: clamp(2.5rem, 3vw, 5rem); 
-    }
-    .onerow strong{
-        font-style: italic;
-    }
-    .onerow p {
-        align-items: right;
-        width: 30%;
-        font-family: "pp", sans-serif;
-        font-size: clamp(1rem, 1.1vw, 2rem);
-        color: white;
-    }
-
-    .tworow{
-        display: flex;
-    
-    height: 55%;
-        width: 100%;
-    
-        z-index: 2;
-
-
-        overflow: hidden;
-        border-radius: 20px;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-
-        cursor: pointer;
-    }
-
-    .tworow img{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.6s ease;
-    }
-    .onecolumn{
-        display: flex;
-        flex-direction: column;
-    justify-content: center;
-        align-items: center;
-        width: 35%;
-        height: 100%;
-        gap: 10px;
-    }
-    .onecolumn div:nth-child(1){
-        border-radius: 20px;
-    width: 100%;
-        height: 100%;
-        background-image: url(./imgi_2_697748722f5193b59b97c285_22c514d33f7093633525307337b72924_1-p-1080.webp);
-        background-size:cover;
-
-    }
-    .onecolumn div:nth-child(2){
-    width: 100%;
-    border-radius: 20px;
-        height: 100%;
-    /* Degradado lineal básico de arriba a abajo */
-    background-image: linear-gradient(rgb(206, 230, 255), rgba(0, 0, 255, 0));
-        background-size:cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        
-    }
-    .twocolumn{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
-
-        align-items: center;
-        width: 30%;
-        gap: 10px;
-    }
-    .twocolumn div:nth-child(1){
-        border-radius: 20px;
-    width: 100%;
-        height: 100%;
-        background-image: url(./imgi_4_697748722f5193b59b97c29a_fd98d3239db6b066d65587ba90bfb935_4-p-2600.webp);
-        background-size:cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        
-    }
-    .twocolumn div:nth-child(2){
-        border-radius: 20px;
-    width: 100%;
-        
-        height: 100%;
-        background-color: rgb(230, 245, 255);
-        background-size:cover;
-            background-position: center;
-        background-repeat: no-repeat;
-    }
-    .twocolumn img{
-        position: absolute;
-    width: 100%;
-    height: 100%;
-    scale: .6;
-    overflow: visible;
-    object-fit: cover;
-    }
-    .threecolumn{
-        display: flex;
-        flex-direction: column;
-    justify-content: center;
-        height: 100%;
-        align-items: center;
-        width: 25%;
-        color: white;
-        gap: 10px;
-    }
-    .threecolumn img{
-        position: absolute;
-    width: 100%;
-    height: 100%;
-    scale: .5;
-    overflow: visible;
-    object-fit: cover;
-    }
-    .threecolumn div:nth-child(1){
-        border-radius: 20px;
-    width: 100%;
-        height: 70%;
-        background-image: linear-gradient(rgb(81, 165, 255), rgb(8, 76, 139));
-        background-size:cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        
-    }
-    .threecolumn div:nth-child(2){
-        border-radius: 20px;
-    width: 100%;
-
-        height: 30%;
-        background-image: url(./imgi_7_fono3.webp);
-        background-size:cover;
-            background-position: center;
-        background-repeat: no-repeat;
-    }
-    .gallery h2 {
-        width: 40%;
-        padding: 20px;
-        font-family: "ppthin", sans-serif;
-    text-align: left;
-    font-size: clamp(.5rem, 1.2vw, 2rem); 
-
-    }
-    .ms-stats-section {
-        background-color: #f4f1ea00;
-        padding: 80px 20px;
-        display: flex;
-        justify-content: center;
-        font-family: "pp", sans-serif;
-    }
-
-    .ms-stats-grid {
-        display: grid;
-        /* Ajustado para acomodar círculos más grandes en fila */
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-        gap: 20px;
-        max-width: 1400px;
-        width: 100%;
-    }
-
-    .ms-stat-card {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .ms-progress {
-        /* TAMAÑO AUMENTADO A 300PX */
-        width: 300px; 
-        height: 300px;
-        border-radius: 50%;
-        /* El 92% mantiene el anillo delgado a pesar del tamaño mayor */
-        background: radial-gradient(closest-side, #f4f1ea00 92%, transparent 93% 100%),
-                    conic-gradient(var(--color) var(--perc), #e2e0d8a4 0);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-    }
-
-    .ms-inner {
-        text-align: center;
-        padding: 30px;
-    }
-
-    .ms-number {
-        display: block;
-        /* NÚMERO MÁS GRANDE */
-        font-size: 4.5rem; 
-        
-        font-weight: 300;
-        color: #1a2b2b;
-        margin-bottom: 10px;
-    }
-
-    .ms-text {
-        /* TEXTO LIGERAMENTE MÁS GRANDE PARA LECTURA */
-        font-size: 14px; 
-        line-height: 1.4;
-        color: #4a4a4a;
-        margin: 0;
-        max-width: 220px;
-        margin: 0 auto;
-    }
-
-    /* Ajuste para pantallas medianas (tablets) */
-    @media (max-width: 1200px) {
-        .ms-stats-grid {
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
-    }
-
-    /* Ajuste para móviles */
-    @media (max-width: 650px) {
-        .ms-stats-grid {
-            grid-template-columns: 1fr;
-        }
-        .ms-progress {
-            width: 250px; /* Un poco más pequeño en móviles para que no se corte */
-            height: 250px;
-        }
-    }
-    .title-stats{
-        width: 100%;
-        height: 40svh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .title-stats h1{
-        width: clamp(25rem, 49vw, 119rem);
-
+    padding: 14px 5%;
     font-family: "pp", sans-serif;
-    font-weight: 100;
-    letter-spacing: -2px; /* Ajustado de -4 para que sea legible */
-    font-size: clamp(2.5rem, 3.5vw, 5rem);
-    text-align: center; 
-    line-height: 1.1;
-    color: rgb(0, 0, 0);
-    }
-    .title-stats p {
-        padding-top: 20px;
-        text-align: center;
-        width: clamp(20rem, 44vw,140rem);
-        width: 50%;
-        font-family: "pp", sans-serif;
-        font-size: clamp(1rem, 1.1vw, 2rem);
-        color: rgba(0, 0, 0, 0.979);
-    }
-    .title-stats strong{
-        font-family: "ppbold", sans-serif;
-        font-style: italic;
-    }
-    .clinic-hero-section { 
-        height: 100svh;
+}
+.navbar a { text-decoration: none; color: black; font-size: 1rem; transition: 0.3s; }
+.navbar a:hover { color: rgb(0, 94, 195); }
+.logo img { width: clamp(10rem, 13vw, 13rem); display: block; }
+.nav-container { display: flex; gap: 30px; align-items: center; }
+.navbar nav { display: flex; align-items: center; gap: 40px; }
+.contacto { gap: 20px; display: flex; align-items: center; }
+.contacto a:nth-child(1) {
+    border-radius: 4px; text-decoration: none;
+    display: flex; align-items: center; justify-content: center;
+    width: clamp(5rem, 10vw, 10rem); height: 3rem;
+    color: rgb(0, 94, 195); border: 1px solid rgb(0, 94, 195);
+    background-color: transparent; font-size: clamp(.8rem, 1.2vw, 1rem);
+}
+.contacto a:nth-child(2) {
+    border-radius: 4px; text-decoration: none;
+    display: flex; border: 1px solid rgb(0, 94, 195);
+    align-items: center; justify-content: center;
+    width: 10rem; height: 3rem;
+    color: white; background-color: rgb(0, 94, 195);
+    font-size: clamp(.8rem, 1.2vw, 1rem);
+}
+@media (max-width: 1024px) { .navbar { display: none; } }
+
+/* ─── NAVBAR MÓVIL ───────────────────────────────────────── */
+.mobile-nav-bar { display: none; }
+@media (max-width: 1024px) {
+    .mobile-nav-bar {
         display: flex;
-        background-color: rgb(5, 43, 83);
-        color: white; 
-        padding: 60px 40px; 
-        font-family: "pp", sans-serif;
-    }
-    .clinic-container {
-        width: 90%;
-        margin: 0 auto; 
-        display: flex; align-items:
-        center; 
-        gap: 50px; }
-    .clinic-content 
-    { flex: 1; }
-    .clinic-title 
-    { font-size: 3.5rem; font-weight: 300; margin-bottom: 20px; }
-    .clinic-title em 
-    { font-style: italic;   font-family: "pp", sans-serif;}
-
-    .clinic-nav 
-    { display: flex; flex-direction: column; margin-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.2); }
-    .clinic-link { 
-        color: white; text-decoration: none; padding: 22px 0; 
-        border-top: 1px solid rgba(255,255,255,0.2); 
-        display: flex; justify-content: space-between; 
-        transition: all 0.3s ease;
-    }
-
-    /* Efecto visual al pasar el ratón por el texto */
-    .clinic-link:hover 
-    { padding-left: 15px; color: #4ac8de; }
-
-    .clinic-image-container 
-    { flex: 1; overflow: hidden; border-radius: 20px; height: 500px; }
-    .clinic-main-img 
-    { 
-        width: 100%; height: 100%; object-fit: cover; 
-        transition: opacity 0.4s ease-in-out; /* Transición suave */
-    }
-
-    .fade-out { opacity: 0; } /* Clase auxiliar para la animación */
-    .modal{
-        height: 100svh;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-        justify-content: center;
-    }
-    .difuminado-1{
-        right: 30%;
-        top: 20%;
-        width: 1px;
-        height: 1px;
-        box-shadow: 0px 0px 1000px 150px rgba(0, 101, 233, 0.911);
-        position: absolute;
-    }
-    .difuminado-2{
-        left: 30%;
-        bottom: 20%;
-        width: 1px;
-        height: 1px;
-        box-shadow: 0px 0px 1000px 150px rgba(0, 101, 233, 0.911);
-        position: absolute;
-    }
-    .modal strong {
-    width: clamp(25rem, 39vw, 40rem);
-    z-index: 2;
-    font-family: "pp", sans-serif;
-    font-weight: 100;
-    letter-spacing: -2px; /* Ajustado de -4 para que sea legible */
-    font-size: clamp(2.5rem, 3.5vw, 5rem);
-    text-align: center; 
-    line-height: 1.1;
-
-    }
-    .modal span{
-        color: rgba(0, 101, 233, 0.911);
-        font-style: italic;
-    }
-    .modal p{
-        padding-top: 20px;
-        padding-bottom: 20px;
-        text-align: center;
-        width: clamp(20rem, 44vw,140rem);
-        width: 30%;
-        font-family: "pp", sans-serif;
-        font-size: clamp(1rem, 1.1vw, 2rem);
-    }
-    .modal a{
-        font-family: "pp", sans-serif;
-        border-radius: 4px;
-        text-decoration: none;
-        display: flex;
-        border:1px solid rgb(0, 94, 195);;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    
-        color: rgb(255, 255, 255);
-        width: clamp(7rem,10vw,10rem);
-        height: 3rem;
-        background-color:rgb(0, 94, 195);
-        font-size: clamp(.8rem, 1.2vw, 1.0rem);
-    }
-    .modal-img-container{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    }
-
-    .modal-img-container img:nth-child(1){
-        top: 10%;
-        left: 10%;
-        width: clamp(10rem, 15vw, 30rem);
-        height: clamp(7rem, 10vw, 30rem);
-    }
-    .modal-img-container img:nth-child(2){
-        bottom: 10%;
-        right: 10%;
-    width: clamp(7rem, 10vw, 30rem);
-        height: clamp(7rem, 10vw, 30rem);
-    }
-    .modal-img-container img:nth-child(3){
-        top: 15%;
-        width: clamp(7rem, 10vw, 30rem);
-        height: clamp(7rem, 10vw, 30rem);
-        right: 10%;
-    }
-    .modal-img-container img:nth-child(4){
-        bottom: 15%;
-        left: 10%;
-        width: clamp(7rem, 10vw, 30rem);
-        height: clamp(7rem, 10vw, 30rem);
-    }
-    .modal-img-container img{
-    position: absolute;
-    
-        object-fit: cover;
-    }
-    .aliados-section {
-        width: 100%;
-        padding: 80px 0;
-        background-color: rgb(230, 245, 255); /* Color de tu body */
-        overflow: hidden;
-    }
-
-    .aliados-title {
-        text-align: center;
-        font-family: "ppbold", sans-serif;
-        font-size: clamp(1.5rem, 3vw, 2.5rem);
-        color: #1a1a1a;
-        margin-bottom: 50px;
-        font-weight: 100;
-    }
-
-    /* Contenedor del carrusel */
-    .carousel-container {
-        width: 100%;
-        overflow: hidden;
-        position: relative;
-        /* Gradientes laterales para efecto de desvanecimiento (opcional) */
-    }
-
-    .carousel-container::before,
-    .carousel-container::after {
-        content: "";
-        position: absolute;
+        position: sticky;
         top: 0;
-        width: 150px;
-        height: 100%;
-        z-index: 2;
-    }
-
-    .carousel-container::before {
-        left: 0;
-        background: linear-gradient(to right, rgb(230, 245, 255), transparent);
-    }
-
-    .carousel-container::after {
-        right: 0;
-        background: linear-gradient(to left, rgb(230, 245, 255), transparent);
-    }
-
-    /* Animación del movimiento */
-    .carousel-track {
-        display: flex;
-        width: calc(250px * 10); /* Ancho de cada logo x número total de logos */
-        animation: scroll-infinite 30s linear infinite;
-    }
-
-    .aliado-slide {
-        width: 250px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0 40px;
-    }
-
-    .aliado-slide img {
         width: 100%;
-        max-width: 350px;
-
-        opacity: 1.6;
-        transition: 0.3s;
+        z-index: 2000;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 20px;
+        background-color: rgb(230, 245, 255);
+        font-family: "pp", sans-serif;
     }
-
-    .aliado-slide img:hover {
-
-        opacity: 1;
+    .mobile-nav-bar .m-logo img { width: clamp(8rem, 35vw, 12rem); display: block; }
+    .m-toggle {
+        display: flex; flex-direction: column; justify-content: space-between;
+        width: 28px; height: 20px; cursor: pointer; z-index: 2200;
+        background: none; border: none; padding: 0; position: relative;
+        visibility: visible !important; opacity: 1 !important;
     }
-
-    /* Keyframes para el scroll infinito */
-    @keyframes scroll-infinite {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-250px * 5)); } /* Se mueve la mitad del ancho total */
+    .m-toggle span {
+        width: 100%; height: 2px; background-color: rgb(0, 94, 195);
+        border-radius: 2px; display: block; transform-origin: center;
     }
-
-    /* Ajustes Responsive */
-    @media (max-width: 768px) {
-        .aliados-title {
-            margin-bottom: 30px;
-        }
-        .aliado-slide {
-            width: 180px;
-        }
-        @keyframes scroll-infinite {
-            100% { transform: translateX(calc(-180px * 5)); }
-        }
+    .m-toggle.is-open { position: fixed; top: 22px; right: 20px; }
+    .mobile-nav-panel {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background-color: rgb(230, 245, 255); z-index: 1999;
+        display: flex; flex-direction: column; justify-content: center;
+        align-items: center; gap: 0; visibility: hidden;
+        pointer-events: none; transform: translateY(-100%);
     }
-/* INTRO */
-.intro-layer {
-    position: fixed;
-    top: 0;
-    left: 0;
+    .mobile-nav-panel nav { display: flex; flex-direction: column; align-items: center; gap: 0; width: 100%; }
+    .mobile-nav-panel nav a {
+        font-family: "pp", sans-serif; font-size: clamp(2rem, 8vw, 3rem);
+        color: black; text-decoration: none; padding: 18px 0;
+        width: 80%; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .mobile-nav-panel nav a:last-child { border-bottom: none; }
+    .mobile-nav-panel nav a:hover { color: rgb(0, 94, 195); }
+    .m-panel-buttons {
+        display: flex; flex-direction: column; align-items: center;
+        gap: 12px; margin-top: 40px; width: 80%;
+    }
+    .m-panel-buttons a {
+        display: flex; align-items: center; justify-content: center;
+        width: 100%; height: 3.2rem; border-radius: 6px;
+        font-family: "pp", sans-serif; font-size: 1rem;
+        text-decoration: none; transition: opacity 0.2s;
+    }
+    .m-panel-buttons a:nth-child(1) { border: 1px solid rgb(0, 94, 195); color: rgb(0, 94, 195); background: transparent; }
+    .m-panel-buttons a:nth-child(2) { background-color: rgb(0, 94, 195); color: white; border: 1px solid rgb(0, 94, 195); }
+}
+
+/* ─── HERO ───────────────────────────────────────────────── */
+.hero {
+    position: relative; margin: 0 auto; width: 97%; height: 93vh;
+    background-color: black; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; border-radius: 22px;
+    overflow: hidden; will-change: transform; transform-origin: center;
+}
+.img-container {
+    position: absolute; width: 100%; height: 100%;
+    border-radius: inherit; overflow: hidden;
+}
+.hero-img { position: absolute; width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+.difuminado { position: absolute; width: 100%; height: 100%; background: black; opacity: 0.3; z-index: 4; }
+.img-1 { z-index: 1; }
+.img-2 { z-index: 2; opacity: 0; }
+.img-3 { z-index: 3; opacity: 0; }
+.text-hero {
+    display: flex; width: 100%; flex-direction: column;
+    justify-content: center; padding-left: 10%;
+    align-items: flex-start; height: 100%; z-index: 5;
+}
+.text-hero h1 {
+    width: 40%; font-family: "pp", sans-serif; font-weight: 100;
+    letter-spacing: -2px; font-size: clamp(4rem, 5vw, 5rem);
+    line-height: 1.1; color: white; z-index: 6; display: block; text-align: left;
+}
+.text-hero h1 strong { font-weight: 600; display: inline; 
+    font-size: clamp(4.5rem, 5vw, 5rem);}
+.span { font-style: italic; }
+.hero-details { padding-top: 20px; width: clamp(20rem, 44vw, 140rem); display: flex; flex-direction: column; z-index: 3; }
+.hero-details p { font-family: "pp", sans-serif; font-size: clamp(1rem, 1.1vw, 2rem); color: white; }
+
+@media (max-width: 768px) {
+    .hero { height: 100svh; border-radius: 14px; }
+    .text-hero { padding: 0 6%; align-items: center; justify-content: center; text-align: center; }
+    .text-hero h1 { width: 100%; text-align: center; font-size: clamp(2rem, 8vw, 3rem); letter-spacing: -1px; }
+    .hero-details { width: 100%; align-items: center; }
+    .hero-details p { text-align: center; font-size: clamp(0.9rem, 3.5vw, 1.1rem); }
+    .buttons { justify-content: center; }
+}
+
+.buttons { font-family: "pp", sans-serif; margin-top: 20px; gap: 20px; display: flex; }
+.buttons a:nth-child(1) { width: 10rem; height: 3rem; color: white; background-color: rgb(0, 94, 195); }
+.buttons a:nth-child(2) { width: 10rem; height: 3rem; color: rgb(0, 94, 195); background-color: rgb(230, 245, 255); }
+.buttons a {
+    border-radius: 4px; text-decoration: none;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; width: 10rem; height: 3rem;
+    font-size: clamp(.8rem, 1.2vw, 1.0rem);
+}
+
+/* ─── STATISTICS ─────────────────────────────────────────── */
+.stadistic {
+    width: 100%; padding: clamp(6rem, 12vw, 10rem) 20px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+}
+.text-stadistic {
+    width: clamp(20rem, 60vw, 900px); font-family: "pp", sans-serif; font-weight: 100;
+    letter-spacing: -2px; font-size: clamp(2.2rem, 3.5vw, 5rem);
+    text-align: center; line-height: 1.2;
+}
+.text-stadistic .inline-block-wrapper { display: inline; }
+.stadistic p {
+    padding-top: 20px; text-align: center; width: 70%;
+    font-family: "pp", sans-serif; font-size: clamp(1rem, 1.1vw, 2rem);
+}
+.button-stadistic { display: flex; align-items: center; justify-content: center; gap: 40px; padding-top: 20px; }
+.button-stadistic a:nth-child(1) {
+    border-radius: 4px; text-decoration: none; display: flex; border: 1px solid rgb(0, 94, 195);
+    align-items: center; justify-content: center; text-align: center;
+    color: white; width: clamp(7rem,10vw,10rem); height: 3rem;
+    background-color: rgb(0, 94, 195); font-size: clamp(.8rem, 1.2vw, 1.0rem);
+}
+.button-stadistic a:nth-child(2) {
+    border-radius: 4px; text-decoration: none; display: flex;
+    align-items: center; justify-content: center; text-align: center;
+    width: clamp(5rem,10vw,10rem); height: 3rem; color: rgb(0, 94, 195);
+    border: 1px solid rgb(0, 94, 195); background-color: transparent;
+    font-size: clamp(.8rem, 1.2vw, 1.0rem);
+}
+.text-stadistic strong { font-style: italic; font-weight: bold; }
+.blue-card { color: white; padding: 3px; background-color: rgb(0, 94, 195); }
+
+/* ─── SERVICES ───────────────────────────────────────────── */
+.services-container { width: 95%; margin: 50px auto; position: relative; }
+.services {
+    display: flex; gap: 15px; height: 70vh; transition: all 0.5s ease;
+    -ms-overflow-style: none; scrollbar-width: none;
+}
+.services::-webkit-scrollbar { display: none; }
+.service {
+    position: relative; flex: 1; overflow: hidden; border-radius: 20px;
+    transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1); cursor: pointer; will-change: flex;
+}
+.service img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.service-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, transparent 40%, rgba(0, 101, 233, 0.911)); z-index: 1;
+}
+.service-info { position: absolute; bottom: 30px; left: 20px; right: 20px; z-index: 2; color: white; font-family: "pp", sans-serif; }
+.service-info h2 { font-size: 1.5rem; margin-bottom: 10px; transition: transform 0.5s ease; }
+.service-details { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.5s ease; }
+.btn-service { display: inline-block; margin-top: 15px; padding: 10px 20px; background-color: white; color: rgb(0, 94, 195); text-decoration: none; border-radius: 5px; font-size: 0.9rem; }
+
+@media (min-width: 909px) {
+    .service:hover { flex: 3; }
+    .service:hover img { transform: scale(1.1); }
+    .service:hover .service-info h2 { transform: translateY(-10px); }
+    .service:hover .service-details { max-height: 200px; opacity: 1; }
+    .slider-nav { display: none; }
+}
+@media (max-width: 908px) {
+    .services { overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; height: 60vh; }
+    .service { min-width: 85%; flex: 0 0 85%; scroll-snap-align: center; }
+    .service-details { opacity: 1; max-height: 200px; }
+    .slider-nav { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+    .slider-nav button {
+        background: rgb(0, 94, 195); border: none;
+        color: white; padding: 10px 20px; border-radius: 50%; font-size: 1.2rem;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GALLERY — BENTO GRID
+   ═══════════════════════════════════════════════════════════ */
+.gallery { margin: 60px auto; width: 93%; display: flex; flex-direction: column; gap: 40px; }
+.gallery-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
+.gallery-header h1 {
+    font-family: "pp", sans-serif; font-weight: 300;
+    font-size: clamp(2rem, 3.5vw, 4rem); letter-spacing: -1.5px;
+    line-height: 1.1; color: #0a0a0a; width: 52%;
+}
+.gallery-header h1 strong { font-style: italic; font-weight: 600; color: rgb(0, 94, 195); }
+.gallery-header p {
+    width: 38%; font-family: "pp", sans-serif;
+    font-size: clamp(0.85rem, 1.05vw, 1rem); line-height: 1.7;
+    color: rgba(0,0,0,0.5); padding-bottom: 4px;
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.95fr 0.9fr;
+    grid-template-rows: 260px 240px;
+    gap: 14px;
+}
+.bento-card {
+    border-radius: 20px; overflow: hidden; position: relative;
+    cursor: pointer; transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+}
+.bento-card:hover { transform: translateY(-4px); box-shadow: 0 24px 60px rgba(0, 94, 195, 0.18); }
+
+.bento-card--a { grid-column: 1; grid-row: 1; background: #111; }
+.bento-card--b { grid-column: 2; grid-row: 1; background: rgb(0, 94, 195); }
+.bento-card--c { grid-column: 3; grid-row: 1; background: #f0f6ff; }
+.bento-card--d { grid-column: 1; grid-row: 2; background: #f0f6ff; }
+.bento-card--e { grid-column: 2; grid-row: 2; background: #e8f3ff; }
+.bento-card--f { grid-column: 3; grid-row: 2; background: #111; }
+
+.bento-bg { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; filter: brightness(0.72); }
+.bento-card:hover .bento-bg { transform: scale(1.05); }
+.bento-photo-overlay { position: absolute; inset: 0; background: linear-gradient(160deg, transparent 35%, rgba(0,20,80,0.6)); z-index: 1; }
+.bento-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 20px 18px; z-index: 2; }
+.bento-label h3 { font-family: "pp", sans-serif; font-weight: 300; font-size: clamp(0.82rem, 0.95vw, 1rem); line-height: 1.45; color: white; }
+
+.bento-card--b { display: flex; flex-direction: column; justify-content: space-between; padding: 28px 26px; }
+.bento-inner-tag { font-family: "pp", sans-serif; font-size: 0.72rem; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+.bento-big-stat { font-family: "pp", sans-serif; font-size: clamp(3.2rem, 4.8vw, 5.5rem); font-weight: 200; color: white; letter-spacing: -3px; line-height: 1; }
+.bento-sub-white { font-family: "pp", sans-serif; font-size: clamp(0.8rem, 0.9vw, 0.95rem); color: rgba(255,255,255,0.72); line-height: 1.55; }
+
+.bento-card--c { display: flex; flex-direction: column; justify-content: space-between; padding: 28px 26px; }
+.bento-inner-tag-dark { font-family: "pp", sans-serif; font-size: 0.72rem; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(0,0,0,0.38); }
+.bento-illustration { flex: 1; display: flex; align-items: center; justify-content: center; }
+.bento-globe {
+    width: clamp(75px, 9vw, 112px); height: clamp(75px, 9vw, 112px); border-radius: 50%;
+    border: 1.5px solid rgba(0,94,195,0.28); position: relative;
+    background: radial-gradient(ellipse at 35% 35%, rgba(0,94,195,0.13), transparent 60%);
+    box-shadow: 0 0 0 1px rgba(0,94,195,0.1);
+}
+.bento-globe::before {
+    content: ""; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); width: 100%; height: 42%;
+    border-top: 1px solid rgba(0,94,195,0.2); border-bottom: 1px solid rgba(0,94,195,0.2); border-radius: 50%;
+}
+.bento-globe::after {
+    content: ""; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); width: 60%; height: 100%;
+    border-right: 1px solid rgba(0,94,195,0.2); border-left: 1px solid rgba(0,94,195,0.2); border-radius: 50%;
+}
+.bento-sub-dark { font-family: "pp", sans-serif; font-size: clamp(0.78rem, 0.88vw, 0.92rem); color: rgba(0,0,0,0.42); line-height: 1.55; }
+
+.bento-card--d {
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 28px 26px; overflow: hidden; position: relative;
+}
+.bento-card--d::before {
+    content: ""; position: absolute; bottom: -50px; right: -50px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,94,195,0.07), transparent 70%); pointer-events: none;
+}
+.bento-headline { font-family: "pp", sans-serif; font-weight: 300; font-size: clamp(1rem, 1.3vw, 1.35rem); color: #0a0a0a; line-height: 1.45; letter-spacing: -0.2px; }
+.bento-cta { display: inline-flex; align-items: center; gap: 6px; font-family: "pp", sans-serif; font-size: 0.82rem; color: rgb(0, 94, 195); text-decoration: none; font-weight: 500; transition: gap 0.2s; }
+.bento-cta::after { content: "→"; }
+.bento-card--d:hover .bento-cta { gap: 10px; }
+
+.bento-card--e { display: flex; flex-direction: column; justify-content: space-between; padding: 28px 26px; }
+.bento-icon { width: 52px; height: 52px; background: rgb(0, 94, 195); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; }
+
+/* ── BENTO TABLET ── */
+@media (max-width: 1024px) {
+    .gallery { width: 96%; gap: 28px; }
+    .gallery-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .gallery-header h1 { width: 100%; font-size: clamp(1.8rem, 5vw, 3rem); }
+    .gallery-header p { width: 100%; }
+    .bento-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; gap: 10px; }
+    .bento-card--a { grid-column: 1; grid-row: 1; }
+    .bento-card--b { grid-column: 2; grid-row: 1; }
+    .bento-card--c { grid-column: 1; grid-row: 2; }
+    .bento-card--d { grid-column: 2; grid-row: 2; }
+    .bento-card--e { grid-column: 1; grid-row: 3; }
+    .bento-card--f { grid-column: 2; grid-row: 3; }
+}
+
+/* ── BENTO MÓVIL ── */
+@media (max-width: 640px) {
+    .gallery { width: 100%; gap: 20px; padding: 0; }
+    .gallery-header { padding: 0 18px; gap: 12px; }
+    .gallery-header h1 { font-size: clamp(1.55rem, 7vw, 2.4rem); }
+    .gallery-header p { font-size: 0.9rem; }
+
+    .bento-grid {
+        display: grid !important;
+        flex-direction: unset !important;
+        overflow-x: unset !important;
+        scroll-snap-type: unset !important;
+        padding: 0 16px !important;
+        height: auto !important;
+        grid-template-columns: 1fr 1fr !important;
+        grid-template-rows: 52vw 52vw 52vw !important;
+        gap: 10px !important;
+    }
+    .bento-card {
+        flex: unset !important;
+        height: auto !important;
+        scroll-snap-align: unset !important;
+        border-radius: 16px !important;
+    }
+    .bento-card--a { grid-column: 1 / -1 !important; grid-row: 1 !important; height: 52vw !important; }
+    .bento-card--b { grid-column: 1 !important; grid-row: 2 !important; }
+    .bento-card--c { grid-column: 2 !important; grid-row: 2 !important; }
+    .bento-card--d { grid-column: 1 !important; grid-row: 3 !important; }
+    .bento-card--e { grid-column: 2 !important; grid-row: 3 !important; }
+    .bento-card--f { display: none; }
+
+    .bento-card--b, .bento-card--c, .bento-card--d, .bento-card--e { padding: 18px 16px !important; }
+    .bento-big-stat { font-size: clamp(2.4rem, 11vw, 3.2rem) !important; }
+    .bento-headline { font-size: 0.88rem !important; }
+    .bento-label h3 { font-size: 0.8rem !important; }
+    .bento-sub-white, .bento-sub-dark { font-size: 0.75rem !important; }
+    .bento-inner-tag, .bento-inner-tag-dark { font-size: 0.65rem !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MODAL CTA
+   ═══════════════════════════════════════════════════════════ */
+.modal {
+    height: 100svh; width: 100%; display: flex; flex-direction: column;
+    align-items: center; position: relative; justify-content: center; overflow: hidden;
+}
+.glow-layer {
+    position: absolute; pointer-events: none; border-radius: 50%;
+    filter: blur(90px); opacity: 0;
+    animation: glow-pulse 6s ease-in-out infinite; will-change: opacity, transform; isolation: isolate;
+}
+.glow-layer--1 {
+    width: 600px; height: 600px; right: 5%; top: 5%;
+    background: radial-gradient(circle, rgba(0, 94, 195, 0.28) 0%, rgba(0, 130, 255, 0.12) 50%, transparent 70%);
+    animation-delay: 0s;
+}
+.glow-layer--2 {
+    width: 500px; height: 500px; left: 5%; bottom: 5%;
+    background: radial-gradient(circle, rgba(0, 94, 195, 0.22) 0%, rgba(0, 130, 255, 0.1) 50%, transparent 70%);
+    animation-delay: 3s;
+}
+.glow-layer--3 {
+    width: 350px; height: 350px; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(0, 94, 195, 0.08) 0%, transparent 70%);
+    animation: none; opacity: 1;
+}
+@keyframes glow-pulse {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50%       { opacity: 1;   transform: scale(1.08); }
+}
+.modal strong {
+    width: clamp(25rem, 39vw, 40rem); z-index: 2; font-family: "pp", sans-serif; font-weight: 100;
+    letter-spacing: -2px; font-size: clamp(2.5rem, 3.5vw, 5rem); text-align: center; line-height: 1.1;
+}
+.modal span { color: rgba(0, 101, 233, 0.911); font-style: italic; }
+.modal p { padding-top: 20px; padding-bottom: 20px; text-align: center; width: 30%; font-family: "pp", sans-serif; font-size: clamp(1rem, 1.1vw, 2rem); }
+.modal a {
+    font-family: "pp", sans-serif; border-radius: 4px; text-decoration: none; display: flex;
+    border: 1px solid rgb(0, 94, 195); align-items: center; justify-content: center;
+    text-align: center; color: white; width: clamp(7rem,10vw,10rem); height: 3rem;
+    background-color: rgb(0, 94, 195); font-size: clamp(.8rem, 1.2vw, 1.0rem); z-index: 3;
+}
+.modal-img-container { width: 100%; height: 100%; position: absolute; pointer-events: none; }
+.modal-img-container img { position: absolute; object-fit: cover; opacity: 0; }
+.modal-img-container img:nth-child(1) { top: 10%; left: 10%; width: clamp(10rem, 15vw, 30rem); height: clamp(7rem, 10vw, 30rem); border-radius: 14px; }
+.modal-img-container img:nth-child(2) { bottom: 10%; right: 10%; width: clamp(7rem, 10vw, 30rem); height: clamp(7rem, 10vw, 30rem); border-radius: 14px; }
+.modal-img-container img:nth-child(3) { top: 15%; right: 10%; width: clamp(7rem, 10vw, 30rem); height: clamp(7rem, 10vw, 30rem); border-radius: 14px; }
+.modal-img-container img:nth-child(4) { bottom: 15%; left: 10%; width: clamp(7rem, 10vw, 30rem); height: clamp(7rem, 10vw, 30rem); border-radius: 14px; }
+
+/* ─── ALIADOS ────────────────────────────────────────────── */
+.aliados-section { width: 100%; padding: 80px 0; background-color: rgb(230, 245, 255); overflow: hidden; }
+.aliados-title { text-align: center; font-family: "ppbold", sans-serif; font-size: clamp(1.5rem, 3vw, 2.5rem); color: #1a1a1a; margin-bottom: 50px; font-weight: 100; }
+.carousel-container { width: 100%; overflow: hidden; position: relative; }
+.carousel-container::before, .carousel-container::after { content: ""; position: absolute; top: 0; width: 150px; height: 100%; z-index: 2; }
+.carousel-container::before { left: 0; background: linear-gradient(to right, rgb(230, 245, 255), transparent); }
+.carousel-container::after { right: 0; background: linear-gradient(to left, rgb(230, 245, 255), transparent); }
+.carousel-track { display: flex; width: calc(250px * 14); animation: scroll-infinite 30s linear infinite; }
+.aliado-slide { width: 250px; display: flex; justify-content: center; align-items: center; padding: 0 40px; }
+.aliado-slide img { width: 100%; max-width: 350px; opacity: 0.6; transition: 0.3s; }
+.aliado-slide img:hover { opacity: 1; }
+@keyframes scroll-infinite { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-250px * 7)); } }
+@media (max-width: 768px) {
+    .aliados-title { margin-bottom: 30px; }
+    .aliado-slide { width: 180px; }
+    @keyframes scroll-infinite { 100% { transform: translateX(calc(-180px * 7)); } }
+}
+
+/* ─── TITLE STATS ────────────────────────────────────────── */
+.title-stats { width: 100%; padding: 100px 20px 60px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.title-stats h1 {
+    width: clamp(20rem, 55vw, 900px); font-family: "pp", sans-serif; font-weight: 100;
+    letter-spacing: -2px; font-size: clamp(2.2rem, 3.5vw, 5rem); text-align: center; line-height: 1.15; color: black;
+}
+.title-stats p { padding-top: 16px; text-align: center; width: clamp(18rem, 45vw, 700px); font-family: "pp", sans-serif; font-size: clamp(1rem, 1.1vw, 1.2rem); color: rgba(0,0,0,0.55); }
+.title-stats strong { font-family: "ppbold", sans-serif; font-style: italic; }
+
+/* ─── MS STATS ─────────────────────────────────────────── */
+.ms-stats-section { padding: 20px 5% 100px; display: flex; justify-content: center; }
+.ms-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 1400px; width: 100%; }
+.ms-stat-card {
+    background: white; border-radius: 20px; padding: 40px 28px;
+    display: flex; flex-direction: column; justify-content: space-between; gap: 20px;
+    border: 1px solid rgba(0,0,0,0.06); transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; overflow: hidden;
+}
+.ms-stat-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
+.ms-stat-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--card-color); border-radius: 20px 20px 0 0; }
+.ms-number { font-family: "pp", sans-serif; font-size: clamp(3rem, 4vw, 5rem); font-weight: 200; color: var(--card-color); line-height: 1; letter-spacing: -2px; }
+.ms-text { font-family: "pp", sans-serif; font-size: clamp(0.85rem, 1vw, 1rem); line-height: 1.55; color: rgba(0,0,0,0.55); }
+.ms-bar-track { width: 100%; height: 4px; background: rgba(0,0,0,0.07); border-radius: 4px; overflow: hidden; }
+.ms-bar-fill { height: 100%; width: var(--perc); background: var(--card-color); border-radius: 4px; }
+@media (max-width: 1100px) { .ms-stats-grid { grid-template-columns: 1fr 1fr; gap: 14px; } }
+@media (max-width: 600px) {
+    .ms-stats-section { padding: 0 4% 60px; }
+    .ms-stats-grid { grid-template-columns: 1fr; gap: 12px; }
+    .ms-stat-card { padding: 28px 22px; }
+}
+
+/* ─── CLINIC SECTION ─────────────────────────────────────── */
+.clinic-hero-section { min-height: 100svh; display: flex; background-color: rgb(5, 43, 83); color: white; padding: 60px 40px; font-family: "pp", sans-serif; }
+.clinic-container { width: 90%; margin: 0 auto; display: flex; align-items: center; gap: 50px; }
+.clinic-content { flex: 1; }
+.clinic-title { font-size: 3.5rem; font-weight: 300; margin-bottom: 20px; }
+.clinic-title em { font-style: italic; font-family: "pp", sans-serif; }
+.clinic-nav { display: flex; flex-direction: column; margin-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.2); }
+.clinic-link { color: white; text-decoration: none; padding: 22px 0; border-top: 1px solid rgba(255,255,255,0.2); display: flex; justify-content: space-between; transition: all 0.3s ease; }
+.clinic-link:hover { padding-left: 15px; color: #4ac8de; }
+.clinic-image-container { flex: 1; overflow: hidden; border-radius: 20px; height: 500px; }
+.clinic-main-img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.4s ease-in-out; }
+.fade-out { opacity: 0; }
+
+/* ══════════════════════════════════════════════════════════
+   TESTIMONIOS — REDISEÑO TIPO MAVEN / INMERSIVO
+   ══════════════════════════════════════════════════════════ */
+.testimonios-section {
     width: 100%;
-    height: 100%;
+    position: relative;
+    background: linear-gradient(160deg, rgb(3, 28, 64) 0%, rgb(0, 55, 130) 50%, rgb(2, 22, 55) 100%);
+    padding: clamp(70px, 10vw, 120px) 0 clamp(60px, 8vw, 100px);
+    overflow: hidden;
+}
+
+/* Partículas de fondo decorativas */
+.test-particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform;
+}
+.test-particle--1 { width: 420px; height: 420px; top: -80px; right: -60px; background: radial-gradient(circle, rgba(0,130,255,0.15) 0%, transparent 65%); }
+.test-particle--2 { width: 300px; height: 300px; bottom: -60px; left: -40px; background: radial-gradient(circle, rgba(0,94,195,0.2) 0%, transparent 65%); }
+.test-particle--3 { width: 180px; height: 180px; top: 40%; left: 55%; background: radial-gradient(circle, rgba(100,180,255,0.08) 0%, transparent 65%); }
+
+/* Header */
+.test-header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+.test-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "pp", sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(150, 210, 255, 0.85);
+}
+.test-eyebrow::before, .test-eyebrow::after {
+    content: "";
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: rgba(150,210,255,0.4);
+}
+.test-header-inner h2 {
+    font-family: "pp", sans-serif;
+    font-weight: 100;
+    font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+    letter-spacing: -2px;
+    line-height: 1.08;
+    color: white;
+    margin: 0;
+}
+.test-header-inner h2 em {
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(130, 200, 255, 0.95);
+}
+.test-header-inner p {
+    font-family: "pp", sans-serif;
+    font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+    color: rgba(255,255,255,0.5);
+    max-width: 500px;
+    line-height: 1.7;
+}
+.test-header-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "pp", sans-serif;
+    font-size: 0.88rem;
+    color: white;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 12px 24px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background 0.25s, border-color 0.25s;
+    backdrop-filter: blur(6px);
+}
+.test-header-cta:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.4); }
+.test-header-cta span { font-size: 1rem; }
+
+/* Tabs / selector de categoria */
+.test-selector {
     display: flex;
     justify-content: center;
+    gap: 0;
+    margin: 48px auto 0;
+    max-width: 600px;
+    padding: 0 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.test-sel-btn {
+    font-family: "pp", sans-serif;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.42);
+    background: transparent;
+    border: none;
+    padding: 14px 28px;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.25s;
+    white-space: nowrap;
+}
+.test-sel-btn::after {
+    content: "";
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 2px;
+    background: white;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+.test-sel-btn.active { color: white; }
+.test-sel-btn.active::after { transform: scaleX(1); }
+.test-sel-btn:hover { color: rgba(255,255,255,0.78); }
+
+/* Card principal — layout horizontal con foto */
+.test-stage {
+    max-width: 1100px;
+    margin: 44px auto 0;
+    padding: 0 5%;
+    position: relative;
+}
+.test-main-card {
+    background: rgba(255,255,255,0.97);
+    border-radius: 24px;
+    display: grid;
+    grid-template-columns: 290px 1fr;
+    overflow: hidden;
+    position: relative;
+    min-height: 380px;
+}
+.test-photo-col {
+    position: relative;
+    overflow: hidden;
+    background: #c8ddf2;
+}
+.test-photo-col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.6s ease;
+}
+.test-main-card:hover .test-photo-col img { transform: scale(1.04); }
+.test-photo-badge {
+    position: absolute;
+    bottom: 18px; left: 18px;
+    background: rgb(0, 94, 195);
+    color: white;
+    font-family: "pp", sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 100px;
+}
+
+.test-content-col {
+    padding: clamp(32px, 4vw, 52px) clamp(28px, 4vw, 52px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+}
+.test-quote-mark {
+    font-size: 5rem;
+    line-height: 0.6;
+    color: rgba(0, 94, 195, 0.15);
+    font-family: Georgia, serif;
+    display: block;
+    margin-bottom: -8px;
+}
+.test-main-quote {
+    font-family: "pp", sans-serif;
+    font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+    line-height: 1.7;
+    color: rgba(0,0,0,0.75);
+    font-weight: 300;
+    letter-spacing: -0.2px;
+    border: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+}
+.test-person {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0,0,0,0.07);
+}
+.test-person-name {
+    font-family: "pp", sans-serif;
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: #0a0a0a;
+}
+.test-person-role {
+    font-family: "pp", sans-serif;
+    font-size: 0.8rem;
+    color: rgba(0,0,0,0.42);
+}
+.test-person-stars { color: #f5a62b; font-size: 0.82rem; letter-spacing: 2px; margin-top: 4px; }
+
+/* Dots navegación */
+.test-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 28px;
+}
+.test-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s, transform 0.3s;
+}
+.test-dot.active {
+    background: white;
+    transform: scale(1.35);
+}
+
+/* Stats flotantes debajo */
+.test-stats-row {
+    display: flex;
+    justify-content: center;
+    gap: clamp(20px, 5vw, 80px);
+    margin-top: clamp(48px, 6vw, 72px);
+    padding: 0 5%;
+    flex-wrap: wrap;
+}
+.test-stat-item {
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 6px;
+    text-align: center;
+}
+.test-stat-num {
+    font-family: "pp", sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 100;
+    letter-spacing: -2px;
+    color: white;
+    line-height: 1;
+}
+.test-stat-num sup {
+    font-size: 0.5em;
+    vertical-align: top;
+    margin-top: 6px;
+    display: inline-block;
+}
+.test-stat-label {
+    font-family: "pp", sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.48);
+    max-width: 120px;
+    line-height: 1.4;
+}
+.test-stat-divider {
+    width: 1px;
+    height: 48px;
+    background: rgba(255,255,255,0.12);
+    align-self: center;
 }
 
-.intro-blue {
-    background-color: rgb(0, 94, 195);
-    z-index: 10001;
+/* CTA final */
+.test-bottom-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(40px, 6vw, 60px);
 }
-
-.intro-blur {
-    background-color: rgba(230, 245, 255, 0.5);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    z-index: 10000;
+.test-wa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "pp", sans-serif;
+    font-size: 0.95rem;
+    color: rgb(0, 55, 130);
+    background: white;
+    padding: 16px 36px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: transform 0.2s, opacity 0.2s;
+    font-weight: 500;
 }
+.test-wa-btn:hover { transform: translateY(-2px); opacity: 0.92; }
+.test-wa-icon { width: 22px; height: 22px; }
 
-.intro-logo {
-    width: clamp(12rem, 20vw, 25rem);
-    opacity: 0;
+/* ── RESPONSIVE TESTIMONIOS ── */
+@media (max-width: 900px) {
+    .test-main-card { grid-template-columns: 220px 1fr; }
 }
+@media (max-width: 640px) {
+    .test-main-card { grid-template-columns: 1fr; grid-template-rows: 280px auto; }
+    .test-photo-col { height: 280px; }
+    .test-selector { gap: 0; overflow-x: auto; justify-content: flex-start; padding: 0 20px; scrollbar-width: none; }
+    .test-selector::-webkit-scrollbar { display: none; }
+    .test-sel-btn { padding: 12px 20px; font-size: 0.82rem; }
+    .test-stats-row { gap: 24px; }
+    .test-stat-divider { display: none; }
+    .test-content-col { padding: 28px 24px; }
+    .test-header-inner h2 { letter-spacing: -1.5px; }
+}
+</style>
+</head>
 
-/* Lenis fix */
+<body>
 
-    </style>
-    </head>
-
-    <body>
-<!-- INTRO -->
-<div class="intro-layer intro-blur"></div>
-
-<div class="intro-layer intro-blue">
-    <img src="./logoblanco.png" alt="Logo" class="intro-logo">
+<!-- PANEL FULLSCREEN MÓVIL -->
+<div class="mobile-nav-panel" id="m-panel">
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Servicios</a>
+        <a href="#">Especialistas</a>
+        <a href="#">Nosotros</a>
+    </nav>
+    <div class="m-panel-buttons">
+        <a href="#">Ingresar</a>
+        <a href="#">Agendar Cita</a>
+    </div>
 </div>
-    <div id="smooth-wrapper">
-    <div id="smooth-content">
+
+<div id="smooth-wrapper">
+<div id="smooth-content">
+
+    <!-- NAVBAR DESKTOP -->
     <div class="navbar">
         <div class="logo">
             <img src="./imgi_23_Logo-fonoaudio-15anos-400x115.png" alt="Logo">
         </div>
-
-        <div class="menu-toggle" id="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
         <div class="nav-container">
             <nav>
                 <a href="#">Inicio</a>
@@ -1166,163 +867,112 @@
         </div>
     </div>
 
-        
-        <div class="hero">
-        
-        
-            <div class="img-container">
-                <div class="difuminado"></div>
-                <img class="hero-img img-1" src="./hero1.webp">
-                <img class="hero-img img-2" src="./hero2.1.jpg">
-                <img class="hero-img img-3" src="./hero3.webp">
-            </div>
-            <div class="text-hero">
-                <h1>Cuidado profesional para tus sentidos <strong class="span">auditivos</strong></h1>
-                <div class="hero-details">
+    <!-- NAVBAR MÓVIL -->
+    <div class="mobile-nav-bar">
+        <div class="m-logo">
+            <img src="./imgi_23_Logo-fonoaudio-15anos-400x115.png" alt="Logo">
+        </div>
+        <button class="m-toggle" id="m-toggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="img-container">
+            <div class="difuminado"></div>
+            <img class="hero-img img-1" src="./hero1.webp" alt="">
+            <img class="hero-img img-2" src="./hero2.1.jpg" alt="">
+            <img class="hero-img img-3" src="./hero3.webp" alt="">
+        </div>
+        <div class="text-hero">
+            <h1>Cuidado profesional para tus sentidos <strong class="span">auditivos</strong></h1>
+            <div class="hero-details">
                 <p>Soluciones personalizadas para oír y vivir mejor.</p>
-            <div class="buttons">
-                <a href="">Explorar Soluciones</a>
-                <a href="">Contactar</a>
+                <div class="buttons">
+                    <a href="">Explorar Soluciones</a>
+                    <a href="">Contactar</a>
+                </div>
             </div>
-            </div>
-                
-            </div>
-        
+        </div>
+    </div>
+
+    <!-- STATISTICS -->
+    <section class="stadistic">
+        <h1 class="text-stadistic">Soluciones en salud auditiva y visual respaldadas por más de <span class="blue-card">20 años</span> de experiencia, conocimiento y <strong class="span">calidad</strong></h1>
+        <p>Cuidado especializado enfocado en resultados reales para el bienestar de cada paciente.</p>
+        <div class="button-stadistic">
+            <a href="">Empezar</a>
+            <a href="">Ver Servicios</a>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services-container">
+        <div class="services" id="servicesSlider">
+            <div class="service"><img src="./hero2.1.jpg" alt=""><div class="service-overlay"></div><div class="service-info"><h2>Exámenes Audiológicos</h2><div class="service-details"><p>Evaluaciones precisas con tecnología de vanguardia para detectar tu nivel auditivo.</p><a href="#" class="btn-service">Ver más</a></div></div></div>
+            <div class="service"><img src="./hero3.webp" alt=""><div class="service-overlay"></div><div class="service-info"><h2>Prótesis Auditivas</h2><div class="service-details"><p>Adaptación de audífonos de última generación según tu estilo de vida.</p><a href="#" class="btn-service">Ver más</a></div></div></div>
+            <div class="service"><img src="./imgi_7_fono3.webp" alt=""><div class="service-overlay"></div><div class="service-info"><h2>Rehabilitación</h2><div class="service-details"><p>Terapias especializadas para recuperar y optimizar tu comunicación.</p><a href="#" class="btn-service">Ver más</a></div></div></div>
+            <div class="service"><img src="./imgi_5_fono1.webp" alt=""><div class="service-overlay"></div><div class="service-info"><h2>Salud Ocupacional</h2><div class="service-details"><p>Programas de prevención y cuidado auditivo en el entorno laboral.</p><a href="#" class="btn-service">Ver más</a></div></div></div>
+            <div class="service"><img src="./imgi_6_fono2.webp" alt=""><div class="service-overlay"></div><div class="service-info"><h2>Laboratorio Audioprotésico</h2><div class="service-details"><p>Atención preferencial a través de nuestras entidades aliadas.</p><a href="#" class="btn-service">Ver más</a></div></div></div>
+            <div class="service"><img src="./imgi_7_fono3.webp" alt=""><div class="service-overlay"></div><div class="service-info"><h2>Fono Óptica</h2><div class="service-details"><p>Soluciones visuales integrales para toda la familia.</p><a href="#" class="btn-service">Ver más</a></div></div></div>
+        </div>
+        <div class="slider-nav">
+            <button onclick="moveSlider(-1)">❮</button>
+            <button onclick="moveSlider(1)">❯</button>
+        </div>
+    </section>
+
+    <!-- GALLERY — BENTO GRID -->
+    <section class="gallery">
+        <div class="gallery-header">
+            <h1>Más de 20 años cuidando tu audición y visión en un <strong>solo lugar.</strong></h1>
+            <p>Fonoaudio Clínica SAS IPS — conocimiento, experiencia y calidad en audiología, adaptación protésica, rehabilitación, salud ocupacional y optometría.</p>
         </div>
 
+        <div class="bento-grid">
+            <div class="bento-card bento-card--a">
+                <img class="bento-bg" src="./imgi_5_fono1.webp" alt="Atención audiológica">
+                <div class="bento-photo-overlay"></div>
+                <div class="bento-label"><h3>Te acompañamos en todo el proceso: evaluamos tu audición, elegimos el audífono y realizamos su adaptación.</h3></div>
+            </div>
+            <div class="bento-card bento-card--b">
+                <span class="bento-inner-tag">Trayectoria</span>
+                <div class="bento-big-stat">20+</div>
+                <p class="bento-sub-white">Años de experiencia profesional en audiología y salud auditiva en Barranquilla.</p>
+            </div>
+            <div class="bento-card bento-card--c">
+                <span class="bento-inner-tag-dark">Especialidades</span>
+                <div class="bento-illustration"><div class="bento-globe"></div></div>
+                <p class="bento-sub-dark">Audiología, Prótesis Auditivas, Rehabilitación, Salud Ocupacional, Lab. Audioprotésico y Fono Óptica.</p>
+            </div>
+            <div class="bento-card bento-card--d">
+                <span class="bento-inner-tag-dark">Rehabilitación</span>
+                <p class="bento-headline">Psicología, Fonoaudiología y Terapia Ocupacional para niños, adultos y adultos mayores.</p>
+                <a href="#" class="bento-cta">Ver servicios</a>
+            </div>
+            <div class="bento-card bento-card--e">
+                <span class="bento-inner-tag-dark">Marcas aliadas</span>
+                <div class="bento-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <p class="bento-sub-dark">Representantes oficiales de Starkey, Oticon y NewSound — audífonos 100% digitales, intrauriculares y recargables.</p>
+            </div>
+            <div class="bento-card bento-card--f">
+                <img class="bento-bg" src="./imgi_6_fono2.webp" alt="Audífonos modernos">
+                <div class="bento-photo-overlay"></div>
+                <div class="bento-label"><h3>Laboratorio audioprotésico: revisión, mantenimiento, reparación y moldes a medida.</h3></div>
+            </div>
+        </div>
+    </section>
 
-    <section class="stadistic">
-            <h1 class="text-stadistic">Soluciones en salud auditiva y visual respaldadas por más de <span class="blue-card">20 años</span> de experiencia, conocimiento y <strong class="span">calidad</strong></h1>
-            <p>Cuidado especializado enfocado en resultados reales para el bienestar de cada paciente..</p>
-            <div class="button-stadistic">
-                <a href="">Empezar</a>
-                <a href="">Ver Servicios</a>
-            </div>
-        </section>
-        <section class="services-container">
-            <div class="services" id="servicesSlider">
-                <!-- Tarjeta 1 -->
-                <div class="service">
-                    <img src="./hero2.1.jpg" alt="">
-                    <div class="service-overlay"></div>
-                    <div class="service-info">
-                        <h2>Exámenes Audiológicos</h2>
-                        <div class="service-details">
-                            <p>Evaluaciones precisas con tecnología de vanguardia para detectar tu nivel auditivo.</p>
-                            <a href="#" class="btn-service">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tarjeta 2 -->
-                <div class="service">
-                    <img src="./hero3.webp" alt="">
-                    <div class="service-overlay"></div>
-                    <div class="service-info">
-                        <h2>Prótesis Auditivas</h2>
-                        <div class="service-details">
-                            <p>Adaptación de audífonos de última generación según tu estilo de vida.</p>
-                            <a href="#" class="btn-service">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tarjeta 3 -->
-                <div class="service">
-                    <img src="./imgi_7_fono3.webp" alt="">
-                    <div class="service-overlay"></div>
-                    <div class="service-info">
-                        <h2>Rehabilitación</h2>
-                        <div class="service-details">
-                            <p>Terapias especializadas para recuperar y optimizar tu comunicación.</p>
-                            <a href="#" class="btn-service">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tarjeta 4 -->
-                <div class="service">
-                    <img src="./imgi_5_fono1.webp" alt="">
-                    <div class="service-overlay"></div>
-                    <div class="service-info">
-                        <h2>Salud Ocupacional</h2>
-                        <div class="service-details">
-                            <p>Programas de prevención y cuidado auditivo en el entorno laboral.</p>
-                            <a href="#" class="btn-service">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tarjeta 5 -->
-                <div class="service">
-                    <img src="./imgi_6_fono2.webp" alt="">
-                    <div class="service-overlay"></div>
-                    <div class="service-info">
-                        <h2>Laboratorio Audioprotésico</h2>
-                        <div class="service-details">
-                            <p>Atención preferencial a través de nuestras entidades aliadas.</p>
-                            <a href="#" class="btn-service">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tarjeta 6 -->
-                <div class="service">
-                    <img src="./imgi_7_fono3.webp" alt="">
-                    <div class="service-overlay"></div>
-                    <div class="service-info">
-                        <h2>Fono Óptica</h2>
-                        <div class="service-details">
-                            <p>Soluciones visuales integrales para toda la familia.</p>
-                            <a href="#" class="btn-service">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Flechas para móvil -->
-            <div class="slider-nav">
-                <button onclick="moveSlider(-1)">❮</button>
-                <button onclick="moveSlider(1)">❯</button>
-            </div>
-        </section>
-        <section class="gallery">
-        <div class="onerow">
-            <h1>Todo tu cuidado auditivo y visual en un <strong>solo lugar.</strong> </h1>
-            <p>La nueva forma de cuidar tu audición y visión, combinando precisión médica, atención accesible y soluciones avanzadas en audífonos.</p>
-            </div>
-            <div class="tworow">
-                <div class="onecolumn">
-                    <div class="img-contain">
-                    
-                    <div class="-img-text-container"> <h2> Adaptación de audífonos modernos según necesidades auditivas de cada paciente.</h2></div>
-                    </div>
-                    <div class="img-contain">
-                    
-                        <h2>Rehabilitación auditiva y del lenguaje para niños, adultos y adultos mayores.</h2>
-                    </div>
-                </div>
-                <div class="twocolumn">
-                    <div class="img-contain">
-                    
-                        <h2>Clínica integral en salud auditiva y visual con atención especializada.</h2>
-                    </div>
-                    <div class="img-contain">
-                        <img src="./imgi_5_exceptionalsoundevolvai2x.png" alt="">
-                        <h2>Cuidado continuo 24/7 para mejorar tu calidad de vida auditiva.</h2>
-                    </div>
-                </div>
-                <div class="threecolumn">
-                    <div class="img-contain">
-                        <img src="./imgi_6_ruby-detalle.png" alt="">
-                        <h2>Exámenes auditivos precisos para diagnóstico temprano y tratamiento personalizado.</h2>
-                    </div>
-                    <div class="img-contain">
-                        
-                        <h2>Evaluaciones visuales y auditivas integrales en un solo centro especializado.</h2>
-                    </div>
-                </div>
-            </div>
-        
-        </section>
-        <section class="modal">
-        <div class="difuminado-1"></div>
-        <div class="difuminado-2"></div>
+    <!-- MODAL CTA -->
+    <section class="modal">
+        <div class="glow-layer glow-layer--1"></div>
+        <div class="glow-layer glow-layer--2"></div>
+        <div class="glow-layer glow-layer--3"></div>
         <div class="modal-img-container">
             <img src="./697748722f5193b59b97c285_22c514d33f7093633525307337b72924_1-p-1080.webp" alt="">
             <img src="./697748722f5193b59b97c293_dfe52e86e53c7485add90cfb3ac36d33_3-p-2000.webp" alt="">
@@ -1331,15 +981,111 @@
         </div>
         <strong>Resultados que <span>transforman tu vida</span></strong>
         <p>"Resultados reales que demuestran nuestra dedicación y el progreso de cada paciente."</p>
-
-    <a href="">Empezar</a>
+        <a href="">Empezar</a>
     </section>
+
+    <!-- TESTIMONIOS — REDISEÑO INMERSIVO -->
+    <section class="testimonios-section" id="testimonios">
+
+        <div class="test-particle test-particle--1" id="tp1"></div>
+        <div class="test-particle test-particle--2" id="tp2"></div>
+        <div class="test-particle test-particle--3" id="tp3"></div>
+
+        <!-- Header centrado -->
+        <div class="test-header-inner">
+            <span class="test-eyebrow">Experiencias reales</span>
+            <h2>Historias que nos <em>inspiran</em> cada día</h2>
+            <p>Conoce cómo hemos transformado la vida de cientos de familias en Barranquilla con atención auditiva de calidad.</p>
+            <a href="https://api.whatsapp.com/send?phone=573154226205" class="test-header-cta">
+                <span>💬</span> Habla con un especialista
+            </a>
+        </div>
+
+        <!-- Selector de categoría tipo tab-underline -->
+        <div class="test-selector">
+            <button class="test-sel-btn active" data-idx="0">Adultos mayores</button>
+            <button class="test-sel-btn" data-idx="1">Niños y familias</button>
+            <button class="test-sel-btn" data-idx="2">Salud ocupacional</button>
+            <button class="test-sel-btn" data-idx="3">Rehabilitación</button>
+        </div>
+
+        <!-- Stage: card grande con foto -->
+        <div class="test-stage">
+            <div class="test-main-card" id="testCard">
+
+                <!-- Columna foto -->
+                <div class="test-photo-col">
+                    <img id="testImg" src="./imgi_5_fono1.webp" alt="Paciente">
+                    <span class="test-photo-badge" id="testBadge">Audiología</span>
+                </div>
+
+                <!-- Columna contenido -->
+                <div class="test-content-col">
+                    <div>
+                        <span class="test-quote-mark">"</span>
+                        <blockquote class="test-main-quote" id="testQuote">Gracias a Fonoaudio Clínica pude volver a escuchar a mis nietos con claridad. Llevaba años con pérdida auditiva y me daba pena admitirlo. El equipo me atendió con una paciencia y calidez increíbles — me explicaron todo paso a paso, eligieron el audífono ideal para mí y hoy mi vida cambió por completo.</blockquote>
+                    </div>
+                    <div>
+                        <div class="test-person-stars">★★★★★</div>
+                        <div class="test-person">
+                            <span class="test-person-name" id="testName">María Rodríguez, 72 años</span>
+                            <span class="test-person-role" id="testRole">Paciente de adaptación auditiva · Barranquilla</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Dots de navegación -->
+            <div class="test-dots" id="testDots">
+                <button class="test-dot active" data-dot="0"></button>
+                <button class="test-dot" data-dot="1"></button>
+                <button class="test-dot" data-dot="2"></button>
+                <button class="test-dot" data-dot="3"></button>
+            </div>
+        </div>
+
+        <!-- Stats flotantes -->
+        <div class="test-stats-row">
+            <div class="test-stat-item">
+                <span class="test-stat-num"><span class="count-up" data-target="20">0</span><sup>+</sup></span>
+                <span class="test-stat-label">Años de experiencia en audiología</span>
+            </div>
+            <div class="test-stat-divider"></div>
+            <div class="test-stat-item">
+                <span class="test-stat-num"><span class="count-up" data-target="200">0</span><sup>+</sup></span>
+                <span class="test-stat-label">Pacientes atendidos al mes</span>
+            </div>
+            <div class="test-stat-divider"></div>
+            <div class="test-stat-item">
+                <span class="test-stat-num">4.9</span>
+                <span class="test-stat-label">Calificación promedio de satisfacción</span>
+            </div>
+            <div class="test-stat-divider"></div>
+            <div class="test-stat-item">
+                <span class="test-stat-num"><span class="count-up" data-target="6">0</span></span>
+                <span class="test-stat-label">Especialidades médicas disponibles</span>
+            </div>
+        </div>
+
+        <!-- CTA WhatsApp -->
+        <div class="test-bottom-cta">
+            <a href="https://api.whatsapp.com/send?phone=573154226205" class="test-wa-btn">
+                <svg class="test-wa-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="currentColor"/>
+                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.134.558 4.133 1.532 5.865L.057 23.927a.5.5 0 00.614.614l6.216-1.476A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.802 9.802 0 01-5.003-1.369l-.357-.213-3.7.879.893-3.622-.233-.372A9.802 9.802 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" fill="currentColor"/>
+                </svg>
+                Agenda tu cita ahora
+            </a>
+        </div>
+
+    </section>
+
+    <!-- ALIADOS -->
     <section class="aliados-section">
         <h2 class="aliados-title">Nuestros aliados</h2>
-        
         <div class="carousel-container">
             <div class="carousel-track">
-                <!-- Bloque 1 de imágenes -->
                 <div class="aliado-slide"><img src="./aliado1.jpg" alt="Aliado 1"></div>
                 <div class="aliado-slide"><img src="./aliado2.jpg" alt="Aliado 2"></div>
                 <div class="aliado-slide"><img src="./aliado3.jpg" alt="Aliado 3"></div>
@@ -1347,328 +1093,312 @@
                 <div class="aliado-slide"><img src="./aliado5.jpg" alt="Aliado 5"></div>
                 <div class="aliado-slide"><img src="./aliado6.png" alt="Aliado 6"></div>
                 <div class="aliado-slide"><img src="./aliado7.jpg" alt="Aliado 7"></div>
-            <div class="aliado-slide"><img src="./aliado1.jpg" alt="Aliado 1"></div>
+                <div class="aliado-slide"><img src="./aliado1.jpg" alt="Aliado 1"></div>
                 <div class="aliado-slide"><img src="./aliado2.jpg" alt="Aliado 2"></div>
                 <div class="aliado-slide"><img src="./aliado3.jpg" alt="Aliado 3"></div>
                 <div class="aliado-slide"><img src="./aliado4.jpg" alt="Aliado 4"></div>
                 <div class="aliado-slide"><img src="./aliado5.jpg" alt="Aliado 5"></div>
                 <div class="aliado-slide"><img src="./aliado6.png" alt="Aliado 6"></div>
                 <div class="aliado-slide"><img src="./aliado7.jpg" alt="Aliado 7"></div>
-                
             </div>
         </div>
     </section>
 
-        <section class="title-stats">
-    <h1>Datos que <strong>respaldan</strong> nuestro compromiso médico
-    </h1>
-    <p>Nuestro impacto en números reales.</p>
-        </section>
-        
+    <!-- TITLE STATS -->
+    <section class="title-stats">
+        <h1>Datos que <strong>respaldan</strong> nuestro compromiso médico</h1>
+        <p>Nuestro impacto en números reales.</p>
+    </section>
+
+    <!-- MS STATS -->
     <section class="ms-stats-section">
         <div class="ms-stats-grid">
-            <div class="ms-stat-card">
-                <div class="ms-progress" style="--perc: 27%; --color: #2bb673;">
-                    <div class="ms-inner">
-                        <span class="ms-number">27%</span>
-                        <p class="ms-text">Up to 27% lower NICU admissions</p>
-                    </div>
-                </div>
-            </div>
-            <div class="ms-stat-card">
-                <div class="ms-progress" style="--perc: 57%; --color: #7fb3ff;">
-                    <div class="ms-inner">
-                        <span class="ms-number">57%</span>
-                        <p class="ms-text">Up to 57% of members report Maven helped them return to work after having a baby</p>
-                    </div>
-                </div>
-            </div>
-            <div class="ms-stat-card">
-                <div class="ms-progress" style="--perc: 30%; --color: #1a8a6d;">
-                    <div class="ms-inner">
-                        <span class="ms-number">30%</span>
-                        <p class="ms-text">Among fertility members, 30% achieve pregnancy without Assisted Reproductive Technology</p>
-                    </div>
-                </div>
-            </div>
-            <div class="ms-stat-card">
-                <div class="ms-progress" style="--perc: 21%; --color: #0089cf;">
-                    <div class="ms-inner">
-                        <span class="ms-number">21%</span>
-                        <p class="ms-text">Up to 21% of members reported an improved state of maternal mental health</p>
-                    </div>
-                </div>
-            </div>
+            <div class="ms-stat-card" style="--card-color: #2bb673;"><span class="ms-number">27%</span><p class="ms-text">Reducción de riesgos laborales con nuestros programas de salud ocupacional auditiva.</p><div class="ms-bar-track"><div class="ms-bar-fill" style="--perc: 27%; --card-color: #2bb673;"></div></div></div>
+            <div class="ms-stat-card" style="--card-color: #005ec3;"><span class="ms-number">+200</span><p class="ms-text">Pacientes atendidos mensualmente entre audiología, rehabilitación y optometría.</p><div class="ms-bar-track"><div class="ms-bar-fill" style="--perc: 70%; --card-color: #005ec3;"></div></div></div>
+            <div class="ms-stat-card" style="--card-color: #1a8a6d;"><span class="ms-number">20+</span><p class="ms-text">Años de trayectoria profesional en salud auditiva y visual en Barranquilla.</p><div class="ms-bar-track"><div class="ms-bar-fill" style="--perc: 90%; --card-color: #1a8a6d;"></div></div></div>
+            <div class="ms-stat-card" style="--card-color: #e07b00;"><span class="ms-number">6</span><p class="ms-text">Especialidades médicas disponibles en un solo lugar para toda tu familia.</p><div class="ms-bar-track"><div class="ms-bar-fill" style="--perc: 60%; --card-color: #e07b00;"></div></div></div>
         </div>
     </section>
 
+    <!-- CLINIC -->
     <section class="clinic-hero-section">
         <div class="clinic-container">
-            <!-- Columna Izquierda -->
             <div class="clinic-content">
                 <h2 class="clinic-title">Haciendo que la salud <br><em>funcione para todos</em></h2>
-                <p class="clinic-description">Juntos, estamos rediseñando la experiencia de salud...</p>
-
+                <p class="clinic-description">Juntos, estamos rediseñando la experiencia de salud auditiva y visual en Barranquilla.</p>
                 <nav class="clinic-nav">
-                    <!-- Cambia las URLs en data-img por tus fotos reales -->
-                    <a href="./imgi_5_fono1.webp" class="clinic-link" data-img="./imgi_5_fono1.webp">Empleadores <span>→</span></a>
-                    <a href="" class="clinic-link" data-img="./imgi_6_fono2.webp">Planes de Salud <span>→</span></a>
-                    <a href="./imgi_7_fono3.webp" class="clinic-link" data-img="URL_IMAGEN_CONSULTORES.jpg">Consultores <span>→</span></a>
-                    <a href="#" class="clinic-link" data-img="URL_IMAGEN_PACIENTES.jpg">Pacientes <span>→</span></a>
+                    <a href="#" class="clinic-link" data-img="./imgi_5_fono1.webp">Empleadores <span>→</span></a>
+                    <a href="#" class="clinic-link" data-img="./imgi_6_fono2.webp">Planes de Salud <span>→</span></a>
+                    <a href="#" class="clinic-link" data-img="./imgi_7_fono3.webp">Consultores <span>→</span></a>
+                    <a href="#" class="clinic-link" data-img="./imgi_5_fono1.webp">Pacientes <span>→</span></a>
                 </nav>
-
                 <a href="#" class="clinic-btn">Consulta nuestros servicios</a>
             </div>
-
-            <!-- Columna Derecha: Imagen Dinámica -->
             <div class="clinic-image-container">
                 <img src="./697748722f5193b59b97c293_dfe52e86e53c7485add90cfb3ac36d33_3-p-2000.webp" id="dynamic-img" alt="Salud" class="clinic-main-img">
             </div>
         </div>
     </section>
 
+</div><!-- /smooth-content -->
+</div><!-- /smooth-wrapper -->
 
-    </div>
-    </div>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollSmoother.min.js"></script>
 
-    <!-- GSAP -->
-   
-
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollSmoother.min.js"></script>
-
-
-<!-- Lenis -->
 <script>
-document.querySelectorAll(".text-stadistic").forEach(el => {
-    const nodes = [...el.childNodes];
-    el.innerHTML = "";
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-    nodes.forEach(node => {
-        if (node.nodeType === 3) {
-            node.textContent.split("").forEach(char => {
-                const span = document.createElement("span");
-                span.className = "letter";
-                span.innerText = char === " " ? "\u00A0" : char;
-                el.appendChild(span);
-            });
-        } else {
-            const wrapper = document.createElement("span");
-            wrapper.classList.add("inline-block-wrapper");
-            wrapper.appendChild(node.cloneNode(true));
-            el.appendChild(wrapper);
-        }
+/* ── Suprimir ResizeObserver loop (inofensivo) ── */
+const _OriginalError = window.onerror;
+window.onerror = function(msg, ...rest) {
+    if (typeof msg === "string" && msg.includes("ResizeObserver loop")) return true;
+    return _OriginalError ? _OriginalError(msg, ...rest) : false;
+};
+window.addEventListener("error", e => {
+    if (e.message && e.message.includes("ResizeObserver loop")) e.stopImmediatePropagation();
+}, true);
+
+ScrollTrigger.config({
+    ignoreMobileResize: true,
+    autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+});
+
+/* ── SCROLLSMOOTHER ── */
+const smoother = ScrollSmoother.create({
+    wrapper:  "#smooth-wrapper",
+    content:  "#smooth-content",
+    smooth:   2.2,
+    effects:  true,
+    normalizeScroll: false,
+});
+
+requestAnimationFrame(() => {
+
+    /* ── HERO PARALLAX ── */
+    gsap.to(".text-hero", {
+        y: -150, opacity: 0.4, ease: "none",
+        scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1.5 }
+    });
+
+    /* ── STATISTICS ── */
+    gsap.to(".text-stadistic", {
+        y: -80, ease: "none",
+        scrollTrigger: { trigger: ".stadistic", start: "top bottom", end: "bottom top", scrub: 1.5 }
+    });
+    gsap.fromTo(".stadistic",
+        { opacity: 0 },
+        { opacity: 1, duration: 1.2, ease: "power3.out",
+          scrollTrigger: { trigger: ".stadistic", start: "top 75%", toggleActions: "play none none none" } }
+    );
+
+    /* ── SERVICES ── */
+    gsap.utils.toArray(".service").forEach((card, i) => {
+        gsap.fromTo(card,
+            { opacity: 0, y: 60 },
+            { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: i * 0.08,
+              scrollTrigger: { trigger: card, start: "top 90%", toggleActions: "play none none none" } }
+        );
+    });
+
+    /* ── BENTO GRID REVEAL ── */
+    gsap.utils.toArray(".bento-card").forEach((card, i) => {
+        gsap.fromTo(card,
+            { opacity: 0, y: 36 },
+            { opacity: 1, y: 0, duration: 0.65, ease: "power3.out", delay: i * 0.055,
+              scrollTrigger: { trigger: ".bento-grid", start: "top 82%", toggleActions: "play none none none" } }
+        );
+    });
+
+    /* ── MODAL — scrub dinámico con trayectorias diagonales ── */
+    const modalImgs = document.querySelectorAll(".modal-img-container img");
+    if (modalImgs.length >= 4) {
+        const imgConfigs = [
+            { yStart: 20,  yEnd: -70,  xStart: -8,  xEnd: 18,  rotStart: -4, rotEnd: 5  },
+            { yStart: -15, yEnd: 60,   xStart: 6,   xEnd: -16, rotStart: 3,  rotEnd: -5 },
+            { yStart: 25,  yEnd: -55,  xStart: 10,  xEnd: -20, rotStart: -3, rotEnd: 6  },
+            { yStart: -20, yEnd: 65,   xStart: -10, xEnd: 22,  rotStart: 4,  rotEnd: -4 },
+        ];
+        imgConfigs.forEach((cfg, i) => {
+            gsap.fromTo(modalImgs[i],
+                { y: cfg.yStart, x: cfg.xStart, rotation: cfg.rotStart },
+                {
+                    y: cfg.yEnd, x: cfg.xEnd, rotation: cfg.rotEnd,
+                    ease: "none",
+                    scrollTrigger: { trigger: ".modal", start: "top bottom", end: "bottom top", scrub: 2.2 }
+                }
+            );
+        });
+
+        gsap.fromTo(".modal-img-container img",
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: "power2.out",
+              scrollTrigger: { trigger: ".modal", start: "top 80%", toggleActions: "play none none none" } }
+        );
+    }
+
+    /* ── TESTIMONIOS REVEAL ── */
+    gsap.fromTo(".test-main-card",
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 0.9, ease: "power3.out",
+          scrollTrigger: { trigger: ".testimonios-section", start: "top 78%", toggleActions: "play none none none" } }
+    );
+    gsap.fromTo(".test-stats-row",
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.7, ease: "power3.out",
+          scrollTrigger: { trigger: ".test-stats-row", start: "top 88%", toggleActions: "play none none none" } }
+    );
+
+}); // end requestAnimationFrame
+
+/* ── HERO SLIDESHOW ── */
+const slideshowTL = gsap.timeline({ repeat: -1 });
+slideshowTL
+    .to(".img-2", { opacity: 1, duration: 1.5 }, "+=3")
+    .to(".img-3", { opacity: 1, duration: 1.5 }, "+=3")
+    .to(".img-2, .img-3", { opacity: 0, duration: 1.5 }, "+=3");
+
+/* ── MOBILE MENU ── */
+const mToggle = document.getElementById("m-toggle");
+const mPanel  = document.getElementById("m-panel");
+const mLinks  = mPanel ? mPanel.querySelectorAll("nav a, .m-panel-buttons a") : [];
+let mOpen = false;
+
+if (mToggle && mPanel) {
+    gsap.set(mLinks, { opacity: 0, y: 24 });
+    const mTL = gsap.timeline({ paused: true });
+    mTL
+        .set(mPanel, { visibility: "visible", pointerEvents: "auto" })
+        .to(mPanel, { translateY: "0%", duration: 0.55, ease: "expo.inOut" })
+        .to(mLinks, { opacity: 1, y: 0, duration: 0.35, stagger: 0.07, ease: "power3.out" }, "-=0.25");
+
+    function openMenu() {
+        mOpen = true;
+        mToggle.classList.add("is-open");
+        gsap.to(mToggle.children[0], { y: 9,  rotation: 45,  duration: 0.35, ease: "power2.inOut", transformOrigin: "center" });
+        gsap.to(mToggle.children[1], { opacity: 0, scaleX: 0, duration: 0.2 });
+        gsap.to(mToggle.children[2], { y: -9, rotation: -45, duration: 0.35, ease: "power2.inOut", transformOrigin: "center" });
+        mTL.play();
+        if (smoother) smoother.paused(true);
+    }
+
+    function closeMenu() {
+        mOpen = false;
+        mToggle.classList.remove("is-open");
+        gsap.to(mToggle.children[0], { y: 0, rotation: 0, duration: 0.35, ease: "power2.inOut" });
+        gsap.to(mToggle.children[1], { opacity: 1, scaleX: 1, duration: 0.2, delay: 0.1 });
+        gsap.to(mToggle.children[2], { y: 0, rotation: 0, duration: 0.35, ease: "power2.inOut" });
+        gsap.to(mLinks, { opacity: 0, y: -16, duration: 0.22, stagger: 0.04, ease: "power2.in" });
+        gsap.to(mPanel, {
+            translateY: "-100%", duration: 0.5, ease: "expo.inOut", delay: 0.18,
+            onComplete: () => {
+                gsap.set(mPanel, { visibility: "hidden", pointerEvents: "none" });
+                mTL.pause(0);
+            }
+        });
+        if (smoother) smoother.paused(false);
+    }
+
+    mToggle.addEventListener("click", () => mOpen ? closeMenu() : openMenu());
+    mLinks.forEach(link => link.addEventListener("click", closeMenu));
+}
+
+/* ── SLIDER MÓVIL ── */
+function moveSlider(direction) {
+    const slider = document.getElementById("servicesSlider");
+    slider.scrollBy({ left: direction * slider.clientWidth * 0.85, behavior: "smooth" });
+}
+
+/* ── CLINIC IMAGE SWITCH ── */
+document.querySelectorAll(".clinic-link").forEach(link => {
+    link.addEventListener("mouseenter", function () {
+        const newSrc = this.getAttribute("data-img");
+        const mainImg = document.getElementById("dynamic-img");
+        mainImg.classList.add("fade-out");
+        setTimeout(() => {
+            mainImg.src = newSrc;
+            mainImg.classList.remove("fade-out");
+        }, 200);
     });
 });
-</script>
 
-<!-- 🔥 TU GSAP AQUÍ ABAJO -->
-<script>
-gsap.registerPlugin(ScrollTrigger);
-
-const letters = document.querySelectorAll(".text-stadistic .letter");
-
-gsap.fromTo(letters,
-{
-    opacity: 0,
-    y: 40,
-    filter: "blur(12px)"
-},
-{
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    duration: 1.9,
-    ease: "power3.out",
-    stagger: {
-        each: .002,
-        from: "random"
+/* ── SELECTOR DE TESTIMONIOS ── */
+const testimonios = [
+    {
+        img: "./imgi_5_fono1.webp",
+        badge: "Audiología",
+        quote: "Gracias a Fonoaudio Clínica pude volver a escuchar a mis nietos con claridad. Llevaba años con pérdida auditiva y me daba pena admitirlo. El equipo me atendió con una paciencia y calidez increíbles — me explicaron todo paso a paso, eligieron el audífono ideal para mí y hoy mi vida cambió por completo.",
+        name: "María Rodríguez, 72 años",
+        role: "Paciente de adaptación auditiva · Barranquilla"
     },
-    scrollTrigger: {
-        trigger: ".stadistic",
-        start: "top 70%"
-    }
-});
-gsap.registerPlugin(ScrollTrigger);
+    {
+        img: "./imgi_6_fono2.webp",
+        badge: "Pediatría",
+        quote: "Mi hijo de 6 años fue diagnosticado con pérdida auditiva leve. El equipo nos guió en todo el proceso de adaptación. Hoy su rendimiento escolar mejoró notablemente y él mismo dice que ya puede escuchar bien a su maestra.",
+        name: "Laura Mejía",
+        role: "Madre de paciente · Barranquilla"
+    },
+    {
+        img: "./imgi_7_fono3.webp",
+        badge: "Salud Ocupacional",
+        quote: "Implementamos el programa de salud auditiva ocupacional con Fonoaudio Clínica en nuestra planta. Los resultados fueron inmediatos: menos ausentismo, mayor cumplimiento normativo y trabajadores más tranquilos.",
+        name: "Carlos Pinto",
+        role: "Jefe de SST · Empresa industrial, Barranquilla"
+    },
+    {
+        img: "./imgi_5_fono1.webp",
+        badge: "Rehabilitación",
+        quote: "Después de mi accidente cerebrovascular quedé con dificultades del habla. Las sesiones de fonoaudiología me devolvieron la confianza. El equipo fue paciente, profesional y siempre motivándome a seguir adelante.",
+        name: "Jorge Hernández, 58 años",
+        role: "Paciente de rehabilitación del habla · Barranquilla"
+    },
+];
 
-gsap.utils.toArray(".service").forEach((card) => {
+const selBtns = document.querySelectorAll(".test-sel-btn");
+const dots    = document.querySelectorAll(".test-dot");
 
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: card,
-            start: "top 90%",
-            end: "bottom 10%",
-            scrub: 1.2, // 🔥 suaviza pero sigue el scroll real
-            toggleActions: "play none none reverse",
-            invalidateOnRefresh: true
-        }
+function loadTestimonio(idx) {
+    const t = testimonios[idx];
+    const card = document.getElementById("testCard");
+    gsap.to(card, { opacity: 0, y: 12, duration: 0.22, ease: "power2.in", onComplete: () => {
+        document.getElementById("testImg").src             = t.img;
+        document.getElementById("testBadge").textContent  = t.badge;
+        document.getElementById("testQuote").textContent  = t.quote;
+        document.getElementById("testName").textContent   = t.name;
+        document.getElementById("testRole").textContent   = t.role;
+        gsap.to(card, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" });
+    }});
+    selBtns.forEach(b => b.classList.toggle("active", +b.dataset.idx === idx));
+    dots.forEach(d => d.classList.toggle("active", +d.dataset.dot === idx));
+}
+
+selBtns.forEach(btn => btn.addEventListener("click", () => loadTestimonio(+btn.dataset.idx)));
+dots.forEach(dot   => dot.addEventListener("click",  () => loadTestimonio(+dot.dataset.dot)));
+
+/* ── COUNT-UP ── */
+const countEls = document.querySelectorAll(".count-up");
+const countObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = +el.dataset.target;
+        gsap.fromTo(el,
+            { innerText: 0 },
+            {
+                innerText: target,
+                duration: 1.8,
+                ease: "power2.out",
+                snap: { innerText: 1 },
+                onUpdate() { el.textContent = Math.round(+el.innerText); }
+            }
+        );
+        countObs.unobserve(el);
     });
+}, { threshold: 0.5 });
+countEls.forEach(el => countObs.observe(el));
 
-    tl.fromTo(card,
-        {
-            opacity: 0,
-            y: 120
-        },
-        {
-            opacity: 1,
-            y: 0,
-            ease: "none"
-        }
-    )
-    .to(card, {
-        opacity: 0,
-        y: -120,
-        ease: "none"
-    }, 1); // salida sincronizada al final del scroll
-
-});
 </script>
 
-
-<script>
-gsap.registerPlugin(ScrollTrigger);
-
-
-const introTL = gsap.timeline({
-    onComplete: () => {
-        document.body.style.overflow = "auto";
-
-        // ocultar intro
-        gsap.set(".intro-layer", { display: "none" });
-
-        // recalcular scroll
-        ScrollTrigger.refresh();
-    }
-});
-
-/* HERO estado inicial (zoom in detrás de intro) */
-gsap.set(".hero", {
-    scale: 1.08,
-    filter: "blur(8px)",
-    transformOrigin: "center",
-    willChange: "transform"
-});
-
-/* INTRO ANIMACIÓN */
-introTL
-.to(".intro-logo", {
-    opacity: 1,
-    duration: 1,
-    ease: "power2.out",
-    delay: 0.5
-})
-.to(".intro-logo", {
-    opacity: 0,
-    y: -20,
-    duration: 0.6,
-    ease: "power2.in"
-}, "+=0.4")
-.to(".intro-blue", {
-    yPercent: -100,
-    duration: 1.2,
-    ease: "expo.inOut"
-})
-.to(".intro-blur", {
-    yPercent: -100,
-    duration: 1.2,
-    ease: "expo.inOut"
-}, "-=1.0")
-
-/* =========================
-   HERO ZOOM IN SUAVE
-========================= */
-.to(".hero", {
-    scale: 1,
-    filter: "blur(0px)",
-    duration: 1.8,
-    ease: "power3.out"
-}, "-=0.6");
-gsap.to(".text-hero", {
-    y: -150,
-    scale: 0.97,
-    filter: "blur(2px)",
-    ease: "none",
-    scrollTrigger: {
-        trigger: ".hero",
-        start: "top top",
-        end: "bottom top",
-        scrub: true
-    }
-});
-gsap.to(".text-stadistic ", {
-    y: -150,
-    scale: 0.97,
-    filter: "blur(2px)",
-    ease: "none",
-    scrollTrigger: {
-        trigger: ".stadistic",
-        start: "top: 1%",
-        end: "bottom top",
-        scrub: true
-    }
-});
-</script>
-
-    <script>
-        const menuToggle = document.getElementById('mobile-menu');
-    const navContainer = document.querySelector('.nav-container');
-
-    menuToggle.addEventListener('click', () => {
-        // Alterna la clase para la animación de la X
-        menuToggle.classList.toggle('open');
-        // Alterna la clase para mostrar el menú
-        navContainer.classList.toggle('active');
-        
-        // Opcional: Bloquear el scroll del body cuando el menú está abierto
-        document.body.style.overflow = navContainer.classList.contains('active') ? 'hidden' : 'auto';
-    });
-
-            function moveSlider(direction) {
-        const slider = document.getElementById('servicesSlider');
-        const scrollAmount = slider.clientWidth * 0.85; // Mueve lo que mide una tarjeta
-        slider.scrollBy({
-            left: direction * scrollAmount,
-            behavior: 'smooth'
-        });
-    }
-    document.querySelectorAll('.clinic-link').forEach(link => {
-        link.addEventListener('mouseenter', function() {
-            const newImgSrc = this.getAttribute('data-img');
-            const mainImg = document.getElementById('dynamic-img');
-            
-            // Efecto de desvanecimiento
-            mainImg.classList.add('fade-out');
-            
-            setTimeout(() => {
-                mainImg.src = newImgSrc;
-                mainImg.classList.remove('fade-out');
-            }, 200); // Cambia la imagen justo a mitad de la animación
-        });
-    });
-
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
-    /* 🔥 Inicializar smoother */
-    ScrollSmoother.create({
-    wrapper: "#smooth-wrapper",
-    content: "#smooth-content",
-    smooth: 2.2,
-    effects: true
-    });
-
-    /* 🔥 Animación */
-    const tl = gsap.timeline({ repeat: -1 });
-
-    const duracionFade = 1.5;
-    const tiempoEspera = 3;
-
-    tl
-    .to(".img-2", { opacity: 1, duration: duracionFade }, "+=" + tiempoEspera)
-    .to(".img-3", { opacity: 1, duration: duracionFade }, "+=" + tiempoEspera)
-    .to(".img-2, .img-3", { opacity: 0, duration: duracionFade }, "+=" + tiempoEspera);
-
-    </script>
-
-    </body>
-    </html>
+</body>
+</html>
