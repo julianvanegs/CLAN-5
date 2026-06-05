@@ -1,0 +1,29 @@
+{
+  "tickets": [
+    {
+      "name": "dawdwa",
+      "place": "wadd",
+      "date": "awdw",
+      "time": "wadaw",
+      "description": "daw",
+      "clientId": "4",
+      "clientName": "Juan Pérez",
+      "id": "1780685278313",
+      "createdAt": "2026-06-05T18:47:58.313Z"
+    },
+    {
+      "name": "dwad",
+      "place": "dawd",
+      "date": "awdwa",
+      "time": "dwadwa",
+      "description": "dwada",
+      "technicianId": "",
+      "technicianName": "",
+      "status": "",
+      "clientId": "1",
+      "clientName": "Admin User",
+      "id": "1780687414947",
+      "createdAt": "2026-06-05T19:23:34.947Z"
+    }
+  ]
+}
